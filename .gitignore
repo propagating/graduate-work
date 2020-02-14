@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 
 cs-530-data-mining/hw1/.idea/
+
+cs-629-data-visualisation/nba-elo-vis/.idea/
