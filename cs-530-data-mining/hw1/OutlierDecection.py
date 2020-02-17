@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 from LeastSquaresCoefficients import estimate_coef_ols
 
 
-def runOuliterDetection():
+def runOuliterDetection(x, y):
     n_samples = 100
     n_outliers = 5
     X, y, coef = datasets.make_regression(n_samples=n_samples, n_features=1,
