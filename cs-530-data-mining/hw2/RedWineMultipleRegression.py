@@ -61,50 +61,52 @@ def k_fold_validation(target, descriptors, folds):
     print(f'Validation Predicted Y Result {predictedY.mean()}')
 
 
-train = pd.read_csv('data/train.csv')
-processed_train = preprocessing_pipeline(train)
-vif_dataframe = generate_vif_dataframe(processed_train)
-print(vif_dataframe)
+def runRedWineRegression():
 
-potentialDescriptors = vif_dataframe[vif_dataframe.VIF <= 5]
-print(potentialDescriptors.Variable)
+    train = pd.read_csv('data/train.csv')
+    processed_train = preprocessing_pipeline(train)
+    vif_dataframe = generate_vif_dataframe(processed_train)
+    print(vif_dataframe)
 
-descriptors = processed_train[potentialDescriptors.Variable]
-results = sm.OLS(processed_train['quality'], sm.add_constant(descriptors)).fit()
+    potentialDescriptors = vif_dataframe[vif_dataframe.VIF <= 5]
+    print(potentialDescriptors.Variable)
 
-valuesToDropExist = results.pvalues > 0.07
-valuesToDropExist = valuesToDropExist[valuesToDropExist]
-
-while len(valuesToDropExist) > 0:
-    descriptorsToKeep = results.pvalues < 0.07
-    descriptorsToKeep[0] = False
-    descriptorsToKeep = descriptorsToKeep[descriptorsToKeep]
-    descriptors = processed_train[descriptorsToKeep.keys()]
+    descriptors = processed_train[potentialDescriptors.Variable]
     results = sm.OLS(processed_train['quality'], sm.add_constant(descriptors)).fit()
-    valuesToDropExist = results.pvalues > 0.7
+
+    valuesToDropExist = results.pvalues > 0.07
     valuesToDropExist = valuesToDropExist[valuesToDropExist]
 
-print(results.summary(()))
+    while len(valuesToDropExist) > 0:
+        descriptorsToKeep = results.pvalues < 0.07
+        descriptorsToKeep[0] = False
+        descriptorsToKeep = descriptorsToKeep[descriptorsToKeep]
+        descriptors = processed_train[descriptorsToKeep.keys()]
+        results = sm.OLS(processed_train['quality'], sm.add_constant(descriptors)).fit()
+        valuesToDropExist = results.pvalues > 0.7
+        valuesToDropExist = valuesToDropExist[valuesToDropExist]
 
-MSE = generate_mse(processed_train['quality'], results.fittedvalues)
-print(f'Pre-Validation {MSE}')
+    print(results.summary(()))
 
-k_fold_validation(processed_train['quality'], descriptors, 5)
+    MSE = generate_mse(processed_train['quality'], results.fittedvalues)
+    print(f'Pre-Validation {MSE}')
 
-testData = pd.read_csv("data/test.csv")
-testData = testData.drop("Id", 1)
-testData.columns = ["acidity", "volatile", "citric", "sugar", "chlorides", "freeSulfur", "totalSulfur", "density",
-                    "pH",
-                    "sulphates", "alcohol"]
+    k_fold_validation(processed_train['quality'], descriptors, 5)
+
+    testData = pd.read_csv("data/test.csv")
+    testData = testData.drop("Id", 1)
+    testData.columns = ["acidity", "volatile", "citric", "sugar", "chlorides", "freeSulfur", "totalSulfur", "density",
+                        "pH",
+                        "sulphates", "alcohol"]
 
 
-pred = pd.DataFrame([2.6904 - 1.181 * testData['volatile'] - .0024 * testData['totalSulfur'] + .9611 * testData['sulphates'] + .2932 *
-                      testData['alcohol']])
+    pred = pd.DataFrame([2.6904 - 1.181 * testData['volatile'] - .0024 * testData['totalSulfur'] + .9611 * testData['sulphates'] + .2932 *
+                          testData['alcohol']])
 
-print(pred.shape)
-with pd.option_context('display.max_rows', 10000, 'display.max_columns', 10000):  # more options can be specified also
-    print(pred.values)
-    import csv
-    with open('data/Prediction.csv', 'w', newline='') as csvFile:
-        spamwriter = csv.writer(csvFile, delimiter=',')
-        spamwriter.writerows(pred.values)
+    print(pred.shape)
+    with pd.option_context('display.max_rows', 10000, 'display.max_columns', 10000):  # more options can be specified also
+        print(pred.values)
+        import csv
+        with open('data/Prediction.csv', 'w', newline='') as csvFile:
+            spamwriter = csv.writer(csvFile, delimiter=',')
+            spamwriter.writerows(pred.values)

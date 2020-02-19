@@ -1,0 +1,5 @@
+from MultipleRegression import runMultipleRegression
+from RedWineMultipleRegression import runRedWineRegression
+
+runMultipleRegression()
+runRedWineRegression()
