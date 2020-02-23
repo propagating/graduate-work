@@ -7,6 +7,25 @@ from sklearn.impute import IterativeImputer
 
 
 # drop Id and rename columns
+def trim_test_cols(df):
+    df.columns.str.contains('^id', case=False)
+    trimmed = df.loc[:, ~df.columns.str.contains('^id', case=False)]
+
+    trimmed.columns = ['SubClass', 'Zoning', 'Frontage', 'Area', 'StreetType', 'AlleyType', 'Shape', 'Contour', 'Utilities',
+                       'Configuration', 'Slope', 'Neighborhood', 'FirstCondition', 'SecondCondition', 'Type', 'Style', 'TotalQuality',
+                       'TotalCondition', 'YearBuilt', 'YearRemodeled', 'Roof', 'RoofMaterial', 'FirstExterior', 'SecondExterior',
+                       'VeneerType', 'VeneerArea', 'ExteriorQuality', 'ExteriorCondition', 'Foundation', 'BasementQuality',
+                       'BasementCondition', 'BasementExposure', 'FirstBasementFinish', 'FirstBasementSize', 'SecondBasementFinish',
+                       'SecondBasementSize', 'BasementUnfinishedSize', 'TotalBasementSize', 'Heating', 'HeatingQuality', 'CentralAir',
+                       'Electrical', 'FirstFloorSize', 'SecondFloorSize', 'LowQualityFinishedSize', 'AboveGradeArea',
+                       'BasementFullBath', 'BasementHalfBath', 'HouseFullBath', 'HouseHalfBath', 'BedroomsAboveGrade',
+                       'KitchenAboveGrade', 'KitchenQuality', 'TotalRoomsAboveGrade', 'Functional', 'Fireplace', 'FireplaceQuality',
+                       'GarageType', 'GarageYear', 'GarageFinish', 'GarageCars', 'GarageArea', 'GarageQuality', 'GarageCondition',
+                       'PavedDriveway', 'WoodDeckSize', 'OpenPorchSize', 'EnclosedPorch', 'AllSeasonPorch', 'ScreenPorch', 'PoolArea',
+                       'PoolQuality', 'Fence', 'MiscFeature', 'MiscValue', 'MonthSold', 'YearSold', 'SaleType', 'SaleCondition']
+    return trimmed
+
+# drop Id and rename columns
 def trim_train_cols(df):
     df.columns.str.contains('^id', case=False)
     trimmed = df.loc[:, ~df.columns.str.contains('^id', case=False)]
@@ -194,9 +213,9 @@ potentialDescriptors = trainingData[lowVifScores.Variable]
 print(potentialDescriptors.columns)
 
 # in order to do OLS with categorical variables, we need to split out each category into its own column
-descriptors = pd.concat(
-    [pd.get_dummies(potentialDescriptors.select_dtypes('category'), drop_first=True), potentialDescriptors.select_dtypes('number')], axis=1)
-
+dummies = pd.get_dummies(potentialDescriptors.select_dtypes('category'), drop_first=True)
+numbers = potentialDescriptors.select_dtypes('number')
+descriptors = numbers.join(dummies)
 
 # first round, Adj-Rsq of .916
 results = sm.OLS(trainingData['SalePrice'], sm.add_constant(descriptors, has_constant='add')).fit()
@@ -215,19 +234,20 @@ while len(valuesToDropExist) > 0:
     valuesToDropExist = valuesToDropExist[valuesToDropExist]
 
 print(results.rsquared_adj)
+print(results.summary)
+prediction = results.predict(sm.add_constant(descriptors, has_constant='add'))
+print(prediction)
 
 testingSet = pd.read_csv('data/test.csv')
-testingData = trim_train_cols(trainingSet)
+testingData = trim_test_cols(testingSet)
 # don't drop outliers on test set
 process_raw(testingData, False)
 
 # in order to do OLS with categorical variables, we need to split out each category into its own column, this code should do that
-predictionDescriptors = pd.concat(
-    [pd.get_dummies(testingData.select_dtypes('category'), drop_first=True), testingData.select_dtypes('number')], axis=1)
+dummies = pd.get_dummies(testingData.select_dtypes('category'), drop_first=True)
+numbers = testingData.select_dtypes('number')
+testDescriptors = numbers.join(dummies)
 
-predictionDescriptors.columns.str.contains('^SalePrice', case=False)
-predictionDescriptors = predictionDescriptors.loc[:, ~predictionDescriptors.columns.str.contains('^SalePrice', case=False)]
-
-predictionDescriptors = predictionDescriptors[descriptorsToKeep.keys()]
+predictionDescriptors = pd.DataFrame(testDescriptors, columns=[descriptors.columns])
 prediction = results.predict(sm.add_constant(predictionDescriptors, has_constant='add'))
 print(prediction)
