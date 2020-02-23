@@ -25,6 +25,7 @@ def trim_test_cols(df):
                        'PoolQuality', 'Fence', 'MiscFeature', 'MiscValue', 'MonthSold', 'YearSold', 'SaleType', 'SaleCondition']
     return trimmed
 
+
 # drop Id and rename columns
 def trim_train_cols(df):
     df.columns.str.contains('^id', case=False)
@@ -58,33 +59,42 @@ def convert_categories(df):
     fenceLevels = ['GdPrv', 'MnPrv', 'GdWo', 'MnWw', 'NA']
     saleLevels = ['Normal', 'Abnormal', 'AdjLand', 'Alloca', 'Family Sale', 'Partial']
 
-    df.SubClass = df.SubClass.astype('category')
-    df.Zoning = df.Zoning.astype('category')
-    df.StreetType = df.StreetType.astype('category')
-    df.AlleyType = df.AlleyType.astype('category')
-    df.Shape = df.Shape.astype('category')
-    df.Contour = df.Contour.astype('category')
-    df.Utilities = df.Utilities.astype('category')
-    df.Configuration = df.Configuration.astype('category')
-    df.Slope = df.Slope.astype('category')
-    df.Neighborhood = df.Neighborhood.astype('category')
-    df.FirstCondition = df.FirstCondition.astype('category')
-    df.SecondCondition = df.SecondCondition.astype('category')
-    df.Type = df.Type.astype('category')
-    df.Style = df.Style.astype('category')
-    df.Roof = df.Roof.astype('category')
-    df.RoofMaterial = df.RoofMaterial.astype('category')
-    df.FirstExterior = df.FirstExterior.astype('category')
-    df.SecondExterior = df.SecondExterior.astype('category')
-    df.VeneerType = df.VeneerType.astype('category')
-    df.Foundation = df.Foundation.astype('category')
-    df.Heating = df.Heating.astype('category')
-    df.CentralAir = df.CentralAir.astype('category')
-    df.Electrical = df.Electrical.astype('category')
-    df.GarageType = df.GarageType.astype('category')
-    df.SaleType = df.SaleType.astype('category')
-    df.PavedDriveway = df.PavedDriveway.astype('category')
-    df.MiscFeature = df.MiscFeature.astype('category')
+    df.SubClass = pd.Categorical(df.SubClass, categories=[20, 30, 40, 45, 50, 60, 70, 75, 80, 85, 90, 120, 150, 160, 180, 190])
+    df.Zoning = pd.Categorical(df.Zoning, categories=['A (agr)', 'C (all)', 'FV', 'I (all)', 'RH', 'RL', 'RM', 'RP'])
+    df.StreetType = pd.Categorical(df.StreetType, categories=['Grvl', 'Pave'])
+    df.AlleyType = pd.Categorical(df.AlleyType, categories=['Grvl', 'Pave', 'NA'])
+    df.Shape = pd.Categorical(df.Shape, categories=['IR1', 'Reg', 'IR2', 'IR3'])
+    df.Contour = pd.Categorical(df.Contour, categories=['Lvl', 'Bnk', 'Low', 'HLS'])
+    df.Utilities = pd.Categorical(df.Utilities, categories=['AllPub', 'NoSewr', 'NoSeWa', 'ELO'])
+    df.Configuration = pd.Categorical(df.Configuration, categories=['Inside', 'FR2', 'CulDSac', 'Corner', 'FR3'])
+    df.Slope = pd.Categorical(df.Slope, categories=['Gtl', 'Mod', 'Sev'])
+    df.Neighborhood = pd.Categorical(df.Neighborhood,
+                                     categories=['IDOTRR', 'Somerst', 'OldTown', 'CollgCr', 'NAmes', 'Mitchel', 'MeadowV', 'Sawyer',
+                                                 'BrDale', 'Edwards', 'NWAmes', 'BrkSide', 'ClearCr', 'Gilbert', 'Timber', 'SawyerW',
+                                                 'Crawfor', 'SWISU', 'NridgHt', 'Veenker', 'Blueste', 'NoRidge', 'StoneBr', 'Greens',
+                                                 'Blmngtn', 'NPkVill', 'GrnHill'])
+    df.FirstCondition = pd.Categorical(df.FirstCondition,
+                                       categories=['Norm', 'Feedr', 'Artery', 'RRAn', 'RRAe', 'PosA', 'PosN', 'RRNe', 'RRNn'])
+    df.SecondCondition = pd.Categorical(df.SecondCondition, categories=['Norm', 'Feedr', 'RRNn', 'PosN', 'Artery', 'PosA'])
+    df.Type = pd.Categorical(df.Type, categories=['1Fam', '2fmCon', 'Duplex', 'TwnhsE', 'Twnhs'])
+    df.Style = pd.Categorical(df.Style, categories=['1Story', '2Story', '1.5Fin', '1.5Unf', '2.5Unf', 'SLvl', 'SFoyer', '2.5Fin'])
+    df.Roof = pd.Categorical(df.Roof, categories=['Gable', 'Hip', 'Gambrel', 'Flat', 'Mansard', 'Shed'])
+    df.RoofMaterial = pd.Categorical(df.RoofMaterial, categories=['CompShg', 'Tar&Grv', 'WdShake', 'WdShngl', 'Metal'])
+    df.FirstExterior = pd.Categorical(df.FirstExterior,
+                                      categories=['AsbShng', 'AsphShn', 'BrkComm', 'BrkFace', 'CBlock', 'CemntBd', 'HdBoard', 'ImStucc',
+                                                  'MetalSd', 'Other', 'Plywood', 'PreCast', 'Stone', 'Stucco', 'VinylSd', 'Wd', 'WdShing'])
+    df.SecondExterior = pd.Categorical(df.SecondExterior,
+                                       categories=['AsbShng', 'AsphShn', 'BrkComm', 'BrkFace', 'CBlock', 'CemntBd', 'HdBoard', 'ImStucc',
+                                                   'MetalSd', 'Other', 'Plywood', 'PreCast', 'Stone', 'Stucco', 'VinylSd', 'Wd', 'WdShing'])
+    df.VeneerType = pd.Categorical(df.VeneerType, categories=['BrkCmn', 'BrkFace', 'CBlock', 'None', 'Stone'])
+    df.Foundation = pd.Categorical(df.Foundation, categories=['BrkTil', 'CBlock', 'PConc', 'Slab', 'Stone', 'Wood'])
+    df.Heating = pd.Categorical(df.Heating, categories=['Floor', 'GasA', 'GasW', 'Grav', 'OthW', 'Wall', ])
+    df.CentralAir = pd.Categorical(df.CentralAir, categories=['Y', 'N'])
+    df.Electrical = pd.Categorical(df.Electrical, categories=['SBrkr', 'FuseA', 'FuseF', 'FuseP', 'Mix'])
+    df.GarageType = pd.Categorical(df.GarageType, categories=['2Types', 'Attchd', 'Basment', 'BuiltIn', 'CarPort', 'Detchd', 'NA'])
+    df.SaleType = pd.Categorical(df.SaleType, categories=['WD', 'CWD', 'VWD', 'New', 'COD', 'Con', 'ConLw', 'ConLI', 'ConLD', 'Oth'])
+    df.PavedDriveway = pd.Categorical(df.PavedDriveway, categories=['Y', 'P', 'N'])
+    df.MiscFeature = pd.Categorical(df.MiscFeature, categories=['Elev', 'Gar2', 'Othr', 'Shed', 'TenC', 'NA'])
 
     df.TotalQuality = pd.Categorical(df.TotalQuality, ordered=True)
     df.TotalCondition = pd.Categorical(df.TotalCondition, ordered=True)
@@ -219,9 +229,11 @@ descriptors = numbers.join(dummies)
 
 # first round, Adj-Rsq of .916
 results = sm.OLS(trainingData['SalePrice'], sm.add_constant(descriptors, has_constant='add')).fit()
+print(f'Results with all variables below VIF of {vif_threshold}')
+print(results.summary())
+
 valuesToDropExist = results.pvalues > p_threshold
 valuesToDropExist = valuesToDropExist[valuesToDropExist]
-print(results.rsquared_adj)
 
 # drop variables with p value less than 0.07, Adj=Rsq of .881
 while len(valuesToDropExist) > 0:
@@ -233,10 +245,8 @@ while len(valuesToDropExist) > 0:
     valuesToDropExist = results.pvalues > p_threshold
     valuesToDropExist = valuesToDropExist[valuesToDropExist]
 
-print(results.rsquared_adj)
-print(results.summary)
-prediction = results.predict(sm.add_constant(descriptors, has_constant='add'))
-print(prediction)
+print(f'Results with all variables below VIF of {vif_threshold}, and P-value below {p_threshold}')
+print(results.summary())
 
 testingSet = pd.read_csv('data/test.csv')
 testingData = trim_test_cols(testingSet)
@@ -244,10 +254,11 @@ testingData = trim_test_cols(testingSet)
 process_raw(testingData, False)
 
 # in order to do OLS with categorical variables, we need to split out each category into its own column, this code should do that
-dummies = pd.get_dummies(testingData.select_dtypes('category'), drop_first=True)
-numbers = testingData.select_dtypes('number')
-testDescriptors = numbers.join(dummies)
+newDummies = pd.get_dummies(testingData.select_dtypes('category'), drop_first=True)
+newNumbers = testingData.select_dtypes('number')
+testDescriptors = newNumbers.join(newDummies)
 
-predictionDescriptors = pd.DataFrame(testDescriptors, columns=[descriptors.columns])
-prediction = results.predict(sm.add_constant(predictionDescriptors, has_constant='add'))
+testDescriptors = testDescriptors.loc[:, testDescriptors.columns.isin(descriptors.columns.values)]
+
+prediction = results.predict(sm.add_constant(testDescriptors, has_constant='add'))
 print(prediction)
