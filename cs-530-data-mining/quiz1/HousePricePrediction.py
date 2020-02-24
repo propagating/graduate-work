@@ -1,9 +1,13 @@
 import pandas as pd
 import numpy as np
+from scipy import stats as ss
 from scipy.stats import stats
 import statsmodels.api as sm
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
+from sklearn.model_selection import cross_val_predict
+from sklearn.model_selection import cross_val_score
+from sklearn.linear_model import LinearRegression
 
 
 # drop Id and rename columns
@@ -118,6 +122,15 @@ def convert_categories(df):
     return
 
 
+def generate_mse(original, fitted):
+    sum = 0
+    for i in range(0, len(original)):
+        diff = original.iloc[i] - fitted.iloc[i]
+        sum = sum + diff ** 2
+    MSE = sum / len(original)
+    return MSE
+
+
 # get indexes of numerical outliers
 def get_numerical_outliers(df, z_thresh=3):
     constraints = df.apply(lambda x: np.abs(stats.zscore(x)) < z_thresh).all(axis=1)
@@ -129,7 +142,7 @@ def get_numerical_outliers(df, z_thresh=3):
 def fill_numerical(df):
     imp = IterativeImputer(missing_values=np.nan, sample_posterior=False,
                            max_iter=10,
-                           n_nearest_features=8, initial_strategy='mean')
+                           n_nearest_features=4, initial_strategy='median')
     transformedData = pd.DataFrame(imp.fit_transform(df), columns=df.columns)
     return transformedData
 
@@ -158,6 +171,18 @@ def calculate_vif(r_squared):
     return vifValue
 
 
+def cramers_v(x, y):
+    confusion_matrix = pd.crosstab(x, y)
+    chi2 = ss.chi2_contingency(confusion_matrix)[0]
+    n = confusion_matrix.sum().sum()
+    phi2 = chi2 / n
+    r, k = confusion_matrix.shape
+    phi2corr = max(0, phi2 - ((k - 1) * (r - 1)) / (n - 1))
+    rcorr = r - ((r - 1) ** 2) / (n - 1)
+    kcorr = k - ((k - 1) ** 2) / (n - 1)
+    return np.sqrt(phi2corr / min((kcorr - 1), (rcorr - 1)))
+
+
 # create the VIF datatable
 def generate_vif(df):
     numerics = df.select_dtypes('number')
@@ -183,6 +208,41 @@ def generate_vif(df):
         vifFrame = vifFrame.append(vifRecord, ignore_index=True)
 
     return vifFrame
+
+
+def k_fold_validation(target, descriptors, folds):
+    ols = LinearRegression(fit_intercept=True)
+    scores = cross_val_score(ols, descriptors, target, cv=folds)
+    mean = scores.mean()
+    print(f'Validation Mean Score Results {mean}')
+    res = cross_val_score(ols, descriptors, target, cv=folds)
+    print(f'Validation OLS Results{res}')
+    predictedY = cross_val_predict(ols, descriptors, target, cv=folds)
+    print(f'Validation Predicted Y Result {predictedY.mean()}')
+
+
+def generate_cramers_v(df):
+    categories = df.select_dtypes('category')
+    for col in categories.columns:  # col = x
+        for col2 in categories.columns:  # col2 = y
+            if col2 != col:
+                score = cramers_v(categories[col], categories[col2])
+                if score > 0.5:
+                    print(col, col2)
+                    print(score)
+    return
+
+
+# remove categories which are overwhelmingly empty, or overwhelmingly contain the same values (Paved Street type with 1993 records)
+def remove_common_categories(df):
+    commonCategories = ['StreetType', 'AlleyType', 'Contour', 'Utilities', 'Slope', 'FirstCondition', 'SecondCondition', 'Type',
+                        'RoofMaterial', 'BasementCondition', 'SecondBasementFinish', 'Heating', 'Electrical', 'Functional', 'GarageQuality',
+                        'GarageCondition', 'PavedDriveway', 'PoolQuality', 'Fence', 'MiscFeature', 'SaleType', 'Zoning', 'SubClass',
+                        'GarageFinish', 'SecondExterior', 'ExteriorQuality', 'BasementExposure', 'FirstBasementFinish', 'HeatingQuality',
+                        'FirstExterior', 'SaleCondition', 'FireplaceQuality', 'Configuration', 'KitchenAboveGrade', 'Shape', 'Foundation',
+                        'KitchenQuality', 'ExteriorCondition', 'BasementQuality']
+    df.drop(commonCategories, axis=1, inplace=True)
+    return
 
 
 # pre-processing pipeline
@@ -215,11 +275,15 @@ vif_threshold = 5
 trainingSet = pd.read_csv('data/train.csv')
 trainingData = trim_train_cols(trainingSet)
 process_raw(trainingData, True)
+remove_common_categories(trainingData)
 
 vifScores = generate_vif(trainingData)
+generate_cramers_v(trainingData)
+
 lowVifScores = vifScores[vifScores.VIF <= vif_threshold]
 
 potentialDescriptors = trainingData[lowVifScores.Variable]
+
 print(potentialDescriptors.columns)
 
 # in order to do OLS with categorical variables, we need to split out each category into its own column
@@ -229,8 +293,6 @@ descriptors = numbers.join(dummies)
 
 # first round, Adj-Rsq of .916
 results = sm.OLS(trainingData['SalePrice'], sm.add_constant(descriptors, has_constant='add')).fit()
-print(f'Results with all variables below VIF of {vif_threshold}')
-print(results.summary())
 
 valuesToDropExist = results.pvalues > p_threshold
 valuesToDropExist = valuesToDropExist[valuesToDropExist]
@@ -248,6 +310,11 @@ while len(valuesToDropExist) > 0:
 print(f'Results with all variables below VIF of {vif_threshold}, and P-value below {p_threshold}')
 print(results.summary())
 
+MSE = generate_mse(trainingData['SalePrice'], results.fittedvalues)
+print(f'Pre-Validation {MSE}')
+
+k_fold_validation(trainingData['SalePrice'], descriptors, 5)
+
 testingSet = pd.read_csv('data/test.csv')
 testingData = trim_test_cols(testingSet)
 # don't drop outliers on test set
@@ -262,3 +329,8 @@ testDescriptors = testDescriptors.loc[:, testDescriptors.columns.isin(descriptor
 
 prediction = results.predict(sm.add_constant(testDescriptors, has_constant='add'))
 print(prediction)
+
+sample_submission = pd.read_csv('data/sample_submission.csv')
+sample_submission.loc[:, 'SalePrice'] = prediction
+sample_submission.to_csv('data/quiz1.csv', header=True, index=False)
+sample_submission.head()
