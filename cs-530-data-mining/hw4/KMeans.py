@@ -101,7 +101,7 @@ def plot_data(min_c, max_c, data):
     for c in range(min_c, max_c):
         clusters = KMeans(c, random_state=10)
         clusterFit = clusters.fit_predict(data)
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11, 4), dpi=500)
+        fig, (ax1) = plt.subplots(1, 1, figsize=(11, 4), dpi=500)
         ax1 = silhouette_plot(data, clusterFit, c, ax=ax1)
         fig.subplots_adjust(top=0.825)
         fig.suptitle("Silhouette Analysis")
