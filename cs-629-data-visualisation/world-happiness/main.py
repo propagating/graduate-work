@@ -24,9 +24,9 @@ def update_row_data(data):
     return data
 
 
-data = pd.read_csv(r"notebooks\\data\\2019.csv")
-if data['latitude'].values[0] == 1.01:
-    data = update_row_data(data)
+data = pd.read_csv(r"notebooks\\data\\2019mod.csv")
+#if data['latitude'].values[0] == 1.01:
+#    data = update_row_data(data)
 
 dataSerial = data[['Country or region', 'Country Code', 'Score']]
 
@@ -39,7 +39,7 @@ plotData = [dict(type='choropleth',
                              [1, "rgb(255, 0, 0)"]],
                  autocolorscale=False,
                  reversescale=True,
-                 marker=dict(line=dict(color='rgb(200, 200, 200)', width=0.5)),
+                 marker=dict(line=dict(color='rgb(80, 80, 80)', width=0.5)),
                  colorbar=dict(autotick=False, title='Happiness', thickness=15, len=0.6,
                                tickfont=dict(size=14), titlefont=dict(size=14)), )]
 
@@ -52,6 +52,7 @@ fig = dict(data=plotData, layout=plotLayout)
 py.iplot(fig, validate=False, filename='worldHappiness')
 
 bubbleFig = px.scatter_geo(data,
+                           title='GDP effect on Happiness',
                            locations='Country Code', color='GDP per capita',
                            hover_name='Country or region',
                            size='Score',
