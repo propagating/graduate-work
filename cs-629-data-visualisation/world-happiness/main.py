@@ -34,12 +34,12 @@ plotData = [dict(type='choropleth',
                  locations=data['Country Code'],
                  z=data['Score'],
                  text=data['Country or region'],
-                 colorscale=[[0, "rgb(0, 255, 0)"], [0.25, "rgb(122, 255, 122)"],
-                             [0.5, "rgb(220, 220, 220)"], [0.75, "rgb(255, 128, 128)"],
-                             [1, "rgb(255, 0, 0)"]],
+                 colorscale=[[0, "rgb(244, 120, 109)"], [0.25, "rgb(255, 162, 105)"],
+                             [0.5, "rgb(255, 255, 255)"], [0.75, "rgb(171, 213, 236)"],
+                             [1, "rgb(150, 187, 216)"]],
                  autocolorscale=False,
                  reversescale=True,
-                 marker=dict(line=dict(color='rgb(80, 80, 80)', width=0.5)),
+                 marker=dict(line=dict(color='rgb(0,0,0)', width=0.5)),
                  colorbar=dict(autotick=False, title='Happiness', thickness=15, len=0.6,
                                tickfont=dict(size=14), titlefont=dict(size=14)), )]
 
@@ -61,4 +61,4 @@ bubbleFig = px.scatter_geo(data,
                            color_continuous_midpoint=np.mean(data['GDP per capita']),
                            opacity=1)
 
-bubbleFig.show()
+# bubbleFig.show()
