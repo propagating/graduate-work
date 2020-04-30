@@ -11,7 +11,6 @@ def train_perceptron(descriptor, target, threshold=0.01, learnRate=0.1, iteratio
     adjustedErrors = []
     for _ in range(0, iterations):
         for i in range(0, len(descriptor)):
-
             f = np.dot(descriptor[i], weights)
             if f >= threshold:
                 estimate = 1.
