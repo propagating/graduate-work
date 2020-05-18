@@ -1,2 +1,3 @@
 useDynLib(simpTex, .registration=TRUE)
+exportPattern("^[[:alpha:]]+")
 importFrom(Rcpp, evalCpp)

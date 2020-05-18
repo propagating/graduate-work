@@ -1,5 +1,3 @@
-#pragma once
-
 class NGTexture2D_RGB32
 {
 private:

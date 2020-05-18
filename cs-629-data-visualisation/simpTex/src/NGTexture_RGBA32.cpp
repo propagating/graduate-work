@@ -1,4 +1,5 @@
 #include <cmath>
+#include <Rcpp.h>
 
 #include "NGTexture_RGBA32.h"
 
@@ -150,6 +151,6 @@ bool NGTexture2D_RGB32::GetAs_RawData(void* aBuffer)
 bool NGTexture2D_RGB32::GetAs_PNGFile(const char* aFilePath)
 {
     stbi_write_png(aFilePath, m_iWidth, m_iHeight, 4, m_pData, m_iWidth * 4);
-    return false;
+    return true;
 }
 

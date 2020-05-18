@@ -1,5 +1,4 @@
 #include <Rcpp.h>
-
 // [[Rcpp::plugins(cpp14)]] 
 
 #define WIN32_LEAN_AND_MEAN
@@ -10,7 +9,6 @@
 #include "NGTexture_RGBA32.h"
 
 using namespace Rcpp;
-
 #define MAX_TEXTURES    1000
 char* g_sLibraryName;
 int g_iTextures = 0;

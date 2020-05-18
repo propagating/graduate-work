@@ -131,3 +131,7 @@ dmypy.json
 #idea
 .idea/
 .Rproj.user
+
+cs-629-data-visualisation/FinalExam/notebooks/data/
+
+cs-530-data-mining/FinalExam/notebooks/data/
