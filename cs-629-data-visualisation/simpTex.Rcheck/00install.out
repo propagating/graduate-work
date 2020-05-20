@@ -1,0 +1,70 @@
+* installing *source* package 'simpTex' ...
+** using staged installation
+** libs
+
+*** arch - i386
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c Diffusion.cpp -o Diffusion.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c NGTexture_RGBA32.cpp -o NGTexture_RGBA32.o
+NGTexture_RGBA32.cpp: In member function 'virtual void NGTexture2D_RGB32::Generate_SimplexNoise(float, float)':
+NGTexture_RGBA32.cpp:86:11: warning: unused variable 'aUV' [-Wunused-variable]
+     float aUV[2];
+           ^~~
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c Perlin.cpp -o Perlin.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c RcppExports.cpp -o RcppExports.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c Simplex.cpp -o Simplex.o
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c Worley.cpp -o Worley.o
+Worley.cpp: In member function 'Color WorleyNoise::GetNoise(int, int)':
+Worley.cpp:125:23: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<Vector2i>::size_type' {aka 'unsigned int'} [-Wsign-compare]
+     for (int i = 0; i < points.size(); i++)
+                     ~~^~~~~~~~~~~~~~~
+"C:/rtools40/mingw32/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c simpTex.cpp -o simpTex.o
+C:/rtools40/mingw32/bin/g++ -std=gnu++11 -shared -s -static-libgcc -o simpTex.dll tmp.def Diffusion.o NGTexture_RGBA32.o Perlin.o RcppExports.o Simplex.o Worley.o simpTex.o -LC:/PROGRA~1/R/R-40~1.0/bin/i386 -lR
+Warning messages:
+1: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+2: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+3: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+4: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+5: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+6: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+7: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+installing to E:/Chapman/graduate-work/cs-629-data-visualisation/simpTex.Rcheck/00LOCK-simpTex/00new/simpTex/libs/i386
+
+*** arch - x64
+"C:/rtools40/mingw64/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c Diffusion.cpp -o Diffusion.o
+"C:/rtools40/mingw64/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c NGTexture_RGBA32.cpp -o NGTexture_RGBA32.o
+NGTexture_RGBA32.cpp: In member function 'virtual void NGTexture2D_RGB32::Generate_SimplexNoise(float, float)':
+NGTexture_RGBA32.cpp:86:11: warning: unused variable 'aUV' [-Wunused-variable]
+     float aUV[2];
+           ^~~
+"C:/rtools40/mingw64/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c Perlin.cpp -o Perlin.o
+"C:/rtools40/mingw64/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c RcppExports.cpp -o RcppExports.o
+"C:/rtools40/mingw64/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c Simplex.cpp -o Simplex.o
+"C:/rtools40/mingw64/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c Worley.cpp -o Worley.o
+Worley.cpp: In member function 'Color WorleyNoise::GetNoise(int, int)':
+Worley.cpp:125:23: warning: comparison of integer expressions of different signedness: 'int' and 'std::vector<Vector2i>::size_type' {aka 'long long unsigned int'} [-Wsign-compare]
+     for (int i = 0; i < points.size(); i++)
+                     ~~^~~~~~~~~~~~~~~
+"C:/rtools40/mingw64/bin/"g++ -std=gnu++11  -I"C:/PROGRA~1/R/R-40~1.0/include" -DNDEBUG  -I'C:/Program Files/R/R-4.0.0/library/Rcpp/include'        -O2 -Wall  -mfpmath=sse -msse2 -mstackrealign -c simpTex.cpp -o simpTex.o
+C:/rtools40/mingw64/bin/g++ -std=gnu++11 -shared -s -static-libgcc -o simpTex.dll tmp.def Diffusion.o NGTexture_RGBA32.o Perlin.o RcppExports.o Simplex.o Worley.o simpTex.o -LC:/PROGRA~1/R/R-40~1.0/bin/x64 -lR
+Warning messages:
+1: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+2: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+3: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+4: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+5: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+6: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+7: In FUN(X[[i]], ...) : this requires 'nm' to be on the PATH
+installing to E:/Chapman/graduate-work/cs-629-data-visualisation/simpTex.Rcheck/00LOCK-simpTex/00new/simpTex/libs/x64
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+*** arch - i386
+*** arch - x64
+** testing if installed package can be loaded from final location
+*** arch - i386
+*** arch - x64
+** testing if installed package keeps a record of temporary installation path
+* DONE (simpTex)
