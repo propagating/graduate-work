@@ -9,3 +9,4 @@ Description: Provides an interface to create solid, cellular, and self-organisin
 License: GPL (>= 2)
 Imports: Rcpp (>= 1.0.4)
 LinkingTo: Rcpp
+RoxygenNote: 7.1.0
