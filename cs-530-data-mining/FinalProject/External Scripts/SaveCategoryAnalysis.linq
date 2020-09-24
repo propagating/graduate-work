@@ -18,9 +18,10 @@ async void Main()
 	var startValue = 0; 
 	var settings = new XmlReaderSettings();
 	settings.ValidationType = ValidationType.None;
-	var startingSummaryId = 948007;
+	var startingSummaryId = 0;
 	var count = 0;
-	for(var i = 0; i < 828; i++){
+	for(var i = 0; i < 2; i++){
+	
 		var summaries = TestSummaries.OrderByDescending (t => t.TestStarted).Skip(startValue).Take(1000).ToList();
 		var categories = ItemMappings.Select(x => x.CategoryDescription).Distinct().ToList();
 		
@@ -48,7 +49,7 @@ async void Main()
 				};
 				
 				if(score != null){
-					var correct = score.InnerText == "Correct" ? true : false;
+					var correct = score.InnerText == "1" ? true : false;
 					if(correct) totalCorrect++;
 					catItem.Correct = true;
 				}

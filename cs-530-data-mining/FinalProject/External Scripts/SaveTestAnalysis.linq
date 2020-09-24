@@ -16,10 +16,10 @@
 
 void Main()
 {
-	var startValue = 250000; 
+	var startValue = 0; 
 	var settings = new XmlReaderSettings();
 	settings.ValidationType = ValidationType.None;
-	for(var i = 251; i < 829; i++){
+	for(var i = 0; i < 2; i++){
 		var summaries = TestSummaries.OrderByDescending (t => t.TestStarted).Skip(startValue).Take(1000);
 		var categories = ItemMappings.Select(x => x.CategoryDescription).Distinct().ToList();
 		
@@ -55,40 +55,41 @@ void Main()
 				categoryItems.Add(catItem);
 			}
 			
-//			Parallel.ForEach(categories, (category)=>{
-//				var categoryItemIds = ItemMappings.Where(x=> x.CategoryDescription == category).Select(x => x.ItemID).ToList();
-//				var totalCategoryItems = 0;
-//				var correctCategoryItems = 0;
-//				if (categoryItemIds.Any())
-//				{
-//					var itemsInCategory = categoryItems.Where(x => categoryItemIds.Contains(x.ItemId)).ToList();
-//
-//					if (itemsInCategory.Any())
-//					{
-//						foreach (var item in itemsInCategory)
-//						{
-//							totalCategoryItems++;
-//							if (item.Correct) correctCategoryItems++;
-//						}
-//						var mappedCateogry = ItemMappings.FirstOrDefault(x => x.CategoryDescription == category);
-//						var categoryAnalysis = new TestCategoryAnalysis
-//						{
-//							SeriesName = summary.SeriesName,
-//							Abbreviation = summary.Abbreviation,
-//							TestName = summary.TestName,
-//							CategoryDescription = mappedCateogry.CategoryDescription,
-//							CategoryCode = mappedCateogry.CategoryCode,
-//							CategoryMaxPoints = mappedCateogry.CategoryMaxPoints,
-//							CategoryScore = correctCategoryItems,
-//							CategoryTruePercentage = correctCategoryItems / totalCategoryItems
-//						};
-//
-//						TestCategoryAnalysis.Add(categoryAnalysis);
-//						SaveChanges();
-//					}
-//				}
-//
-//			});
+			Parallel.ForEach(categories, (category)=>{
+				var categoryItemIds = ItemMappings.Where(x=> x.CategoryDescription == category).Select(x => x.ItemID).ToList();
+				var totalCategoryItems = 0;
+				var correctCategoryItems = 0;
+				if (categoryItemIds.Any())
+				{
+					var itemsInCategory = categoryItems.Where(x => categoryItemIds.Contains(x.ItemId)).ToList();
+
+					if (itemsInCategory.Any())
+					{
+						foreach (var item in itemsInCategory)
+						{
+							totalCategoryItems++;
+							if (item.Correct) correctCategoryItems++;
+						}
+						var mappedCateogry = ItemMappings.FirstOrDefault(x => x.CategoryDescription == category);
+						var categoryAnalysis = new TestCategoryAnalysis
+						{
+							SeriesName = summary.SeriesName,
+							Abbreviation = summary.Abbreviation,
+							TestName = summary.TestName,
+							CategoryDescription = mappedCateogry.CategoryDescription,
+							CategoryCode = mappedCateogry.CategoryCode,
+							CategoryMaxPoints = mappedCateogry.CategoryMaxPoints,
+							CategoryScore = correctCategoryItems,
+							CategoryTruePercentage = correctCategoryItems / totalCategoryItems
+						};
+
+						TestCategoryAnalysis.Add(categoryAnalysis);
+						SaveChanges();
+					}
+				}
+
+			});
+			
 			float truePercent = (float)totalCorrect/(float)totalQuestions;
 			
 			var analysis = new TestSummaryAnalysis{
@@ -105,7 +106,6 @@ void Main()
 				QuestionsAnswered = summary.QuestionsAnswered,
 				QuestionsDelivered = summary.QuestionsDelivered,
 				PassFail = summary.PassFail,
-				TimeElapsed = summary.ElapsedTime,
 				TestStarted = DateTime.Parse(summary.TestStarted),
 				TestCompleted = DateTime.Parse(summary.TestCompleted),
 				ScorePercentage = summary.ScorePercentage,
