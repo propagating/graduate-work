@@ -1,0 +1,757 @@
+country,continent,year,lifeExp,pop
+Afghanistan,Asia,1952,28.801,8425333
+Afghanistan,Asia,1957,30.332,9240934
+Afghanistan,Asia,1962,31.997,10267083
+Afghanistan,Asia,1967,34.02,11537966
+Afghanistan,Asia,1972,36.088,13079460
+Afghanistan,Asia,1977,38.438,14880372
+Afghanistan,Asia,1982,39.854,12881816
+Afghanistan,Asia,1987,40.822,13867957
+Afghanistan,Asia,1992,41.674,16317921
+Afghanistan,Asia,1997,41.763,22227415
+Afghanistan,Asia,2002,42.129,25268405
+Afghanistan,Asia,2007,43.828,31889923
+Albania,Europe,1952,55.23,1282697
+Albania,Europe,1957,59.28,1476505
+Albania,Europe,1962,64.82,1728137
+Albania,Europe,1967,66.22,1984060
+Albania,Europe,1972,67.69,2263554
+Albania,Europe,1977,68.93,2509048
+Albania,Europe,1982,70.42,2780097
+Albania,Europe,1987,72,3075321
+Albania,Europe,1992,71.581,3326498
+Albania,Europe,1997,72.95,3428038
+Albania,Europe,2002,75.651,3508512
+Albania,Europe,2007,76.423,3600523
+Austria,Europe,1952,66.8,6927772
+Austria,Europe,1957,67.48,6965860
+Austria,Europe,1962,69.54,7129864
+Austria,Europe,1967,70.14,7376998
+Austria,Europe,1972,70.63,7544201
+Austria,Europe,1977,72.17,7568430
+Austria,Europe,1982,73.18,7574613
+Austria,Europe,1987,74.94,7578903
+Austria,Europe,1992,76.04,7914969
+Austria,Europe,1997,77.51,8069876
+Austria,Europe,2002,78.98,8148312
+Austria,Europe,2007,79.829,8199783
+Bahrain,Asia,1952,50.939,120447
+Bahrain,Asia,1957,53.832,138655
+Bahrain,Asia,1962,56.923,171863
+Bahrain,Asia,1967,59.923,202182
+Bahrain,Asia,1972,63.3,230800
+Bahrain,Asia,1977,65.593,297410
+Bahrain,Asia,1982,69.052,377967
+Bahrain,Asia,1987,70.75,454612
+Bahrain,Asia,1992,72.601,529491
+Bahrain,Asia,1997,73.925,598561
+Bahrain,Asia,2002,74.795,656397
+Bahrain,Asia,2007,75.635,708573
+Bangladesh,Asia,1952,37.484,46886859
+Bangladesh,Asia,1957,39.348,51365468
+Bangladesh,Asia,1962,41.216,56839289
+Bangladesh,Asia,1967,43.453,62821884
+Bangladesh,Asia,1972,45.252,70759295
+Bangladesh,Asia,1977,46.923,80428306
+Bangladesh,Asia,1982,50.009,93074406
+Bangladesh,Asia,1987,52.819,103764241
+Bangladesh,Asia,1992,56.018,113704579
+Bangladesh,Asia,1997,59.412,123315288
+Bangladesh,Asia,2002,62.013,135656790
+Bangladesh,Asia,2007,64.062,150448339
+Belgium,Europe,1952,68,8730405
+Belgium,Europe,1957,69.24,8989111
+Belgium,Europe,1962,70.25,9218400
+Belgium,Europe,1967,70.94,9556500
+Belgium,Europe,1972,71.44,9709100
+Belgium,Europe,1977,72.8,9821800
+Belgium,Europe,1982,73.93,9856303
+Belgium,Europe,1987,75.35,9870200
+Belgium,Europe,1992,76.46,10045622
+Belgium,Europe,1997,77.53,10199787
+Belgium,Europe,2002,78.32,10311970
+Belgium,Europe,2007,79.441,10392226
+Bosnia and Herzegovina,Europe,1952,53.82,2791000
+Bosnia and Herzegovina,Europe,1957,58.45,3076000
+Bosnia and Herzegovina,Europe,1962,61.93,3349000
+Bosnia and Herzegovina,Europe,1967,64.79,3585000
+Bosnia and Herzegovina,Europe,1972,67.45,3819000
+Bosnia and Herzegovina,Europe,1977,69.86,4086000
+Bosnia and Herzegovina,Europe,1982,70.69,4172693
+Bosnia and Herzegovina,Europe,1987,71.14,4338977
+Bosnia and Herzegovina,Europe,1992,72.178,4256013
+Bosnia and Herzegovina,Europe,1997,73.244,3607000
+Bosnia and Herzegovina,Europe,2002,74.09,4165416
+Bosnia and Herzegovina,Europe,2007,74.852,4552198
+Bulgaria,Europe,1952,59.6,7274900
+Bulgaria,Europe,1957,66.61,7651254
+Bulgaria,Europe,1962,69.51,8012946
+Bulgaria,Europe,1967,70.42,8310226
+Bulgaria,Europe,1972,70.9,8576200
+Bulgaria,Europe,1977,70.81,8797022
+Bulgaria,Europe,1982,71.08,8892098
+Bulgaria,Europe,1987,71.34,8971958
+Bulgaria,Europe,1992,71.19,8658506
+Bulgaria,Europe,1997,70.32,8066057
+Bulgaria,Europe,2002,72.14,7661799
+Bulgaria,Europe,2007,73.005,7322858
+Cambodia,Asia,1952,39.417,4693836
+Cambodia,Asia,1957,41.366,5322536
+Cambodia,Asia,1962,43.415,6083619
+Cambodia,Asia,1967,45.415,6960067
+Cambodia,Asia,1972,40.317,7450606
+Cambodia,Asia,1977,31.22,6978607
+Cambodia,Asia,1982,50.957,7272485
+Cambodia,Asia,1987,53.914,8371791
+Cambodia,Asia,1992,55.803,10150094
+Cambodia,Asia,1997,56.534,11782962
+Cambodia,Asia,2002,56.752,12926707
+Cambodia,Asia,2007,59.723,14131858
+China,Asia,1952,44,556263527
+China,Asia,1957,50.54896,637408000
+China,Asia,1962,44.50136,665770000
+China,Asia,1967,58.38112,754550000
+China,Asia,1972,63.11888,862030000
+China,Asia,1977,63.96736,943455000
+China,Asia,1982,65.525,1000281000
+China,Asia,1987,67.274,1084035000
+China,Asia,1992,68.69,1164970000
+China,Asia,1997,70.426,1230075000
+China,Asia,2002,72.028,1280400000
+China,Asia,2007,72.961,1318683096
+Croatia,Europe,1952,61.21,3882229
+Croatia,Europe,1957,64.77,3991242
+Croatia,Europe,1962,67.13,4076557
+Croatia,Europe,1967,68.5,4174366
+Croatia,Europe,1972,69.61,4225310
+Croatia,Europe,1977,70.64,4318673
+Croatia,Europe,1982,70.46,4413368
+Croatia,Europe,1987,71.52,4484310
+Croatia,Europe,1992,72.527,4494013
+Croatia,Europe,1997,73.68,4444595
+Croatia,Europe,2002,74.876,4481020
+Croatia,Europe,2007,75.748,4493312
+Czech Republic,Europe,1952,66.87,9125183
+Czech Republic,Europe,1957,69.03,9513758
+Czech Republic,Europe,1962,69.9,9620282
+Czech Republic,Europe,1967,70.38,9835109
+Czech Republic,Europe,1972,70.29,9862158
+Czech Republic,Europe,1977,70.71,10161915
+Czech Republic,Europe,1982,70.96,10303704
+Czech Republic,Europe,1987,71.58,10311597
+Czech Republic,Europe,1992,72.4,10315702
+Czech Republic,Europe,1997,74.01,10300707
+Czech Republic,Europe,2002,75.51,10256295
+Czech Republic,Europe,2007,76.486,10228744
+Denmark,Europe,1952,70.78,4334000
+Denmark,Europe,1957,71.81,4487831
+Denmark,Europe,1962,72.35,4646899
+Denmark,Europe,1967,72.96,4838800
+Denmark,Europe,1972,73.47,4991596
+Denmark,Europe,1977,74.69,5088419
+Denmark,Europe,1982,74.63,5117810
+Denmark,Europe,1987,74.8,5127024
+Denmark,Europe,1992,75.33,5171393
+Denmark,Europe,1997,76.11,5283663
+Denmark,Europe,2002,77.18,5374693
+Denmark,Europe,2007,78.332,5468120
+Finland,Europe,1952,66.55,4090500
+Finland,Europe,1957,67.49,4324000
+Finland,Europe,1962,68.75,4491443
+Finland,Europe,1967,69.83,4605744
+Finland,Europe,1972,70.87,4639657
+Finland,Europe,1977,72.52,4738902
+Finland,Europe,1982,74.55,4826933
+Finland,Europe,1987,74.83,4931729
+Finland,Europe,1992,75.7,5041039
+Finland,Europe,1997,77.13,5134406
+Finland,Europe,2002,78.37,5193039
+Finland,Europe,2007,79.313,5238460
+France,Europe,1952,67.41,42459667
+France,Europe,1957,68.93,44310863
+France,Europe,1962,70.51,47124000
+France,Europe,1967,71.55,49569000
+France,Europe,1972,72.38,51732000
+France,Europe,1977,73.83,53165019
+France,Europe,1982,74.89,54433565
+France,Europe,1987,76.34,55630100
+France,Europe,1992,77.46,57374179
+France,Europe,1997,78.64,58623428
+France,Europe,2002,79.59,59925035
+France,Europe,2007,80.657,61083916
+Germany,Europe,1952,67.5,69145952
+Germany,Europe,1957,69.1,71019069
+Germany,Europe,1962,70.3,73739117
+Germany,Europe,1967,70.8,76368453
+Germany,Europe,1972,71,78717088
+Germany,Europe,1977,72.5,78160773
+Germany,Europe,1982,73.8,78335266
+Germany,Europe,1987,74.847,77718298
+Germany,Europe,1992,76.07,80597764
+Germany,Europe,1997,77.34,82011073
+Germany,Europe,2002,78.67,82350671
+Germany,Europe,2007,79.406,82400996
+Greece,Europe,1952,65.86,7733250
+Greece,Europe,1957,67.86,8096218
+Greece,Europe,1962,69.51,8448233
+Greece,Europe,1967,71,8716441
+Greece,Europe,1972,72.34,8888628
+Greece,Europe,1977,73.68,9308479
+Greece,Europe,1982,75.24,9786480
+Greece,Europe,1987,76.67,9974490
+Greece,Europe,1992,77.03,10325429
+Greece,Europe,1997,77.869,10502372
+Greece,Europe,2002,78.256,10603863
+Greece,Europe,2007,79.483,10706290
+"Hong Kong, China",Asia,1952,60.96,2125900
+"Hong Kong, China",Asia,1957,64.75,2736300
+"Hong Kong, China",Asia,1962,67.65,3305200
+"Hong Kong, China",Asia,1967,70,3722800
+"Hong Kong, China",Asia,1972,72,4115700
+"Hong Kong, China",Asia,1977,73.6,4583700
+"Hong Kong, China",Asia,1982,75.45,5264500
+"Hong Kong, China",Asia,1987,76.2,5584510
+"Hong Kong, China",Asia,1992,77.601,5829696
+"Hong Kong, China",Asia,1997,80,6495918
+"Hong Kong, China",Asia,2002,81.495,6762476
+"Hong Kong, China",Asia,2007,82.208,6980412
+Hungary,Europe,1952,64.03,9504000
+Hungary,Europe,1957,66.41,9839000
+Hungary,Europe,1962,67.96,10063000
+Hungary,Europe,1967,69.5,10223422
+Hungary,Europe,1972,69.76,10394091
+Hungary,Europe,1977,69.95,10637171
+Hungary,Europe,1982,69.39,10705535
+Hungary,Europe,1987,69.58,10612740
+Hungary,Europe,1992,69.17,10348684
+Hungary,Europe,1997,71.04,10244684
+Hungary,Europe,2002,72.59,10083313
+Hungary,Europe,2007,73.338,9956108
+Iceland,Europe,1952,72.49,147962
+Iceland,Europe,1957,73.47,165110
+Iceland,Europe,1962,73.68,182053
+Iceland,Europe,1967,73.73,198676
+Iceland,Europe,1972,74.46,209275
+Iceland,Europe,1977,76.11,221823
+Iceland,Europe,1982,76.99,233997
+Iceland,Europe,1987,77.23,244676
+Iceland,Europe,1992,78.77,259012
+Iceland,Europe,1997,78.95,271192
+Iceland,Europe,2002,80.5,288030
+Iceland,Europe,2007,81.757,301931
+India,Asia,1952,37.373,372000000
+India,Asia,1957,40.249,409000000
+India,Asia,1962,43.605,454000000
+India,Asia,1967,47.193,506000000
+India,Asia,1972,50.651,567000000
+India,Asia,1977,54.208,634000000
+India,Asia,1982,56.596,708000000
+India,Asia,1987,58.553,788000000
+India,Asia,1992,60.223,872000000
+India,Asia,1997,61.765,959000000
+India,Asia,2002,62.879,1034172547
+India,Asia,2007,64.698,1110396331
+Indonesia,Asia,1952,37.468,82052000
+Indonesia,Asia,1957,39.918,90124000
+Indonesia,Asia,1962,42.518,99028000
+Indonesia,Asia,1967,45.964,109343000
+Indonesia,Asia,1972,49.203,121282000
+Indonesia,Asia,1977,52.702,136725000
+Indonesia,Asia,1982,56.159,153343000
+Indonesia,Asia,1987,60.137,169276000
+Indonesia,Asia,1992,62.681,184816000
+Indonesia,Asia,1997,66.041,199278000
+Indonesia,Asia,2002,68.588,211060000
+Indonesia,Asia,2007,70.65,223547000
+Iran,Asia,1952,44.869,17272000
+Iran,Asia,1957,47.181,19792000
+Iran,Asia,1962,49.325,22874000
+Iran,Asia,1967,52.469,26538000
+Iran,Asia,1972,55.234,30614000
+Iran,Asia,1977,57.702,35480679
+Iran,Asia,1982,59.62,43072751
+Iran,Asia,1987,63.04,51889696
+Iran,Asia,1992,65.742,60397973
+Iran,Asia,1997,68.042,63327987
+Iran,Asia,2002,69.451,66907826
+Iran,Asia,2007,70.964,69453570
+Iraq,Asia,1952,45.32,5441766
+Iraq,Asia,1957,48.437,6248643
+Iraq,Asia,1962,51.457,7240260
+Iraq,Asia,1967,54.459,8519282
+Iraq,Asia,1972,56.95,10061506
+Iraq,Asia,1977,60.413,11882916
+Iraq,Asia,1982,62.038,14173318
+Iraq,Asia,1987,65.044,16543189
+Iraq,Asia,1992,59.461,17861905
+Iraq,Asia,1997,58.811,20775703
+Iraq,Asia,2002,57.046,24001816
+Iraq,Asia,2007,59.545,27499638
+Ireland,Europe,1952,66.91,2952156
+Ireland,Europe,1957,68.9,2878220
+Ireland,Europe,1962,70.29,2830000
+Ireland,Europe,1967,71.08,2900100
+Ireland,Europe,1972,71.28,3024400
+Ireland,Europe,1977,72.03,3271900
+Ireland,Europe,1982,73.1,3480000
+Ireland,Europe,1987,74.36,3539900
+Ireland,Europe,1992,75.467,3557761
+Ireland,Europe,1997,76.122,3667233
+Ireland,Europe,2002,77.783,3879155
+Ireland,Europe,2007,78.885,4109086
+Israel,Asia,1952,65.39,1620914
+Israel,Asia,1957,67.84,1944401
+Israel,Asia,1962,69.39,2310904
+Israel,Asia,1967,70.75,2693585
+Israel,Asia,1972,71.63,3095893
+Israel,Asia,1977,73.06,3495918
+Israel,Asia,1982,74.45,3858421
+Israel,Asia,1987,75.6,4203148
+Israel,Asia,1992,76.93,4936550
+Israel,Asia,1997,78.269,5531387
+Israel,Asia,2002,79.696,6029529
+Israel,Asia,2007,80.745,6426679
+Italy,Europe,1952,65.94,47666000
+Italy,Europe,1957,67.81,49182000
+Italy,Europe,1962,69.24,50843200
+Italy,Europe,1967,71.06,52667100
+Italy,Europe,1972,72.19,54365564
+Italy,Europe,1977,73.48,56059245
+Italy,Europe,1982,74.98,56535636
+Italy,Europe,1987,76.42,56729703
+Italy,Europe,1992,77.44,56840847
+Italy,Europe,1997,78.82,57479469
+Italy,Europe,2002,80.24,57926999
+Italy,Europe,2007,80.546,58147733
+Japan,Asia,1952,63.03,86459025
+Japan,Asia,1957,65.5,91563009
+Japan,Asia,1962,68.73,95831757
+Japan,Asia,1967,71.43,100825279
+Japan,Asia,1972,73.42,107188273
+Japan,Asia,1977,75.38,113872473
+Japan,Asia,1982,77.11,118454974
+Japan,Asia,1987,78.67,122091325
+Japan,Asia,1992,79.36,124329269
+Japan,Asia,1997,80.69,125956499
+Japan,Asia,2002,82,127065841
+Japan,Asia,2007,82.603,127467972
+Jordan,Asia,1952,43.158,607914
+Jordan,Asia,1957,45.669,746559
+Jordan,Asia,1962,48.126,933559
+Jordan,Asia,1967,51.629,1255058
+Jordan,Asia,1972,56.528,1613551
+Jordan,Asia,1977,61.134,1937652
+Jordan,Asia,1982,63.739,2347031
+Jordan,Asia,1987,65.869,2820042
+Jordan,Asia,1992,68.015,3867409
+Jordan,Asia,1997,69.772,4526235
+Jordan,Asia,2002,71.263,5307470
+Jordan,Asia,2007,72.535,6053193
+"Korea, Dem. Rep.",Asia,1952,50.056,8865488
+"Korea, Dem. Rep.",Asia,1957,54.081,9411381
+"Korea, Dem. Rep.",Asia,1962,56.656,10917494
+"Korea, Dem. Rep.",Asia,1967,59.942,12617009
+"Korea, Dem. Rep.",Asia,1972,63.983,14781241
+"Korea, Dem. Rep.",Asia,1977,67.159,16325320
+"Korea, Dem. Rep.",Asia,1982,69.1,17647518
+"Korea, Dem. Rep.",Asia,1987,70.647,19067554
+"Korea, Dem. Rep.",Asia,1992,69.978,20711375
+"Korea, Dem. Rep.",Asia,1997,67.727,21585105
+"Korea, Dem. Rep.",Asia,2002,66.662,22215365
+"Korea, Dem. Rep.",Asia,2007,67.297,23301725
+"Korea, Rep.",Asia,1952,47.453,20947571
+"Korea, Rep.",Asia,1957,52.681,22611552
+"Korea, Rep.",Asia,1962,55.292,26420307
+"Korea, Rep.",Asia,1967,57.716,30131000
+"Korea, Rep.",Asia,1972,62.612,33505000
+"Korea, Rep.",Asia,1977,64.766,36436000
+"Korea, Rep.",Asia,1982,67.123,39326000
+"Korea, Rep.",Asia,1987,69.81,41622000
+"Korea, Rep.",Asia,1992,72.244,43805450
+"Korea, Rep.",Asia,1997,74.647,46173816
+"Korea, Rep.",Asia,2002,77.045,47969150
+"Korea, Rep.",Asia,2007,78.623,49044790
+Kuwait,Asia,1952,55.565,160000
+Kuwait,Asia,1957,58.033,212846
+Kuwait,Asia,1962,60.47,358266
+Kuwait,Asia,1967,64.624,575003
+Kuwait,Asia,1972,67.712,841934
+Kuwait,Asia,1977,69.343,1140357
+Kuwait,Asia,1982,71.309,1497494
+Kuwait,Asia,1987,74.174,1891487
+Kuwait,Asia,1992,75.19,1418095
+Kuwait,Asia,1997,76.156,1765345
+Kuwait,Asia,2002,76.904,2111561
+Kuwait,Asia,2007,77.588,2505559
+Lebanon,Asia,1952,55.928,1439529
+Lebanon,Asia,1957,59.489,1647412
+Lebanon,Asia,1962,62.094,1886848
+Lebanon,Asia,1967,63.87,2186894
+Lebanon,Asia,1972,65.421,2680018
+Lebanon,Asia,1977,66.099,3115787
+Lebanon,Asia,1982,66.983,3086876
+Lebanon,Asia,1987,67.926,3089353
+Lebanon,Asia,1992,69.292,3219994
+Lebanon,Asia,1997,70.265,3430388
+Lebanon,Asia,2002,71.028,3677780
+Lebanon,Asia,2007,71.993,3921278
+Malaysia,Asia,1952,48.463,6748378
+Malaysia,Asia,1957,52.102,7739235
+Malaysia,Asia,1962,55.737,8906385
+Malaysia,Asia,1967,59.371,10154878
+Malaysia,Asia,1972,63.01,11441462
+Malaysia,Asia,1977,65.256,12845381
+Malaysia,Asia,1982,68,14441916
+Malaysia,Asia,1987,69.5,16331785
+Malaysia,Asia,1992,70.693,18319502
+Malaysia,Asia,1997,71.938,20476091
+Malaysia,Asia,2002,73.044,22662365
+Malaysia,Asia,2007,74.241,24821286
+Mongolia,Asia,1952,42.244,800663
+Mongolia,Asia,1957,45.248,882134
+Mongolia,Asia,1962,48.251,1010280
+Mongolia,Asia,1967,51.253,1149500
+Mongolia,Asia,1972,53.754,1320500
+Mongolia,Asia,1977,55.491,1528000
+Mongolia,Asia,1982,57.489,1756032
+Mongolia,Asia,1987,60.222,2015133
+Mongolia,Asia,1992,61.271,2312802
+Mongolia,Asia,1997,63.625,2494803
+Mongolia,Asia,2002,65.033,2674234
+Mongolia,Asia,2007,66.803,2874127
+Montenegro,Europe,1952,59.164,413834
+Montenegro,Europe,1957,61.448,442829
+Montenegro,Europe,1962,63.728,474528
+Montenegro,Europe,1967,67.178,501035
+Montenegro,Europe,1972,70.636,527678
+Montenegro,Europe,1977,73.066,560073
+Montenegro,Europe,1982,74.101,562548
+Montenegro,Europe,1987,74.865,569473
+Montenegro,Europe,1992,75.435,621621
+Montenegro,Europe,1997,75.445,692651
+Montenegro,Europe,2002,73.981,720230
+Montenegro,Europe,2007,74.543,684736
+Myanmar,Asia,1952,36.319,20092996
+Myanmar,Asia,1957,41.905,21731844
+Myanmar,Asia,1962,45.108,23634436
+Myanmar,Asia,1967,49.379,25870271
+Myanmar,Asia,1972,53.07,28466390
+Myanmar,Asia,1977,56.059,31528087
+Myanmar,Asia,1982,58.056,34680442
+Myanmar,Asia,1987,58.339,38028578
+Myanmar,Asia,1992,59.32,40546538
+Myanmar,Asia,1997,60.328,43247867
+Myanmar,Asia,2002,59.908,45598081
+Myanmar,Asia,2007,62.069,47761980
+Nepal,Asia,1952,36.157,9182536
+Nepal,Asia,1957,37.686,9682338
+Nepal,Asia,1962,39.393,10332057
+Nepal,Asia,1967,41.472,11261690
+Nepal,Asia,1972,43.971,12412593
+Nepal,Asia,1977,46.748,13933198
+Nepal,Asia,1982,49.594,15796314
+Nepal,Asia,1987,52.537,17917180
+Nepal,Asia,1992,55.727,20326209
+Nepal,Asia,1997,59.426,23001113
+Nepal,Asia,2002,61.34,25873917
+Nepal,Asia,2007,63.785,28901790
+Netherlands,Europe,1952,72.13,10381988
+Netherlands,Europe,1957,72.99,11026383
+Netherlands,Europe,1962,73.23,11805689
+Netherlands,Europe,1967,73.82,12596822
+Netherlands,Europe,1972,73.75,13329874
+Netherlands,Europe,1977,75.24,13852989
+Netherlands,Europe,1982,76.05,14310401
+Netherlands,Europe,1987,76.83,14665278
+Netherlands,Europe,1992,77.42,15174244
+Netherlands,Europe,1997,78.03,15604464
+Netherlands,Europe,2002,78.53,16122830
+Netherlands,Europe,2007,79.762,16570613
+Norway,Europe,1952,72.67,3327728
+Norway,Europe,1957,73.44,3491938
+Norway,Europe,1962,73.47,3638919
+Norway,Europe,1967,74.08,3786019
+Norway,Europe,1972,74.34,3933004
+Norway,Europe,1977,75.37,4043205
+Norway,Europe,1982,75.97,4114787
+Norway,Europe,1987,75.89,4186147
+Norway,Europe,1992,77.32,4286357
+Norway,Europe,1997,78.32,4405672
+Norway,Europe,2002,79.05,4535591
+Norway,Europe,2007,80.196,4627926
+Oman,Asia,1952,37.578,507833
+Oman,Asia,1957,40.08,561977
+Oman,Asia,1962,43.165,628164
+Oman,Asia,1967,46.988,714775
+Oman,Asia,1972,52.143,829050
+Oman,Asia,1977,57.367,1004533
+Oman,Asia,1982,62.728,1301048
+Oman,Asia,1987,67.734,1593882
+Oman,Asia,1992,71.197,1915208
+Oman,Asia,1997,72.499,2283635
+Oman,Asia,2002,74.193,2713462
+Oman,Asia,2007,75.64,3204897
+Pakistan,Asia,1952,43.436,41346560
+Pakistan,Asia,1957,45.557,46679944
+Pakistan,Asia,1962,47.67,53100671
+Pakistan,Asia,1967,49.8,60641899
+Pakistan,Asia,1972,51.929,69325921
+Pakistan,Asia,1977,54.043,78152686
+Pakistan,Asia,1982,56.158,91462088
+Pakistan,Asia,1987,58.245,105186881
+Pakistan,Asia,1992,60.838,120065004
+Pakistan,Asia,1997,61.818,135564834
+Pakistan,Asia,2002,63.61,153403524
+Pakistan,Asia,2007,65.483,169270617
+Philippines,Asia,1952,47.752,22438691
+Philippines,Asia,1957,51.334,26072194
+Philippines,Asia,1962,54.757,30325264
+Philippines,Asia,1967,56.393,35356600
+Philippines,Asia,1972,58.065,40850141
+Philippines,Asia,1977,60.06,46850962
+Philippines,Asia,1982,62.082,53456774
+Philippines,Asia,1987,64.151,60017788
+Philippines,Asia,1992,66.458,67185766
+Philippines,Asia,1997,68.564,75012988
+Philippines,Asia,2002,70.303,82995088
+Philippines,Asia,2007,71.688,91077287
+Poland,Europe,1952,61.31,25730551
+Poland,Europe,1957,65.77,28235346
+Poland,Europe,1962,67.64,30329617
+Poland,Europe,1967,69.61,31785378
+Poland,Europe,1972,70.85,33039545
+Poland,Europe,1977,70.67,34621254
+Poland,Europe,1982,71.32,36227381
+Poland,Europe,1987,70.98,37740710
+Poland,Europe,1992,70.99,38370697
+Poland,Europe,1997,72.75,38654957
+Poland,Europe,2002,74.67,38625976
+Poland,Europe,2007,75.563,38518241
+Portugal,Europe,1952,59.82,8526050
+Portugal,Europe,1957,61.51,8817650
+Portugal,Europe,1962,64.39,9019800
+Portugal,Europe,1967,66.6,9103000
+Portugal,Europe,1972,69.26,8970450
+Portugal,Europe,1977,70.41,9662600
+Portugal,Europe,1982,72.77,9859650
+Portugal,Europe,1987,74.06,9915289
+Portugal,Europe,1992,74.86,9927680
+Portugal,Europe,1997,75.97,10156415
+Portugal,Europe,2002,77.29,10433867
+Portugal,Europe,2007,78.098,10642836
+Romania,Europe,1952,61.05,16630000
+Romania,Europe,1957,64.1,17829327
+Romania,Europe,1962,66.8,18680721
+Romania,Europe,1967,66.8,19284814
+Romania,Europe,1972,69.21,20662648
+Romania,Europe,1977,69.46,21658597
+Romania,Europe,1982,69.66,22356726
+Romania,Europe,1987,69.53,22686371
+Romania,Europe,1992,69.36,22797027
+Romania,Europe,1997,69.72,22562458
+Romania,Europe,2002,71.322,22404337
+Romania,Europe,2007,72.476,22276056
+Saudi Arabia,Asia,1952,39.875,4005677
+Saudi Arabia,Asia,1957,42.868,4419650
+Saudi Arabia,Asia,1962,45.914,4943029
+Saudi Arabia,Asia,1967,49.901,5618198
+Saudi Arabia,Asia,1972,53.886,6472756
+Saudi Arabia,Asia,1977,58.69,8128505
+Saudi Arabia,Asia,1982,63.012,11254672
+Saudi Arabia,Asia,1987,66.295,14619745
+Saudi Arabia,Asia,1992,68.768,16945857
+Saudi Arabia,Asia,1997,70.533,21229759
+Saudi Arabia,Asia,2002,71.626,24501530
+Saudi Arabia,Asia,2007,72.777,27601038
+Serbia,Europe,1952,57.996,6860147
+Serbia,Europe,1957,61.685,7271135
+Serbia,Europe,1962,64.531,7616060
+Serbia,Europe,1967,66.914,7971222
+Serbia,Europe,1972,68.7,8313288
+Serbia,Europe,1977,70.3,8686367
+Serbia,Europe,1982,70.162,9032824
+Serbia,Europe,1987,71.218,9230783
+Serbia,Europe,1992,71.659,9826397
+Serbia,Europe,1997,72.232,10336594
+Serbia,Europe,2002,73.213,10111559
+Serbia,Europe,2007,74.002,10150265
+Singapore,Asia,1952,60.396,1127000
+Singapore,Asia,1957,63.179,1445929
+Singapore,Asia,1962,65.798,1750200
+Singapore,Asia,1967,67.946,1977600
+Singapore,Asia,1972,69.521,2152400
+Singapore,Asia,1977,70.795,2325300
+Singapore,Asia,1982,71.76,2651869
+Singapore,Asia,1987,73.56,2794552
+Singapore,Asia,1992,75.788,3235865
+Singapore,Asia,1997,77.158,3802309
+Singapore,Asia,2002,78.77,4197776
+Singapore,Asia,2007,79.972,4553009
+Slovak Republic,Europe,1952,64.36,3558137
+Slovak Republic,Europe,1957,67.45,3844277
+Slovak Republic,Europe,1962,70.33,4237384
+Slovak Republic,Europe,1967,70.98,4442238
+Slovak Republic,Europe,1972,70.35,4593433
+Slovak Republic,Europe,1977,70.45,4827803
+Slovak Republic,Europe,1982,70.8,5048043
+Slovak Republic,Europe,1987,71.08,5199318
+Slovak Republic,Europe,1992,71.38,5302888
+Slovak Republic,Europe,1997,72.71,5383010
+Slovak Republic,Europe,2002,73.8,5410052
+Slovak Republic,Europe,2007,74.663,5447502
+Slovenia,Europe,1952,65.57,1489518
+Slovenia,Europe,1957,67.85,1533070
+Slovenia,Europe,1962,69.15,1582962
+Slovenia,Europe,1967,69.18,1646912
+Slovenia,Europe,1972,69.82,1694510
+Slovenia,Europe,1977,70.97,1746919
+Slovenia,Europe,1982,71.063,1861252
+Slovenia,Europe,1987,72.25,1945870
+Slovenia,Europe,1992,73.64,1999210
+Slovenia,Europe,1997,75.13,2011612
+Slovenia,Europe,2002,76.66,2011497
+Slovenia,Europe,2007,77.926,2009245
+Spain,Europe,1952,64.94,28549870
+Spain,Europe,1957,66.66,29841614
+Spain,Europe,1962,69.69,31158061
+Spain,Europe,1967,71.44,32850275
+Spain,Europe,1972,73.06,34513161
+Spain,Europe,1977,74.39,36439000
+Spain,Europe,1982,76.3,37983310
+Spain,Europe,1987,76.9,38880702
+Spain,Europe,1992,77.57,39549438
+Spain,Europe,1997,78.77,39855442
+Spain,Europe,2002,79.78,40152517
+Spain,Europe,2007,80.941,40448191
+Sri Lanka,Asia,1952,57.593,7982342
+Sri Lanka,Asia,1957,61.456,9128546
+Sri Lanka,Asia,1962,62.192,10421936
+Sri Lanka,Asia,1967,64.266,11737396
+Sri Lanka,Asia,1972,65.042,13016733
+Sri Lanka,Asia,1977,65.949,14116836
+Sri Lanka,Asia,1982,68.757,15410151
+Sri Lanka,Asia,1987,69.011,16495304
+Sri Lanka,Asia,1992,70.379,17587060
+Sri Lanka,Asia,1997,70.457,18698655
+Sri Lanka,Asia,2002,70.815,19576783
+Sri Lanka,Asia,2007,72.396,20378239
+Sweden,Europe,1952,71.86,7124673
+Sweden,Europe,1957,72.49,7363802
+Sweden,Europe,1962,73.37,7561588
+Sweden,Europe,1967,74.16,7867931
+Sweden,Europe,1972,74.72,8122293
+Sweden,Europe,1977,75.44,8251648
+Sweden,Europe,1982,76.42,8325260
+Sweden,Europe,1987,77.19,8421403
+Sweden,Europe,1992,78.16,8718867
+Sweden,Europe,1997,79.39,8897619
+Sweden,Europe,2002,80.04,8954175
+Sweden,Europe,2007,80.884,9031088
+Switzerland,Europe,1952,69.62,4815000
+Switzerland,Europe,1957,70.56,5126000
+Switzerland,Europe,1962,71.32,5666000
+Switzerland,Europe,1967,72.77,6063000
+Switzerland,Europe,1972,73.78,6401400
+Switzerland,Europe,1977,75.39,6316424
+Switzerland,Europe,1982,76.21,6468126
+Switzerland,Europe,1987,77.41,6649942
+Switzerland,Europe,1992,78.03,6995447
+Switzerland,Europe,1997,79.37,7193761
+Switzerland,Europe,2002,80.62,7361757
+Switzerland,Europe,2007,81.701,7554661
+Syria,Asia,1952,45.883,3661549
+Syria,Asia,1957,48.284,4149908
+Syria,Asia,1962,50.305,4834621
+Syria,Asia,1967,53.655,5680812
+Syria,Asia,1972,57.296,6701172
+Syria,Asia,1977,61.195,7932503
+Syria,Asia,1982,64.59,9410494
+Syria,Asia,1987,66.974,11242847
+Syria,Asia,1992,69.249,13219062
+Syria,Asia,1997,71.527,15081016
+Syria,Asia,2002,73.053,17155814
+Syria,Asia,2007,74.143,19314747
+Taiwan,Asia,1952,58.5,8550362
+Taiwan,Asia,1957,62.4,10164215
+Taiwan,Asia,1962,65.2,11918938
+Taiwan,Asia,1967,67.5,13648692
+Taiwan,Asia,1972,69.39,15226039
+Taiwan,Asia,1977,70.59,16785196
+Taiwan,Asia,1982,72.16,18501390
+Taiwan,Asia,1987,73.4,19757799
+Taiwan,Asia,1992,74.26,20686918
+Taiwan,Asia,1997,75.25,21628605
+Taiwan,Asia,2002,76.99,22454239
+Taiwan,Asia,2007,78.4,23174294
+Thailand,Asia,1952,50.848,21289402
+Thailand,Asia,1957,53.63,25041917
+Thailand,Asia,1962,56.061,29263397
+Thailand,Asia,1967,58.285,34024249
+Thailand,Asia,1972,60.405,39276153
+Thailand,Asia,1977,62.494,44148285
+Thailand,Asia,1982,64.597,48827160
+Thailand,Asia,1987,66.084,52910342
+Thailand,Asia,1992,67.298,56667095
+Thailand,Asia,1997,67.521,60216677
+Thailand,Asia,2002,68.564,62806748
+Thailand,Asia,2007,70.616,65068149
+Turkey,Europe,1952,43.585,22235677
+Turkey,Europe,1957,48.079,25670939
+Turkey,Europe,1962,52.098,29788695
+Turkey,Europe,1967,54.336,33411317
+Turkey,Europe,1972,57.005,37492953
+Turkey,Europe,1977,59.507,42404033
+Turkey,Europe,1982,61.036,47328791
+Turkey,Europe,1987,63.108,52881328
+Turkey,Europe,1992,66.146,58179144
+Turkey,Europe,1997,68.835,63047647
+Turkey,Europe,2002,70.845,67308928
+Turkey,Europe,2007,71.777,71158647
+United Kingdom,Europe,1952,69.18,50430000
+United Kingdom,Europe,1957,70.42,51430000
+United Kingdom,Europe,1962,70.76,53292000
+United Kingdom,Europe,1967,71.36,54959000
+United Kingdom,Europe,1972,72.01,56079000
+United Kingdom,Europe,1977,72.76,56179000
+United Kingdom,Europe,1982,74.04,56339704
+United Kingdom,Europe,1987,75.007,56981620
+United Kingdom,Europe,1992,76.42,57866349
+United Kingdom,Europe,1997,77.218,58808266
+United Kingdom,Europe,2002,78.471,59912431
+United Kingdom,Europe,2007,79.425,60776238
+Vietnam,Asia,1952,40.412,26246839
+Vietnam,Asia,1957,42.887,28998543
+Vietnam,Asia,1962,45.363,33796140
+Vietnam,Asia,1967,47.838,39463910
+Vietnam,Asia,1972,50.254,44655014
+Vietnam,Asia,1977,55.764,50533506
+Vietnam,Asia,1982,58.816,56142181
+Vietnam,Asia,1987,62.82,62826491
+Vietnam,Asia,1992,67.662,69940728
+Vietnam,Asia,1997,70.672,76048996
+Vietnam,Asia,2002,73.017,80908147
+Vietnam,Asia,2007,74.249,85262356
+West Bank and Gaza,Asia,1952,43.16,1030585
+West Bank and Gaza,Asia,1957,45.671,1070439
+West Bank and Gaza,Asia,1962,48.127,1133134
+West Bank and Gaza,Asia,1967,51.631,1142636
+West Bank and Gaza,Asia,1972,56.532,1089572
+West Bank and Gaza,Asia,1977,60.765,1261091
+West Bank and Gaza,Asia,1982,64.406,1425876
+West Bank and Gaza,Asia,1987,67.046,1691210
+West Bank and Gaza,Asia,1992,69.718,2104779
+West Bank and Gaza,Asia,1997,71.096,2826046
+West Bank and Gaza,Asia,2002,72.37,3389578
+West Bank and Gaza,Asia,2007,73.422,4018332
+"Yemen, Rep.",Asia,1952,32.548,4963829
+"Yemen, Rep.",Asia,1957,33.97,5498090
+"Yemen, Rep.",Asia,1962,35.18,6120081
+"Yemen, Rep.",Asia,1967,36.984,6740785
+"Yemen, Rep.",Asia,1972,39.848,7407075
+"Yemen, Rep.",Asia,1977,44.175,8403990
+"Yemen, Rep.",Asia,1982,49.113,9657618
+"Yemen, Rep.",Asia,1987,52.922,11219340
+"Yemen, Rep.",Asia,1992,55.599,13367997
+"Yemen, Rep.",Asia,1997,58.02,15826497
+"Yemen, Rep.",Asia,2002,60.308,18701257
+"Yemen, Rep.",Asia,2007,62.698,22211743

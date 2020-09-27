@@ -1,0 +1,179 @@
+---
+title: "HW2 Merging Data Frames"
+author: "Ryan Richardson"
+date: "26/09/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## In-Class Portion
+
+
+```{r loadData}
+
+gdp <- read.csv('data/gdp.csv')
+cca <- read.csv('data/countrycharsA.csv')
+ccb <- read.csv('data/countrycharsB.csv')
+```
+
+```{r structureConcatenate}
+str(gdp)
+str(cca)
+str(ccb)
+
+ccs <- rbind(cca, ccb)
+ccgs <- cbind(ccs, gdp)
+
+str(gdp)
+str(cca)
+str(ccs)
+str(ccgs)
+```
+
+```{r displayThresholds}
+aboveThreshold = ccgs[which(ccgs$year > 1980 & ccgs$gdp < 20000),]
+str(aboveThreshold)
+```
+
+### Median By Year
+
+```{r calculateMedianByYear}
+
+medianByYear = data.frame("Year" = c(), "MedianGdp" = c(), "ClosestRelativeGdp" = c())
+for (i in unique(ccgs$year)) {
+  
+  yearResults = ccgs[which(ccgs$year == i),] 
+  
+  gdpMedian = median(yearResults$gdp)
+  gdpDifference = abs(yearResults$gdp - gdpMedian)
+  
+  minCountry = yearResults[which.min(gdpDifference),]
+  medianByYear = rbind(medianByYear, list(i, gdpMedian, minCountry$country))
+
+}
+
+```
+
+```{r medianByYear, echo=FALSE}
+str(medianByYear)
+knitr::kable(medianByYear, col.names = c("Year", "MedianGDP","Closest Relative GDP"))
+```
+
+
+
+### Median By Year By Continent
+```{r calculateMedianByYearAndContinent}
+
+medianByYearByContinent = data.frame("Year" = c(), "MedianGdp" =  c(), "ClosestRelativeGdp" = c(), "Continent" = c())
+for (i in unique(ccgs$year)) {
+  
+  yearResults = ccgs[which(ccgs$year == i),] 
+  
+  for (j in unique(yearResults$continent)) {
+    
+    continentResults = yearResults[which(yearResults$continent == j),]
+    
+    gdpMedian = median(continentResults$gdp)
+    gdpDifference = abs(continentResults$gdp - gdpMedian)
+    
+    minCountry = continentResults[which.min(gdpDifference),]
+    medianByYearByContinent = rbind(medianByYearByContinent, list(i, gdpMedian, minCountry$country, minCountry$continent))
+  
+    }
+
+}
+
+```
+
+```{r medianByYearByContinent, echo=FALSE}
+str(medianByYearByContinent)
+knitr::kable(medianByYearByContinent,col.names = c("Year","MedianGDP","Closest Relative GDP", "Continent"))
+```
+
+## Merge Comparisons
+
+
+```{r merge, echo=FALSE}
+load("data/map.coords.RData")
+coords <- coords # R getting mad that coords didn't exist despite being loaded unless it was re-cast to var
+```
+
+### Left Join
+
+Dimensions; 1667 by 8, 2 new cols added. 
+
+The number of obersevations would always need to be at least the same as the number of rows in our first dataframe. 
+
+If there were missing values on the merge then the original row data will still exist with empty values in the newly added columns in the joined set.
+```{r leftJoin, echo=FALSE}
+leftJoin <- merge(x = ccgs, y = coords, by = "country", all.x = TRUE) 
+str(leftJoin)
+```
+
+
+### Right Join
+
+Dimensions: 1657 by 8, 2 new cols and 10 fewer records.
+
+Number of observations changes because the coords dataset's country col does not have a match for those 10 records. 
+
+There may still be rows with empty values, as in the left join, if they were present in the original coords dataset but not the ccgs dataset
+```{r rightJoin, echo=FALSE}
+rightJoin <- merge(x = ccgs, y = coords, by = "country", all.y = TRUE) 
+str(rightJoin)
+```
+
+### Inner Join
+
+Dimensions: 1535 by 8, 2 new cols with 122 fewer rows.
+
+Only data matched by a country that exists in both datasets will be present in this merged set, leading to the reduction of rows present.
+
+```{r innerJoin, echp=FALSE}
+innerJoin <-  merge(x = ccgs, y = coords, by = "country")
+str(innerJoin)
+```
+
+
+## Geographical Location vs GDP Relationship
+
+### GDP Quartiles
+
+The functions appear to be working as expected. The quantiles have been created accordingly, with 50% appearing at the median value. Assignment to gdp.q also appears to be working as intended based on the true values of the gdp per record appearing within the bounds of the appropriate quantile. Additionally, each table has the same number of obesrvations, or about 25% of the total data per quartile.
+``` {r calculateQuantiles, echo=FALSE}
+gdpQuantiles = quantile(innerJoin$gdp)
+gdpQuantiles
+innerJoin$gdp.q = findInterval(innerJoin$gdp, gdpQuantiles, rightmost.closed = TRUE)
+innerJoin$gdp.q = factor(innerJoin$gdp.q, levels=c('1','2','3','4'))
+innerJoin$gdp.q
+table(innerJoin$gdp.q)
+```
+
+### Reverse Order
+
+``` {r reverseQuantiles, echo=FALSE}
+innerJoin$gdp.qr = innerJoin$gdp.q
+levels(innerJoin$gdp.qr) = c('4','3','2','1')
+innerJoin$gdp.qr
+table(innerJoin$gdp.qr)
+```
+
+
+### Mean GDP By Quartile
+There does not appear to be a significant difference of the average lattitudes between each quartile. With the average distance between being about 3 degrees latitude between all groups,  or a ~210 miles.
+
+```{r meanGDP}
+
+meanLatitude = data.frame("Quartile" = c(), "Mean Latitude" = c())
+for (i in unique(levels(innerJoin$gdp.q))){
+   levelResults = innerJoin[which(innerJoin$gdp.q == i),] 
+   meanLat = mean(levelResults$lat)
+   meanLatitude = rbind(meanLatitude, list(i, meanLat))
+}
+
+
+knitr::kable(meanLatitude, col.names = c("Quartile", "MeanLatitude"))
+```

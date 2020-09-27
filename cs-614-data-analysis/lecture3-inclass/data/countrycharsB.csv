@@ -1,0 +1,922 @@
+"country","continent","year","lifeExp","pop"
+"Algeria","Africa",1952,43.077,9279525
+"Algeria","Africa",1957,45.685,10270856
+"Algeria","Africa",1962,48.303,11000948
+"Algeria","Africa",1967,51.407,12760499
+"Algeria","Africa",1972,54.518,14760787
+"Algeria","Africa",1977,58.014,17152804
+"Algeria","Africa",1982,61.368,20033753
+"Algeria","Africa",1987,65.799,23254956
+"Algeria","Africa",1992,67.744,26298373
+"Algeria","Africa",1997,69.152,29072015
+"Algeria","Africa",2002,70.994,31287142
+"Algeria","Africa",2007,72.301,33333216
+"Angola","Africa",1952,30.015,4232095
+"Angola","Africa",1957,31.999,4561361
+"Angola","Africa",1962,34,4826015
+"Angola","Africa",1967,35.985,5247469
+"Angola","Africa",1972,37.928,5894858
+"Angola","Africa",1977,39.483,6162675
+"Angola","Africa",1982,39.942,7016384
+"Angola","Africa",1987,39.906,7874230
+"Angola","Africa",1992,40.647,8735988
+"Angola","Africa",1997,40.963,9875024
+"Angola","Africa",2002,41.003,10866106
+"Angola","Africa",2007,42.731,12420476
+"Argentina","Americas",1952,62.485,17876956
+"Argentina","Americas",1957,64.399,19610538
+"Argentina","Americas",1962,65.142,21283783
+"Argentina","Americas",1967,65.634,22934225
+"Argentina","Americas",1972,67.065,24779799
+"Argentina","Americas",1977,68.481,26983828
+"Argentina","Americas",1987,70.774,31620918
+"Argentina","Americas",1992,71.868,33958947
+"Argentina","Americas",1997,73.275,36203463
+"Argentina","Americas",2002,74.34,38331121
+"Argentina","Americas",2007,75.32,40301927
+"Australia","Oceania",1952,69.12,8691212
+"Australia","Oceania",1957,70.33,9712569
+"Australia","Oceania",1962,70.93,10794968
+"Australia","Oceania",1967,71.1,11872264
+"Australia","Oceania",1972,71.93,13177000
+"Australia","Oceania",1977,73.49,14074100
+"Australia","Oceania",1982,74.74,15184200
+"Australia","Oceania",1987,76.32,16257249
+"Australia","Oceania",1992,77.56,17481977
+"Australia","Oceania",1997,78.83,18565243
+"Australia","Oceania",2007,81.235,20434176
+"Benin","Africa",1952,38.223,1738315
+"Benin","Africa",1957,40.358,1925173
+"Benin","Africa",1962,42.618,2151895
+"Benin","Africa",1967,44.885,2427334
+"Benin","Africa",1972,47.014,2761407
+"Benin","Africa",1977,49.19,3168267
+"Benin","Africa",1982,50.904,3641603
+"Benin","Africa",1987,52.337,4243788
+"Benin","Africa",1992,53.919,4981671
+"Benin","Africa",1997,54.777,6066080
+"Benin","Africa",2002,54.406,7026113
+"Benin","Africa",2007,56.728,8078314
+"Bolivia","Americas",1952,40.414,2883315
+"Bolivia","Americas",1957,41.89,3211738
+"Bolivia","Americas",1962,43.428,3593918
+"Bolivia","Americas",1967,45.032,4040665
+"Bolivia","Americas",1972,46.714,4565872
+"Bolivia","Americas",1977,50.023,5079716
+"Bolivia","Americas",1987,57.251,6156369
+"Bolivia","Americas",1992,59.957,6893451
+"Bolivia","Americas",1997,62.05,7693188
+"Bolivia","Americas",2002,63.883,8445134
+"Bolivia","Americas",2007,65.554,9119152
+"Botswana","Africa",1952,47.622,442308
+"Botswana","Africa",1957,49.618,474639
+"Botswana","Africa",1962,51.52,512764
+"Botswana","Africa",1967,53.298,553541
+"Botswana","Africa",1972,56.024,619351
+"Botswana","Africa",1977,59.319,781472
+"Botswana","Africa",1982,61.484,970347
+"Botswana","Africa",1987,63.622,1151184
+"Botswana","Africa",1992,62.745,1342614
+"Botswana","Africa",1997,52.556,1536536
+"Botswana","Africa",2002,46.634,1630347
+"Botswana","Africa",2007,50.728,1639131
+"Brazil","Americas",1952,50.917,56602560
+"Brazil","Americas",1957,53.285,65551171
+"Brazil","Americas",1962,55.665,76039390
+"Brazil","Americas",1967,57.632,88049823
+"Brazil","Americas",1972,59.504,100840058
+"Brazil","Americas",1977,61.489,114313951
+"Brazil","Americas",1987,65.205,142938076
+"Brazil","Americas",1992,67.057,155975974
+"Brazil","Americas",1997,69.388,168546719
+"Brazil","Americas",2002,71.006,179914212
+"Brazil","Americas",2007,72.39,190010647
+"Burkina Faso","Africa",1952,31.975,4469979
+"Burkina Faso","Africa",1957,34.906,4713416
+"Burkina Faso","Africa",1962,37.814,4919632
+"Burkina Faso","Africa",1967,40.697,5127935
+"Burkina Faso","Africa",1972,43.591,5433886
+"Burkina Faso","Africa",1977,46.137,5889574
+"Burkina Faso","Africa",1982,48.122,6634596
+"Burkina Faso","Africa",1987,49.557,7586551
+"Burkina Faso","Africa",1992,50.26,8878303
+"Burkina Faso","Africa",1997,50.324,10352843
+"Burkina Faso","Africa",2002,50.65,12251209
+"Burkina Faso","Africa",2007,52.295,14326203
+"Burundi","Africa",1952,39.031,2445618
+"Burundi","Africa",1957,40.533,2667518
+"Burundi","Africa",1962,42.045,2961915
+"Burundi","Africa",1967,43.548,3330989
+"Burundi","Africa",1972,44.057,3529983
+"Burundi","Africa",1977,45.91,3834415
+"Burundi","Africa",1982,47.471,4580410
+"Burundi","Africa",1987,48.211,5126023
+"Burundi","Africa",1992,44.736,5809236
+"Burundi","Africa",1997,45.326,6121610
+"Burundi","Africa",2002,47.36,7021078
+"Burundi","Africa",2007,49.58,8390505
+"Cameroon","Africa",1952,38.523,5009067
+"Cameroon","Africa",1957,40.428,5359923
+"Cameroon","Africa",1962,42.643,5793633
+"Cameroon","Africa",1967,44.799,6335506
+"Cameroon","Africa",1972,47.049,7021028
+"Cameroon","Africa",1977,49.355,7959865
+"Cameroon","Africa",1982,52.961,9250831
+"Cameroon","Africa",1987,54.985,10780667
+"Cameroon","Africa",1992,54.314,12467171
+"Cameroon","Africa",1997,52.199,14195809
+"Cameroon","Africa",2002,49.856,15929988
+"Cameroon","Africa",2007,50.43,17696293
+"Canada","Americas",1952,68.75,14785584
+"Canada","Americas",1957,69.96,17010154
+"Canada","Americas",1962,71.3,18985849
+"Canada","Americas",1967,72.13,20819767
+"Canada","Americas",1972,72.88,22284500
+"Canada","Americas",1977,74.21,23796400
+"Canada","Americas",1987,76.86,26549700
+"Canada","Americas",1992,77.95,28523502
+"Canada","Americas",1997,78.61,30305843
+"Canada","Americas",2002,79.77,31902268
+"Canada","Americas",2007,80.653,33390141
+"Central African Republic","Africa",1952,35.463,1291695
+"Central African Republic","Africa",1957,37.464,1392284
+"Central African Republic","Africa",1962,39.475,1523478
+"Central African Republic","Africa",1967,41.478,1733638
+"Central African Republic","Africa",1972,43.457,1927260
+"Central African Republic","Africa",1977,46.775,2167533
+"Central African Republic","Africa",1982,48.295,2476971
+"Central African Republic","Africa",1987,50.485,2840009
+"Central African Republic","Africa",1992,49.396,3265124
+"Central African Republic","Africa",1997,46.066,3696513
+"Central African Republic","Africa",2002,43.308,4048013
+"Central African Republic","Africa",2007,44.741,4369038
+"Chad","Africa",1952,38.092,2682462
+"Chad","Africa",1957,39.881,2894855
+"Chad","Africa",1962,41.716,3150417
+"Chad","Africa",1967,43.601,3495967
+"Chad","Africa",1972,45.569,3899068
+"Chad","Africa",1977,47.383,4388260
+"Chad","Africa",1982,49.517,4875118
+"Chad","Africa",1987,51.051,5498955
+"Chad","Africa",1992,51.724,6429417
+"Chad","Africa",1997,51.573,7562011
+"Chad","Africa",2002,50.525,8835739
+"Chad","Africa",2007,50.651,10238807
+"Chile","Americas",1952,54.745,6377619
+"Chile","Americas",1957,56.074,7048426
+"Chile","Americas",1962,57.924,7961258
+"Chile","Americas",1967,60.523,8858908
+"Chile","Americas",1972,63.441,9717524
+"Chile","Americas",1977,67.052,10599793
+"Chile","Americas",1987,72.492,12463354
+"Chile","Americas",1992,74.126,13572994
+"Chile","Americas",1997,75.816,14599929
+"Chile","Americas",2002,77.86,15497046
+"Chile","Americas",2007,78.553,16284741
+"Colombia","Americas",1952,50.643,12350771
+"Colombia","Americas",1957,55.118,14485993
+"Colombia","Americas",1962,57.863,17009885
+"Colombia","Americas",1967,59.963,19764027
+"Colombia","Americas",1972,61.623,22542890
+"Colombia","Americas",1977,63.837,25094412
+"Colombia","Americas",1987,67.768,30964245
+"Colombia","Americas",1992,68.421,34202721
+"Colombia","Americas",1997,70.313,37657830
+"Colombia","Americas",2002,71.682,41008227
+"Colombia","Americas",2007,72.889,44227550
+"Comoros","Africa",1952,40.715,153936
+"Comoros","Africa",1957,42.46,170928
+"Comoros","Africa",1962,44.467,191689
+"Comoros","Africa",1967,46.472,217378
+"Comoros","Africa",1972,48.944,250027
+"Comoros","Africa",1977,50.939,304739
+"Comoros","Africa",1982,52.933,348643
+"Comoros","Africa",1987,54.926,395114
+"Comoros","Africa",1992,57.939,454429
+"Comoros","Africa",1997,60.66,527982
+"Comoros","Africa",2002,62.974,614382
+"Comoros","Africa",2007,65.152,710960
+"Congo, Dem. Rep.","Africa",1952,39.143,14100005
+"Congo, Dem. Rep.","Africa",1957,40.652,15577932
+"Congo, Dem. Rep.","Africa",1962,42.122,17486434
+"Congo, Dem. Rep.","Africa",1967,44.056,19941073
+"Congo, Dem. Rep.","Africa",1972,45.989,23007669
+"Congo, Dem. Rep.","Africa",1977,47.804,26480870
+"Congo, Dem. Rep.","Africa",1982,47.784,30646495
+"Congo, Dem. Rep.","Africa",1987,47.412,35481645
+"Congo, Dem. Rep.","Africa",1992,45.548,41672143
+"Congo, Dem. Rep.","Africa",1997,42.587,47798986
+"Congo, Dem. Rep.","Africa",2002,44.966,55379852
+"Congo, Dem. Rep.","Africa",2007,46.462,64606759
+"Congo, Rep.","Africa",1952,42.111,854885
+"Congo, Rep.","Africa",1957,45.053,940458
+"Congo, Rep.","Africa",1962,48.435,1047924
+"Congo, Rep.","Africa",1967,52.04,1179760
+"Congo, Rep.","Africa",1972,54.907,1340458
+"Congo, Rep.","Africa",1977,55.625,1536769
+"Congo, Rep.","Africa",1982,56.695,1774735
+"Congo, Rep.","Africa",1987,57.47,2064095
+"Congo, Rep.","Africa",1992,56.433,2409073
+"Congo, Rep.","Africa",1997,52.962,2800947
+"Congo, Rep.","Africa",2002,52.97,3328795
+"Congo, Rep.","Africa",2007,55.322,3800610
+"Costa Rica","Americas",1952,57.206,926317
+"Costa Rica","Americas",1957,60.026,1112300
+"Costa Rica","Americas",1962,62.842,1345187
+"Costa Rica","Americas",1967,65.424,1588717
+"Costa Rica","Americas",1972,67.849,1834796
+"Costa Rica","Americas",1977,70.75,2108457
+"Costa Rica","Americas",1987,74.752,2799811
+"Costa Rica","Americas",1992,75.713,3173216
+"Costa Rica","Americas",1997,77.26,3518107
+"Costa Rica","Americas",2002,78.123,3834934
+"Costa Rica","Americas",2007,78.782,4133884
+"Cote d'Ivoire","Africa",1952,40.477,2977019
+"Cote d'Ivoire","Africa",1957,42.469,3300000
+"Cote d'Ivoire","Africa",1962,44.93,3832408
+"Cote d'Ivoire","Africa",1967,47.35,4744870
+"Cote d'Ivoire","Africa",1972,49.801,6071696
+"Cote d'Ivoire","Africa",1977,52.374,7459574
+"Cote d'Ivoire","Africa",1982,53.983,9025951
+"Cote d'Ivoire","Africa",1987,54.655,10761098
+"Cote d'Ivoire","Africa",1992,52.044,12772596
+"Cote d'Ivoire","Africa",1997,47.991,14625967
+"Cote d'Ivoire","Africa",2002,46.832,16252726
+"Cote d'Ivoire","Africa",2007,48.328,18013409
+"Cuba","Americas",1952,59.421,6007797
+"Cuba","Americas",1957,62.325,6640752
+"Cuba","Americas",1962,65.246,7254373
+"Cuba","Americas",1967,68.29,8139332
+"Cuba","Americas",1972,70.723,8831348
+"Cuba","Americas",1977,72.649,9537988
+"Cuba","Americas",1987,74.174,10239839
+"Cuba","Americas",1992,74.414,10723260
+"Cuba","Americas",1997,76.151,10983007
+"Cuba","Americas",2002,77.158,11226999
+"Cuba","Americas",2007,78.273,11416987
+"Djibouti","Africa",1952,34.812,63149
+"Djibouti","Africa",1957,37.328,71851
+"Djibouti","Africa",1962,39.693,89898
+"Djibouti","Africa",1967,42.074,127617
+"Djibouti","Africa",1972,44.366,178848
+"Djibouti","Africa",1977,46.519,228694
+"Djibouti","Africa",1982,48.812,305991
+"Djibouti","Africa",1987,50.04,311025
+"Djibouti","Africa",1992,51.604,384156
+"Djibouti","Africa",1997,53.157,417908
+"Djibouti","Africa",2002,53.373,447416
+"Djibouti","Africa",2007,54.791,496374
+"Dominican Republic","Americas",1952,45.928,2491346
+"Dominican Republic","Americas",1957,49.828,2923186
+"Dominican Republic","Americas",1962,53.459,3453434
+"Dominican Republic","Americas",1967,56.751,4049146
+"Dominican Republic","Americas",1972,59.631,4671329
+"Dominican Republic","Americas",1977,61.788,5302800
+"Dominican Republic","Americas",1987,66.046,6655297
+"Dominican Republic","Americas",1992,68.457,7351181
+"Dominican Republic","Americas",1997,69.957,7992357
+"Dominican Republic","Americas",2002,70.847,8650322
+"Dominican Republic","Americas",2007,72.235,9319622
+"Ecuador","Americas",1952,48.357,3548753
+"Ecuador","Americas",1957,51.356,4058385
+"Ecuador","Americas",1962,54.64,4681707
+"Ecuador","Americas",1967,56.678,5432424
+"Ecuador","Americas",1972,58.796,6298651
+"Ecuador","Americas",1977,61.31,7278866
+"Ecuador","Americas",1987,67.231,9545158
+"Ecuador","Americas",1992,69.613,10748394
+"Ecuador","Americas",1997,72.312,11911819
+"Ecuador","Americas",2002,74.173,12921234
+"Ecuador","Americas",2007,74.994,13755680
+"Egypt","Africa",1952,41.893,22223309
+"Egypt","Africa",1957,44.444,25009741
+"Egypt","Africa",1962,46.992,28173309
+"Egypt","Africa",1967,49.293,31681188
+"Egypt","Africa",1972,51.137,34807417
+"Egypt","Africa",1977,53.319,38783863
+"Egypt","Africa",1982,56.006,45681811
+"Egypt","Africa",1987,59.797,52799062
+"Egypt","Africa",1992,63.674,59402198
+"Egypt","Africa",1997,67.217,66134291
+"Egypt","Africa",2002,69.806,73312559
+"Egypt","Africa",2007,71.338,80264543
+"El Salvador","Americas",1952,45.262,2042865
+"El Salvador","Americas",1957,48.57,2355805
+"El Salvador","Americas",1962,52.307,2747687
+"El Salvador","Americas",1967,55.855,3232927
+"El Salvador","Americas",1972,58.207,3790903
+"El Salvador","Americas",1977,56.696,4282586
+"El Salvador","Americas",1987,63.154,4842194
+"El Salvador","Americas",1992,66.798,5274649
+"El Salvador","Americas",1997,69.535,5783439
+"El Salvador","Americas",2002,70.734,6353681
+"El Salvador","Americas",2007,71.878,6939688
+"Equatorial Guinea","Africa",1952,34.482,216964
+"Equatorial Guinea","Africa",1957,35.983,232922
+"Equatorial Guinea","Africa",1962,37.485,249220
+"Equatorial Guinea","Africa",1967,38.987,259864
+"Equatorial Guinea","Africa",1972,40.516,277603
+"Equatorial Guinea","Africa",1977,42.024,192675
+"Equatorial Guinea","Africa",1982,43.662,285483
+"Equatorial Guinea","Africa",1987,45.664,341244
+"Equatorial Guinea","Africa",1992,47.545,387838
+"Equatorial Guinea","Africa",1997,48.245,439971
+"Equatorial Guinea","Africa",2002,49.348,495627
+"Equatorial Guinea","Africa",2007,51.579,551201
+"Eritrea","Africa",1952,35.928,1438760
+"Eritrea","Africa",1957,38.047,1542611
+"Eritrea","Africa",1962,40.158,1666618
+"Eritrea","Africa",1967,42.189,1820319
+"Eritrea","Africa",1972,44.142,2260187
+"Eritrea","Africa",1977,44.535,2512642
+"Eritrea","Africa",1982,43.89,2637297
+"Eritrea","Africa",1987,46.453,2915959
+"Eritrea","Africa",1992,49.991,3668440
+"Eritrea","Africa",1997,53.378,4058319
+"Eritrea","Africa",2002,55.24,4414865
+"Eritrea","Africa",2007,58.04,4906585
+"Ethiopia","Africa",1952,34.078,20860941
+"Ethiopia","Africa",1957,36.667,22815614
+"Ethiopia","Africa",1962,40.059,25145372
+"Ethiopia","Africa",1967,42.115,27860297
+"Ethiopia","Africa",1972,43.515,30770372
+"Ethiopia","Africa",1977,44.51,34617799
+"Ethiopia","Africa",1982,44.916,38111756
+"Ethiopia","Africa",1987,46.684,42999530
+"Ethiopia","Africa",1992,48.091,52088559
+"Ethiopia","Africa",1997,49.402,59861301
+"Ethiopia","Africa",2002,50.725,67946797
+"Ethiopia","Africa",2007,52.947,76511887
+"Gabon","Africa",1952,37.003,420702
+"Gabon","Africa",1957,38.999,434904
+"Gabon","Africa",1962,40.489,455661
+"Gabon","Africa",1967,44.598,489004
+"Gabon","Africa",1972,48.69,537977
+"Gabon","Africa",1977,52.79,706367
+"Gabon","Africa",1982,56.564,753874
+"Gabon","Africa",1987,60.19,880397
+"Gabon","Africa",1992,61.366,985739
+"Gabon","Africa",1997,60.461,1126189
+"Gabon","Africa",2002,56.761,1299304
+"Gabon","Africa",2007,56.735,1454867
+"Gambia","Africa",1952,30,284320
+"Gambia","Africa",1957,32.065,323150
+"Gambia","Africa",1962,33.896,374020
+"Gambia","Africa",1967,35.857,439593
+"Gambia","Africa",1972,38.308,517101
+"Gambia","Africa",1977,41.842,608274
+"Gambia","Africa",1982,45.58,715523
+"Gambia","Africa",1987,49.265,848406
+"Gambia","Africa",1992,52.644,1025384
+"Gambia","Africa",1997,55.861,1235767
+"Gambia","Africa",2002,58.041,1457766
+"Gambia","Africa",2007,59.448,1688359
+"Ghana","Africa",1952,43.149,5581001
+"Ghana","Africa",1957,44.779,6391288
+"Ghana","Africa",1962,46.452,7355248
+"Ghana","Africa",1967,48.072,8490213
+"Ghana","Africa",1972,49.875,9354120
+"Ghana","Africa",1977,51.756,10538093
+"Ghana","Africa",1982,53.744,11400338
+"Ghana","Africa",1987,55.729,14168101
+"Ghana","Africa",1992,57.501,16278738
+"Ghana","Africa",1997,58.556,18418288
+"Ghana","Africa",2002,58.453,20550751
+"Ghana","Africa",2007,60.022,22873338
+"Guatemala","Americas",1952,42.023,3146381
+"Guatemala","Americas",1957,44.142,3640876
+"Guatemala","Americas",1962,46.954,4208858
+"Guatemala","Americas",1967,50.016,4690773
+"Guatemala","Americas",1972,53.738,5149581
+"Guatemala","Americas",1977,56.029,5703430
+"Guatemala","Americas",1987,60.782,7326406
+"Guatemala","Americas",1992,63.373,8486949
+"Guatemala","Americas",1997,66.322,9803875
+"Guatemala","Americas",2002,68.978,11178650
+"Guatemala","Americas",2007,70.259,12572928
+"Guinea","Africa",1952,33.609,2664249
+"Guinea","Africa",1957,34.558,2876726
+"Guinea","Africa",1962,35.753,3140003
+"Guinea","Africa",1967,37.197,3451418
+"Guinea","Africa",1972,38.842,3811387
+"Guinea","Africa",1977,40.762,4227026
+"Guinea","Africa",1982,42.891,4710497
+"Guinea","Africa",1987,45.552,5650262
+"Guinea","Africa",1992,48.576,6990574
+"Guinea","Africa",1997,51.455,8048834
+"Guinea","Africa",2002,53.676,8807818
+"Guinea","Africa",2007,56.007,9947814
+"Guinea-Bissau","Africa",1952,32.5,580653
+"Guinea-Bissau","Africa",1957,33.489,601095
+"Guinea-Bissau","Africa",1962,34.488,627820
+"Guinea-Bissau","Africa",1967,35.492,601287
+"Guinea-Bissau","Africa",1972,36.486,625361
+"Guinea-Bissau","Africa",1977,37.465,745228
+"Guinea-Bissau","Africa",1982,39.327,825987
+"Guinea-Bissau","Africa",1987,41.245,927524
+"Guinea-Bissau","Africa",1992,43.266,1050938
+"Guinea-Bissau","Africa",1997,44.873,1193708
+"Guinea-Bissau","Africa",2002,45.504,1332459
+"Guinea-Bissau","Africa",2007,46.388,1472041
+"Haiti","Americas",1952,37.579,3201488
+"Haiti","Americas",1957,40.696,3507701
+"Haiti","Americas",1962,43.59,3880130
+"Haiti","Americas",1967,46.243,4318137
+"Haiti","Americas",1972,48.042,4698301
+"Haiti","Americas",1977,49.923,4908554
+"Haiti","Americas",1987,53.636,5756203
+"Haiti","Americas",1992,55.089,6326682
+"Haiti","Americas",1997,56.671,6913545
+"Haiti","Americas",2002,58.137,7607651
+"Haiti","Americas",2007,60.916,8502814
+"Honduras","Americas",1952,41.912,1517453
+"Honduras","Americas",1957,44.665,1770390
+"Honduras","Americas",1962,48.041,2090162
+"Honduras","Americas",1967,50.924,2500689
+"Honduras","Americas",1972,53.884,2965146
+"Honduras","Americas",1977,57.402,3055235
+"Honduras","Americas",1987,64.492,4372203
+"Honduras","Americas",1992,66.399,5077347
+"Honduras","Americas",1997,67.659,5867957
+"Honduras","Americas",2002,68.565,6677328
+"Honduras","Americas",2007,70.198,7483763
+"Jamaica","Americas",1952,58.53,1426095
+"Jamaica","Americas",1957,62.61,1535090
+"Jamaica","Americas",1962,65.61,1665128
+"Jamaica","Americas",1967,67.51,1861096
+"Jamaica","Americas",1972,69,1997616
+"Jamaica","Americas",1977,70.11,2156814
+"Jamaica","Americas",1987,71.77,2326606
+"Jamaica","Americas",1992,71.766,2378618
+"Jamaica","Americas",1997,72.262,2531311
+"Jamaica","Americas",2002,72.047,2664659
+"Jamaica","Americas",2007,72.567,2780132
+"Kenya","Africa",1952,42.27,6464046
+"Kenya","Africa",1957,44.686,7454779
+"Kenya","Africa",1962,47.949,8678557
+"Kenya","Africa",1967,50.654,10191512
+"Kenya","Africa",1972,53.559,12044785
+"Kenya","Africa",1977,56.155,14500404
+"Kenya","Africa",1982,58.766,17661452
+"Kenya","Africa",1987,59.339,21198082
+"Kenya","Africa",1992,59.285,25020539
+"Kenya","Africa",1997,54.407,28263827
+"Kenya","Africa",2002,50.992,31386842
+"Kenya","Africa",2007,54.11,35610177
+"Lesotho","Africa",1952,42.138,748747
+"Lesotho","Africa",1957,45.047,813338
+"Lesotho","Africa",1962,47.747,893143
+"Lesotho","Africa",1967,48.492,996380
+"Lesotho","Africa",1972,49.767,1116779
+"Lesotho","Africa",1977,52.208,1251524
+"Lesotho","Africa",1982,55.078,1411807
+"Lesotho","Africa",1987,57.18,1599200
+"Lesotho","Africa",1992,59.685,1803195
+"Lesotho","Africa",1997,55.558,1982823
+"Lesotho","Africa",2002,44.593,2046772
+"Lesotho","Africa",2007,42.592,2012649
+"Liberia","Africa",1952,38.48,863308
+"Liberia","Africa",1957,39.486,975950
+"Liberia","Africa",1962,40.502,1112796
+"Liberia","Africa",1967,41.536,1279406
+"Liberia","Africa",1972,42.614,1482628
+"Liberia","Africa",1977,43.764,1703617
+"Liberia","Africa",1982,44.852,1956875
+"Liberia","Africa",1987,46.027,2269414
+"Liberia","Africa",1992,40.802,1912974
+"Liberia","Africa",1997,42.221,2200725
+"Liberia","Africa",2002,43.753,2814651
+"Liberia","Africa",2007,45.678,3193942
+"Libya","Africa",1952,42.723,1019729
+"Libya","Africa",1957,45.289,1201578
+"Libya","Africa",1962,47.808,1441863
+"Libya","Africa",1967,50.227,1759224
+"Libya","Africa",1972,52.773,2183877
+"Libya","Africa",1977,57.442,2721783
+"Libya","Africa",1982,62.155,3344074
+"Libya","Africa",1987,66.234,3799845
+"Libya","Africa",1992,68.755,4364501
+"Libya","Africa",1997,71.555,4759670
+"Libya","Africa",2002,72.737,5368585
+"Libya","Africa",2007,73.952,6036914
+"Madagascar","Africa",1952,36.681,4762912
+"Madagascar","Africa",1957,38.865,5181679
+"Madagascar","Africa",1962,40.848,5703324
+"Madagascar","Africa",1967,42.881,6334556
+"Madagascar","Africa",1972,44.851,7082430
+"Madagascar","Africa",1977,46.881,8007166
+"Madagascar","Africa",1982,48.969,9171477
+"Madagascar","Africa",1987,49.35,10568642
+"Madagascar","Africa",1992,52.214,12210395
+"Madagascar","Africa",1997,54.978,14165114
+"Madagascar","Africa",2002,57.286,16473477
+"Madagascar","Africa",2007,59.443,19167654
+"Malawi","Africa",1952,36.256,2917802
+"Malawi","Africa",1957,37.207,3221238
+"Malawi","Africa",1962,38.41,3628608
+"Malawi","Africa",1967,39.487,4147252
+"Malawi","Africa",1972,41.766,4730997
+"Malawi","Africa",1977,43.767,5637246
+"Malawi","Africa",1982,45.642,6502825
+"Malawi","Africa",1987,47.457,7824747
+"Malawi","Africa",1992,49.42,10014249
+"Malawi","Africa",1997,47.495,10419991
+"Malawi","Africa",2002,45.009,11824495
+"Malawi","Africa",2007,48.303,13327079
+"Mali","Africa",1952,33.685,3838168
+"Mali","Africa",1957,35.307,4241884
+"Mali","Africa",1962,36.936,4690372
+"Mali","Africa",1967,38.487,5212416
+"Mali","Africa",1972,39.977,5828158
+"Mali","Africa",1977,41.714,6491649
+"Mali","Africa",1982,43.916,6998256
+"Mali","Africa",1987,46.364,7634008
+"Mali","Africa",1992,48.388,8416215
+"Mali","Africa",1997,49.903,9384984
+"Mali","Africa",2002,51.818,10580176
+"Mali","Africa",2007,54.467,12031795
+"Mauritania","Africa",1952,40.543,1022556
+"Mauritania","Africa",1957,42.338,1076852
+"Mauritania","Africa",1962,44.248,1146757
+"Mauritania","Africa",1967,46.289,1230542
+"Mauritania","Africa",1972,48.437,1332786
+"Mauritania","Africa",1977,50.852,1456688
+"Mauritania","Africa",1982,53.599,1622136
+"Mauritania","Africa",1987,56.145,1841240
+"Mauritania","Africa",1992,58.333,2119465
+"Mauritania","Africa",1997,60.43,2444741
+"Mauritania","Africa",2002,62.247,2828858
+"Mauritania","Africa",2007,64.164,3270065
+"Mauritius","Africa",1952,50.986,516556
+"Mauritius","Africa",1957,58.089,609816
+"Mauritius","Africa",1962,60.246,701016
+"Mauritius","Africa",1967,61.557,789309
+"Mauritius","Africa",1972,62.944,851334
+"Mauritius","Africa",1977,64.93,913025
+"Mauritius","Africa",1982,66.711,992040
+"Mauritius","Africa",1987,68.74,1042663
+"Mauritius","Africa",1992,69.745,1096202
+"Mauritius","Africa",1997,70.736,1149818
+"Mauritius","Africa",2002,71.954,1200206
+"Mauritius","Africa",2007,72.801,1250882
+"Mexico","Americas",1952,50.789,30144317
+"Mexico","Americas",1957,55.19,35015548
+"Mexico","Americas",1962,58.299,41121485
+"Mexico","Americas",1967,60.11,47995559
+"Mexico","Americas",1972,62.361,55984294
+"Mexico","Americas",1977,65.032,63759976
+"Mexico","Americas",1987,69.498,80122492
+"Mexico","Americas",1992,71.455,88111030
+"Mexico","Americas",1997,73.67,95895146
+"Mexico","Americas",2002,74.902,102479927
+"Mexico","Americas",2007,76.195,108700891
+"Morocco","Africa",1952,42.873,9939217
+"Morocco","Africa",1957,45.423,11406350
+"Morocco","Africa",1962,47.924,13056604
+"Morocco","Africa",1967,50.335,14770296
+"Morocco","Africa",1972,52.862,16660670
+"Morocco","Africa",1977,55.73,18396941
+"Morocco","Africa",1982,59.65,20198730
+"Morocco","Africa",1987,62.677,22987397
+"Morocco","Africa",1992,65.393,25798239
+"Morocco","Africa",1997,67.66,28529501
+"Morocco","Africa",2002,69.615,31167783
+"Morocco","Africa",2007,71.164,33757175
+"Mozambique","Africa",1952,31.286,6446316
+"Mozambique","Africa",1957,33.779,7038035
+"Mozambique","Africa",1962,36.161,7788944
+"Mozambique","Africa",1967,38.113,8680909
+"Mozambique","Africa",1972,40.328,9809596
+"Mozambique","Africa",1977,42.495,11127868
+"Mozambique","Africa",1982,42.795,12587223
+"Mozambique","Africa",1987,42.861,12891952
+"Mozambique","Africa",1992,44.284,13160731
+"Mozambique","Africa",1997,46.344,16603334
+"Mozambique","Africa",2002,44.026,18473780
+"Mozambique","Africa",2007,42.082,19951656
+"Namibia","Africa",1952,41.725,485831
+"Namibia","Africa",1957,45.226,548080
+"Namibia","Africa",1962,48.386,621392
+"Namibia","Africa",1967,51.159,706640
+"Namibia","Africa",1972,53.867,821782
+"Namibia","Africa",1977,56.437,977026
+"Namibia","Africa",1982,58.968,1099010
+"Namibia","Africa",1987,60.835,1278184
+"Namibia","Africa",1992,61.999,1554253
+"Namibia","Africa",1997,58.909,1774766
+"Namibia","Africa",2002,51.479,1972153
+"Namibia","Africa",2007,52.906,2055080
+"New Zealand","Oceania",1952,69.39,1994794
+"New Zealand","Oceania",1957,70.26,2229407
+"New Zealand","Oceania",1962,71.24,2488550
+"New Zealand","Oceania",1967,71.52,2728150
+"New Zealand","Oceania",1972,71.89,2929100
+"New Zealand","Oceania",1977,72.22,3164900
+"New Zealand","Oceania",1982,73.84,3210650
+"New Zealand","Oceania",1987,74.32,3317166
+"New Zealand","Oceania",1992,76.33,3437674
+"New Zealand","Oceania",1997,77.55,3676187
+"New Zealand","Oceania",2007,80.204,4115771
+"Nicaragua","Americas",1952,42.314,1165790
+"Nicaragua","Americas",1957,45.432,1358828
+"Nicaragua","Americas",1962,48.632,1590597
+"Nicaragua","Americas",1967,51.884,1865490
+"Nicaragua","Americas",1972,55.151,2182908
+"Nicaragua","Americas",1977,57.47,2554598
+"Nicaragua","Americas",1987,62.008,3344353
+"Nicaragua","Americas",1992,65.843,4017939
+"Nicaragua","Americas",1997,68.426,4609572
+"Nicaragua","Americas",2002,70.836,5146848
+"Nicaragua","Americas",2007,72.899,5675356
+"Niger","Africa",1952,37.444,3379468
+"Niger","Africa",1957,38.598,3692184
+"Niger","Africa",1962,39.487,4076008
+"Niger","Africa",1967,40.118,4534062
+"Niger","Africa",1972,40.546,5060262
+"Niger","Africa",1977,41.291,5682086
+"Niger","Africa",1982,42.598,6437188
+"Niger","Africa",1987,44.555,7332638
+"Niger","Africa",1992,47.391,8392818
+"Niger","Africa",1997,51.313,9666252
+"Niger","Africa",2002,54.496,11140655
+"Niger","Africa",2007,56.867,12894865
+"Nigeria","Africa",1952,36.324,33119096
+"Nigeria","Africa",1957,37.802,37173340
+"Nigeria","Africa",1962,39.36,41871351
+"Nigeria","Africa",1967,41.04,47287752
+"Nigeria","Africa",1972,42.821,53740085
+"Nigeria","Africa",1977,44.514,62209173
+"Nigeria","Africa",1982,45.826,73039376
+"Nigeria","Africa",1987,46.886,81551520
+"Nigeria","Africa",1992,47.472,93364244
+"Nigeria","Africa",1997,47.464,106207839
+"Nigeria","Africa",2002,46.608,119901274
+"Nigeria","Africa",2007,46.859,135031164
+"Panama","Americas",1952,55.191,940080
+"Panama","Americas",1957,59.201,1063506
+"Panama","Americas",1962,61.817,1215725
+"Panama","Americas",1967,64.071,1405486
+"Panama","Americas",1972,66.216,1616384
+"Panama","Americas",1977,68.681,1839782
+"Panama","Americas",1987,71.523,2253639
+"Panama","Americas",1992,72.462,2484997
+"Panama","Americas",1997,73.738,2734531
+"Panama","Americas",2002,74.712,2990875
+"Panama","Americas",2007,75.537,3242173
+"Paraguay","Americas",1952,62.649,1555876
+"Paraguay","Americas",1957,63.196,1770902
+"Paraguay","Americas",1962,64.361,2009813
+"Paraguay","Americas",1967,64.951,2287985
+"Paraguay","Americas",1972,65.815,2614104
+"Paraguay","Americas",1977,66.353,2984494
+"Paraguay","Americas",1987,67.378,3886512
+"Paraguay","Americas",1992,68.225,4483945
+"Paraguay","Americas",1997,69.4,5154123
+"Paraguay","Americas",2002,70.755,5884491
+"Paraguay","Americas",2007,71.752,6667147
+"Peru","Americas",1952,43.902,8025700
+"Peru","Americas",1957,46.263,9146100
+"Peru","Americas",1962,49.096,10516500
+"Peru","Americas",1967,51.445,12132200
+"Peru","Americas",1972,55.448,13954700
+"Peru","Americas",1977,58.447,15990099
+"Peru","Americas",1987,64.134,20195924
+"Peru","Americas",1992,66.458,22430449
+"Peru","Americas",1997,68.386,24748122
+"Peru","Americas",2002,69.906,26769436
+"Peru","Americas",2007,71.421,28674757
+"Puerto Rico","Americas",1952,64.28,2227000
+"Puerto Rico","Americas",1957,68.54,2260000
+"Puerto Rico","Americas",1962,69.62,2448046
+"Puerto Rico","Americas",1967,71.1,2648961
+"Puerto Rico","Americas",1972,72.16,2847132
+"Puerto Rico","Americas",1977,73.44,3080828
+"Puerto Rico","Americas",1987,74.63,3444468
+"Puerto Rico","Americas",1992,73.911,3585176
+"Puerto Rico","Americas",1997,74.917,3759430
+"Puerto Rico","Americas",2002,77.778,3859606
+"Puerto Rico","Americas",2007,78.746,3942491
+"Reunion","Africa",1952,52.724,257700
+"Reunion","Africa",1957,55.09,308700
+"Reunion","Africa",1962,57.666,358900
+"Reunion","Africa",1967,60.542,414024
+"Reunion","Africa",1972,64.274,461633
+"Reunion","Africa",1977,67.064,492095
+"Reunion","Africa",1982,69.885,517810
+"Reunion","Africa",1987,71.913,562035
+"Reunion","Africa",1992,73.615,622191
+"Reunion","Africa",1997,74.772,684810
+"Reunion","Africa",2002,75.744,743981
+"Reunion","Africa",2007,76.442,798094
+"Rwanda","Africa",1952,40,2534927
+"Rwanda","Africa",1957,41.5,2822082
+"Rwanda","Africa",1962,43,3051242
+"Rwanda","Africa",1967,44.1,3451079
+"Rwanda","Africa",1972,44.6,3992121
+"Rwanda","Africa",1977,45,4657072
+"Rwanda","Africa",1982,46.218,5507565
+"Rwanda","Africa",1987,44.02,6349365
+"Rwanda","Africa",1992,23.599,7290203
+"Rwanda","Africa",1997,36.087,7212583
+"Rwanda","Africa",2002,43.413,7852401
+"Rwanda","Africa",2007,46.242,8860588
+"Sao Tome and Principe","Africa",1952,46.471,60011
+"Sao Tome and Principe","Africa",1957,48.945,61325
+"Sao Tome and Principe","Africa",1962,51.893,65345
+"Sao Tome and Principe","Africa",1967,54.425,70787
+"Sao Tome and Principe","Africa",1972,56.48,76595
+"Sao Tome and Principe","Africa",1977,58.55,86796
+"Sao Tome and Principe","Africa",1982,60.351,98593
+"Sao Tome and Principe","Africa",1987,61.728,110812
+"Sao Tome and Principe","Africa",1992,62.742,125911
+"Sao Tome and Principe","Africa",1997,63.306,145608
+"Sao Tome and Principe","Africa",2002,64.337,170372
+"Sao Tome and Principe","Africa",2007,65.528,199579
+"Senegal","Africa",1952,37.278,2755589
+"Senegal","Africa",1957,39.329,3054547
+"Senegal","Africa",1962,41.454,3430243
+"Senegal","Africa",1967,43.563,3965841
+"Senegal","Africa",1972,45.815,4588696
+"Senegal","Africa",1977,48.879,5260855
+"Senegal","Africa",1982,52.379,6147783
+"Senegal","Africa",1987,55.769,7171347
+"Senegal","Africa",1992,58.196,8307920
+"Senegal","Africa",1997,60.187,9535314
+"Senegal","Africa",2002,61.6,10870037
+"Senegal","Africa",2007,63.062,12267493
+"Sierra Leone","Africa",1952,30.331,2143249
+"Sierra Leone","Africa",1957,31.57,2295678
+"Sierra Leone","Africa",1962,32.767,2467895
+"Sierra Leone","Africa",1967,34.113,2662190
+"Sierra Leone","Africa",1972,35.4,2879013
+"Sierra Leone","Africa",1977,36.788,3140897
+"Sierra Leone","Africa",1982,38.445,3464522
+"Sierra Leone","Africa",1987,40.006,3868905
+"Sierra Leone","Africa",1992,38.333,4260884
+"Sierra Leone","Africa",1997,39.897,4578212
+"Sierra Leone","Africa",2002,41.012,5359092
+"Sierra Leone","Africa",2007,42.568,6144562
+"Somalia","Africa",1952,32.978,2526994
+"Somalia","Africa",1957,34.977,2780415
+"Somalia","Africa",1962,36.981,3080153
+"Somalia","Africa",1967,38.977,3428839
+"Somalia","Africa",1972,40.973,3840161
+"Somalia","Africa",1977,41.974,4353666
+"Somalia","Africa",1982,42.955,5828892
+"Somalia","Africa",1987,44.501,6921858
+"Somalia","Africa",1992,39.658,6099799
+"Somalia","Africa",1997,43.795,6633514
+"Somalia","Africa",2002,45.936,7753310
+"Somalia","Africa",2007,48.159,9118773
+"South Africa","Africa",1952,45.009,14264935
+"South Africa","Africa",1957,47.985,16151549
+"South Africa","Africa",1962,49.951,18356657
+"South Africa","Africa",1967,51.927,20997321
+"South Africa","Africa",1972,53.696,23935810
+"South Africa","Africa",1977,55.527,27129932
+"South Africa","Africa",1982,58.161,31140029
+"South Africa","Africa",1987,60.834,35933379
+"South Africa","Africa",1992,61.888,39964159
+"South Africa","Africa",1997,60.236,42835005
+"South Africa","Africa",2002,53.365,44433622
+"South Africa","Africa",2007,49.339,43997828
+"Sudan","Africa",1952,38.635,8504667
+"Sudan","Africa",1957,39.624,9753392
+"Sudan","Africa",1962,40.87,11183227
+"Sudan","Africa",1967,42.858,12716129
+"Sudan","Africa",1972,45.083,14597019
+"Sudan","Africa",1977,47.8,17104986
+"Sudan","Africa",1982,50.338,20367053
+"Sudan","Africa",1987,51.744,24725960
+"Sudan","Africa",1992,53.556,28227588
+"Sudan","Africa",1997,55.373,32160729
+"Sudan","Africa",2002,56.369,37090298
+"Sudan","Africa",2007,58.556,42292929
+"Swaziland","Africa",1952,41.407,290243
+"Swaziland","Africa",1957,43.424,326741
+"Swaziland","Africa",1962,44.992,370006
+"Swaziland","Africa",1967,46.633,420690
+"Swaziland","Africa",1972,49.552,480105
+"Swaziland","Africa",1977,52.537,551425
+"Swaziland","Africa",1982,55.561,649901
+"Swaziland","Africa",1987,57.678,779348
+"Swaziland","Africa",1992,58.474,962344
+"Swaziland","Africa",1997,54.289,1054486
+"Swaziland","Africa",2002,43.869,1130269
+"Swaziland","Africa",2007,39.613,1133066
+"Tanzania","Africa",1952,41.215,8322925
+"Tanzania","Africa",1957,42.974,9452826
+"Tanzania","Africa",1962,44.246,10863958
+"Tanzania","Africa",1967,45.757,12607312
+"Tanzania","Africa",1972,47.62,14706593
+"Tanzania","Africa",1977,49.919,17129565
+"Tanzania","Africa",1982,50.608,19844382
+"Tanzania","Africa",1987,51.535,23040630
+"Tanzania","Africa",1992,50.44,26605473
+"Tanzania","Africa",1997,48.466,30686889
+"Tanzania","Africa",2002,49.651,34593779
+"Tanzania","Africa",2007,52.517,38139640
+"Togo","Africa",1952,38.596,1219113
+"Togo","Africa",1957,41.208,1357445
+"Togo","Africa",1962,43.922,1528098
+"Togo","Africa",1967,46.769,1735550
+"Togo","Africa",1972,49.759,2056351
+"Togo","Africa",1977,52.887,2308582
+"Togo","Africa",1982,55.471,2644765
+"Togo","Africa",1987,56.941,3154264
+"Togo","Africa",1992,58.061,3747553
+"Togo","Africa",1997,58.39,4320890
+"Togo","Africa",2002,57.561,4977378
+"Togo","Africa",2007,58.42,5701579
+"Trinidad and Tobago","Americas",1952,59.1,662850
+"Trinidad and Tobago","Americas",1957,61.8,764900
+"Trinidad and Tobago","Americas",1962,64.9,887498
+"Trinidad and Tobago","Americas",1967,65.4,960155
+"Trinidad and Tobago","Americas",1972,65.9,975199
+"Trinidad and Tobago","Americas",1977,68.3,1039009
+"Trinidad and Tobago","Americas",1987,69.582,1191336
+"Trinidad and Tobago","Americas",1992,69.862,1183669
+"Trinidad and Tobago","Americas",1997,69.465,1138101
+"Trinidad and Tobago","Americas",2002,68.976,1101832
+"Trinidad and Tobago","Americas",2007,69.819,1056608
+"Tunisia","Africa",1952,44.6,3647735
+"Tunisia","Africa",1957,47.1,3950849
+"Tunisia","Africa",1962,49.579,4286552
+"Tunisia","Africa",1967,52.053,4786986
+"Tunisia","Africa",1972,55.602,5303507
+"Tunisia","Africa",1977,59.837,6005061
+"Tunisia","Africa",1982,64.048,6734098
+"Tunisia","Africa",1987,66.894,7724976
+"Tunisia","Africa",1992,70.001,8523077
+"Tunisia","Africa",1997,71.973,9231669
+"Tunisia","Africa",2002,73.042,9770575
+"Tunisia","Africa",2007,73.923,10276158
+"Uganda","Africa",1952,39.978,5824797
+"Uganda","Africa",1957,42.571,6675501
+"Uganda","Africa",1962,45.344,7688797
+"Uganda","Africa",1967,48.051,8900294
+"Uganda","Africa",1972,51.016,10190285
+"Uganda","Africa",1977,50.35,11457758
+"Uganda","Africa",1982,49.849,12939400
+"Uganda","Africa",1987,51.509,15283050
+"Uganda","Africa",1992,48.825,18252190
+"Uganda","Africa",1997,44.578,21210254
+"Uganda","Africa",2002,47.813,24739869
+"Uganda","Africa",2007,51.542,29170398
+"United States","Americas",1952,68.44,157553000
+"United States","Americas",1957,69.49,171984000
+"United States","Americas",1962,70.21,186538000
+"United States","Americas",1967,70.76,198712000
+"United States","Americas",1972,71.34,209896000
+"United States","Americas",1977,73.38,220239000
+"United States","Americas",1987,75.02,242803533
+"United States","Americas",1992,76.09,256894189
+"United States","Americas",1997,76.81,272911760
+"United States","Americas",2002,77.31,287675526
+"United States","Americas",2007,78.242,301139947
+"Uruguay","Americas",1952,66.071,2252965
+"Uruguay","Americas",1957,67.044,2424959
+"Uruguay","Americas",1962,68.253,2598466
+"Uruguay","Americas",1967,68.468,2748579
+"Uruguay","Americas",1972,68.673,2829526
+"Uruguay","Americas",1977,69.481,2873520
+"Uruguay","Americas",1987,71.918,3045153
+"Uruguay","Americas",1992,72.752,3149262
+"Uruguay","Americas",1997,74.223,3262838
+"Uruguay","Americas",2002,75.307,3363085
+"Uruguay","Americas",2007,76.384,3447496
+"Venezuela","Americas",1952,55.088,5439568
+"Venezuela","Americas",1957,57.907,6702668
+"Venezuela","Americas",1962,60.77,8143375
+"Venezuela","Americas",1967,63.479,9709552
+"Venezuela","Americas",1972,65.712,11515649
+"Venezuela","Americas",1977,67.456,13503563
+"Venezuela","Americas",1987,70.19,17910182
+"Venezuela","Americas",1992,71.15,20265563
+"Venezuela","Americas",1997,72.146,22374398
+"Venezuela","Americas",2002,72.766,24287670
+"Venezuela","Americas",2007,73.747,26084662
+"Zambia","Africa",1952,42.038,2672000
+"Zambia","Africa",1957,44.077,3016000
+"Zambia","Africa",1962,46.023,3421000
+"Zambia","Africa",1967,47.768,3900000
+"Zambia","Africa",1972,50.107,4506497
+"Zambia","Africa",1977,51.386,5216550
+"Zambia","Africa",1982,51.821,6100407
+"Zambia","Africa",1987,50.821,7272406
+"Zambia","Africa",1992,46.1,8381163
+"Zambia","Africa",1997,40.238,9417789
+"Zambia","Africa",2002,39.193,10595811
+"Zambia","Africa",2007,42.384,11746035
+"Zimbabwe","Africa",1952,48.451,3080907
+"Zimbabwe","Africa",1957,50.469,3646340
+"Zimbabwe","Africa",1962,52.358,4277736
+"Zimbabwe","Africa",1967,53.995,4995432
+"Zimbabwe","Africa",1972,55.635,5861135
+"Zimbabwe","Africa",1977,57.674,6642107
+"Zimbabwe","Africa",1982,60.363,7636524
+"Zimbabwe","Africa",1987,62.351,9216418
+"Zimbabwe","Africa",1992,60.377,10704340
+"Zimbabwe","Africa",1997,46.809,11404948
+"Zimbabwe","Africa",2002,39.989,11926563
+"Zimbabwe","Africa",2007,43.487,12311143

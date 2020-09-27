@@ -1,0 +1,633 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={HW2 Merging Data Frames},
+  pdfauthor={Ryan Richardson},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{HW2 Merging Data Frames}
+\author{Ryan Richardson}
+\date{26/09/2020}
+
+\begin{document}
+\maketitle
+
+\hypertarget{in-class-portion}{%
+\subsection{In-Class Portion}\label{in-class-portion}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gdp <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/gdp.csv'}\NormalTok{)}
+\NormalTok{cca <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/countrycharsA.csv'}\NormalTok{)}
+\NormalTok{ccb <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{'data/countrycharsB.csv'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(gdp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    1677 obs. of  1 variable:
+##  $ gdp: num  779 821 853 836 740 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(cca)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    756 obs. of  5 variables:
+##  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+##  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+##  $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(ccb)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    921 obs. of  5 variables:
+##  $ country  : chr  "Algeria" "Algeria" "Algeria" "Algeria" ...
+##  $ continent: chr  "Africa" "Africa" "Africa" "Africa" ...
+##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ lifeExp  : num  43.1 45.7 48.3 51.4 54.5 ...
+##  $ pop      : int  9279525 10270856 11000948 12760499 14760787 17152804 20033753 23254956 26298373 29072015 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ccs <-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(cca, ccb)}
+\NormalTok{ccgs <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(ccs, gdp)}
+
+\KeywordTok{str}\NormalTok{(gdp)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    1677 obs. of  1 variable:
+##  $ gdp: num  779 821 853 836 740 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(cca)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    756 obs. of  5 variables:
+##  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+##  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+##  $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(ccs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    1677 obs. of  5 variables:
+##  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+##  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+##  $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(ccgs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    1677 obs. of  6 variables:
+##  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+##  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+##  $ year     : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ lifeExp  : num  28.8 30.3 32 34 36.1 ...
+##  $ pop      : int  8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+##  $ gdp      : num  779 821 853 836 740 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{aboveThreshold =}\StringTok{ }\NormalTok{ccgs[}\KeywordTok{which}\NormalTok{(ccgs}\OperatorTok{$}\NormalTok{year }\OperatorTok{>}\StringTok{ }\DecValTok{1980} \OperatorTok{&}\StringTok{ }\NormalTok{ccgs}\OperatorTok{$}\NormalTok{gdp }\OperatorTok{<}\StringTok{ }\DecValTok{20000}\NormalTok{),]}
+\KeywordTok{str}\NormalTok{(aboveThreshold)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    687 obs. of  6 variables:
+##  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+##  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+##  $ year     : int  1982 1987 1992 1997 2002 2007 1982 1987 1992 1997 ...
+##  $ lifeExp  : num  39.9 40.8 41.7 41.8 42.1 ...
+##  $ pop      : int  12881816 13867957 16317921 22227415 25268405 31889923 2780097 3075321 3326498 3428038 ...
+##  $ gdp      : num  978 852 649 635 727 ...
+\end{verbatim}
+
+\hypertarget{median-by-year}{%
+\subsubsection{Median By Year}\label{median-by-year}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medianByYear =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\StringTok{"Year"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(), }\StringTok{"MedianGdp"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(), }\StringTok{"ClosestRelativeGdp"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{())}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \KeywordTok{unique}\NormalTok{(ccgs}\OperatorTok{$}\NormalTok{year)) \{}
+  
+\NormalTok{  yearResults =}\StringTok{ }\NormalTok{ccgs[}\KeywordTok{which}\NormalTok{(ccgs}\OperatorTok{$}\NormalTok{year }\OperatorTok{==}\StringTok{ }\NormalTok{i),] }
+  
+\NormalTok{  gdpMedian =}\StringTok{ }\KeywordTok{median}\NormalTok{(yearResults}\OperatorTok{$}\NormalTok{gdp)}
+\NormalTok{  gdpDifference =}\StringTok{ }\KeywordTok{abs}\NormalTok{(yearResults}\OperatorTok{$}\NormalTok{gdp }\OperatorTok{-}\StringTok{ }\NormalTok{gdpMedian)}
+  
+\NormalTok{  minCountry =}\StringTok{ }\NormalTok{yearResults[}\KeywordTok{which.min}\NormalTok{(gdpDifference),]}
+\NormalTok{  medianByYear =}\StringTok{ }\KeywordTok{rbind}\NormalTok{(medianByYear, }\KeywordTok{list}\NormalTok{(i, gdpMedian, minCountry}\OperatorTok{$}\NormalTok{country))}
+
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    12 obs. of  3 variables:
+##  $ X1952L       : int  1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ X1968.5283435: num  1969 2173 2335 2678 3339 ...
+##  $ X.Swaziland. : chr  "Swaziland" "Czech Republic" "Swaziland" "Israel" ...
+\end{verbatim}
+
+\begin{longtable}[]{@{}rrl@{}}
+\toprule
+Year & MedianGDP & Closest Relative GDP\tabularnewline
+\midrule
+\endhead
+1952 & 1968.528 & Swaziland\tabularnewline
+1957 & 2173.220 & Czech Republic\tabularnewline
+1962 & 2335.440 & Swaziland\tabularnewline
+1967 & 2678.335 & Israel\tabularnewline
+1972 & 3339.129 & Peru\tabularnewline
+1977 & 3798.609 & Israel\tabularnewline
+1982 & 4241.356 & Swaziland\tabularnewline
+1987 & 4280.300 & Denmark\tabularnewline
+1992 & 4386.086 & Sudan\tabularnewline
+1997 & 4781.825 & Austria\tabularnewline
+2002 & 5073.194 & Austria\tabularnewline
+2007 & 6124.371 & Myanmar\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{median-by-year-by-continent}{%
+\subsubsection{Median By Year By
+Continent}\label{median-by-year-by-continent}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medianByYearByContinent =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\StringTok{"Year"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(), }\StringTok{"MedianGdp"}\NormalTok{ =}\StringTok{  }\KeywordTok{c}\NormalTok{(), }\StringTok{"ClosestRelativeGdp"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(), }\StringTok{"Continent"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{())}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \KeywordTok{unique}\NormalTok{(ccgs}\OperatorTok{$}\NormalTok{year)) \{}
+  
+\NormalTok{  yearResults =}\StringTok{ }\NormalTok{ccgs[}\KeywordTok{which}\NormalTok{(ccgs}\OperatorTok{$}\NormalTok{year }\OperatorTok{==}\StringTok{ }\NormalTok{i),] }
+  
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \KeywordTok{unique}\NormalTok{(yearResults}\OperatorTok{$}\NormalTok{continent)) \{}
+    
+\NormalTok{    continentResults =}\StringTok{ }\NormalTok{yearResults[}\KeywordTok{which}\NormalTok{(yearResults}\OperatorTok{$}\NormalTok{continent }\OperatorTok{==}\StringTok{ }\NormalTok{j),]}
+    
+\NormalTok{    gdpMedian =}\StringTok{ }\KeywordTok{median}\NormalTok{(continentResults}\OperatorTok{$}\NormalTok{gdp)}
+\NormalTok{    gdpDifference =}\StringTok{ }\KeywordTok{abs}\NormalTok{(continentResults}\OperatorTok{$}\NormalTok{gdp }\OperatorTok{-}\StringTok{ }\NormalTok{gdpMedian)}
+    
+\NormalTok{    minCountry =}\StringTok{ }\NormalTok{continentResults[}\KeywordTok{which.min}\NormalTok{(gdpDifference),]}
+\NormalTok{    medianByYearByContinent =}\StringTok{ }\KeywordTok{rbind}\NormalTok{(medianByYearByContinent, }\KeywordTok{list}\NormalTok{(i, gdpMedian, minCountry}\OperatorTok{$}\NormalTok{country, minCountry}\OperatorTok{$}\NormalTok{continent))}
+  
+\NormalTok{    \}}
+
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    58 obs. of  4 variables:
+##  $ X1952L             : int  1952 1952 1952 1952 1952 1957 1957 1957 1957 1957 ...
+##  $ X2627.009471       : num  2627 2152 2142 1273 3716 ...
+##  $ X.Korea..Dem..Rep..: chr  "Korea, Dem. Rep." "France" "Swaziland" "Jamaica" ...
+##  $ X.Asia.            : chr  "Asia" "Europe" "Africa" "Americas" ...
+\end{verbatim}
+
+\begin{longtable}[]{@{}rrll@{}}
+\toprule
+Year & MedianGDP & Closest Relative GDP & Continent\tabularnewline
+\midrule
+\endhead
+1952 & 2627.009 & Korea, Dem. Rep. & Asia\tabularnewline
+1952 & 2151.935 & France & Europe\tabularnewline
+1952 & 2142.120 & Swaziland & Africa\tabularnewline
+1952 & 1272.881 & Jamaica & Americas\tabularnewline
+1952 & 3715.999 & New Zealand & Oceania\tabularnewline
+1957 & 2990.011 & Korea, Dem. Rep. & Asia\tabularnewline
+1957 & 2174.087 & Czech Republic & Europe\tabularnewline
+1957 & 2420.101 & Egypt & Africa\tabularnewline
+1957 & 1547.945 & Jamaica & Americas\tabularnewline
+1957 & 5089.985 & Australia & Oceania\tabularnewline
+1962 & 3460.937 & Korea, Dem. Rep. & Asia\tabularnewline
+1962 & 2302.023 & Switzerland & Europe\tabularnewline
+1962 & 2851.142 & Congo, Rep. & Africa\tabularnewline
+1962 & 1856.182 & Peru & Americas\tabularnewline
+1962 & 6989.476 & Australia & Oceania\tabularnewline
+1967 & 4161.728 & Korea, Dem. Rep. & Asia\tabularnewline
+1967 & 2673.541 & Albania & Europe\tabularnewline
+1967 & 3310.026 & Swaziland & Africa\tabularnewline
+1967 & 2029.228 & Brazil & Americas\tabularnewline
+1967 & 9626.639 & Australia & Oceania\tabularnewline
+1972 & 5118.147 & Korea, Dem. Rep. & Asia\tabularnewline
+1972 & 3146.877 & Albania & Europe\tabularnewline
+1972 & 3904.302 & Egypt & Africa\tabularnewline
+1972 & 2523.338 & Haiti & Americas\tabularnewline
+1972 & 13581.136 & New Zealand & Oceania\tabularnewline
+1977 & 3815.808 & Israel & Asia\tabularnewline
+1977 & 3530.743 & Albania & Europe\tabularnewline
+1977 & 4294.463 & Libya & Africa\tabularnewline
+1977 & 3248.373 & Haiti & Americas\tabularnewline
+1977 & 15943.704 & Australia & Oceania\tabularnewline
+1982 & 4879.508 & Jordan & Asia\tabularnewline
+1982 & 3864.612 & Albania & Europe\tabularnewline
+1982 & 4216.228 & Swaziland & Africa\tabularnewline
+1982 & 18625.414 & Australia & Oceania\tabularnewline
+1987 & 4903.219 & Israel & Asia\tabularnewline
+1987 & 4012.951 & Norway & Europe\tabularnewline
+1987 & 4936.315 & Congo, Rep. & Africa\tabularnewline
+1987 & 3984.840 & Peru & Americas\tabularnewline
+1987 & 20527.238 & New Zealand & Oceania\tabularnewline
+1992 & 4016.240 & Jordan & Asia\tabularnewline
+1992 & 3438.225 & Switzerland & Europe\tabularnewline
+1992 & 5868.301 & Swaziland & Africa\tabularnewline
+1992 & 3553.022 & Peru & Americas\tabularnewline
+1992 & 20519.806 & Australia & Oceania\tabularnewline
+1997 & 3614.101 & Myanmar & Asia\tabularnewline
+1997 & 4428.748 & Netherlands & Europe\tabularnewline
+1997 & 6336.686 & Swaziland & Africa\tabularnewline
+1997 & 3876.768 & Peru & Americas\tabularnewline
+1997 & 22988.846 & New Zealand & Oceania\tabularnewline
+2002 & 5755.260 & Israel & Asia\tabularnewline
+2002 & 4806.476 & Netherlands & Europe\tabularnewline
+2002 & 6412.125 & Swaziland & Africa\tabularnewline
+2002 & 3783.674 & Haiti & Americas\tabularnewline
+2007 & 6873.262 & Nepal & Asia\tabularnewline
+2007 & 5654.767 & Netherlands & Europe\tabularnewline
+2007 & 8064.199 & Libya & Africa\tabularnewline
+2007 & 3970.095 & Panama & Americas\tabularnewline
+2007 & 28712.163 & New Zealand & Oceania\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{merge-comparisons}{%
+\subsection{Merge Comparisons}\label{merge-comparisons}}
+
+\hypertarget{left-join}{%
+\subsubsection{Left Join}\label{left-join}}
+
+Dimensions; 1667 by 8, 2 new cols added.
+
+The number of obersevations would always need to be at least the same as
+the number of rows in our first dataframe.
+
+If there were missing values on the merge then the original row data
+will still exist with empty values in the newly added columns in the
+joined set.
+
+\begin{verbatim}
+## 'data.frame':    1677 obs. of  8 variables:
+##  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+##  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+##  $ year     : int  2007 2002 1967 1952 1957 1987 1962 1992 1997 1982 ...
+##  $ lifeExp  : num  43.8 42.1 34 28.8 30.3 ...
+##  $ pop      : int  31889923 25268405 11537966 8425333 9240934 13867957 10267083 16317921 22227415 12881816 ...
+##  $ gdp      : num  975 727 836 779 821 ...
+##  $ long     : num  74.9 74.9 74.9 74.9 74.9 ...
+##  $ lat      : num  37.2 37.2 37.2 37.2 37.2 ...
+\end{verbatim}
+
+\hypertarget{right-join}{%
+\subsubsection{Right Join}\label{right-join}}
+
+Dimensions: 1657 by 8, 2 new cols and 10 fewer records.
+
+Number of observations changes because the coords dataset's country col
+does not have a match for those 10 records.
+
+There may still be rows with empty values, as in the left join, if they
+were present in the original coords dataset but not the ccgs dataset
+
+\begin{verbatim}
+## 'data.frame':    1657 obs. of  8 variables:
+##  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+##  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+##  $ year     : int  2007 2002 1967 1952 1957 1987 1962 1992 1997 1982 ...
+##  $ lifeExp  : num  43.8 42.1 34 28.8 30.3 ...
+##  $ pop      : int  31889923 25268405 11537966 8425333 9240934 13867957 10267083 16317921 22227415 12881816 ...
+##  $ gdp      : num  975 727 836 779 821 ...
+##  $ long     : num  74.9 74.9 74.9 74.9 74.9 ...
+##  $ lat      : num  37.2 37.2 37.2 37.2 37.2 ...
+\end{verbatim}
+
+\hypertarget{inner-join}{%
+\subsubsection{Inner Join}\label{inner-join}}
+
+Dimensions: 1535 by 8, 2 new cols with 122 fewer rows.
+
+Only data matched by a country that exists in both datasets will be
+present in this merged set, leading to the reduction of rows present.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{innerJoin <-}\StringTok{  }\KeywordTok{merge}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ ccgs, }\DataTypeTok{y =}\NormalTok{ coords, }\DataTypeTok{by =} \StringTok{"country"}\NormalTok{)}
+\KeywordTok{str}\NormalTok{(innerJoin)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    1535 obs. of  8 variables:
+##  $ country  : chr  "Afghanistan" "Afghanistan" "Afghanistan" "Afghanistan" ...
+##  $ continent: chr  "Asia" "Asia" "Asia" "Asia" ...
+##  $ year     : int  2007 2002 1967 1952 1957 1987 1962 1992 1997 1982 ...
+##  $ lifeExp  : num  43.8 42.1 34 28.8 30.3 ...
+##  $ pop      : int  31889923 25268405 11537966 8425333 9240934 13867957 10267083 16317921 22227415 12881816 ...
+##  $ gdp      : num  975 727 836 779 821 ...
+##  $ long     : num  74.9 74.9 74.9 74.9 74.9 ...
+##  $ lat      : num  37.2 37.2 37.2 37.2 37.2 ...
+\end{verbatim}
+
+\hypertarget{geographical-location-vs-gdp-relationship}{%
+\subsection{Geographical Location vs GDP
+Relationship}\label{geographical-location-vs-gdp-relationship}}
+
+\hypertarget{gdp-quartiles}{%
+\subsubsection{GDP Quartiles}\label{gdp-quartiles}}
+
+The functions appear to be working as expected. The quantiles have been
+created accordingly, with 50\% appearing at the median value. Assignment
+to gdp.q also appears to be working as intended based on the true values
+of the gdp per record appearing within the bounds of the appropriate
+quantile. Additionally, each table has the same number of obesrvations,
+or about 25\% of the total data per quartile.
+
+\begin{verbatim}
+##          0%         25%         50%         75%        100% 
+##    241.1659   1191.0260   3614.1013   9341.5210 113523.1329
+\end{verbatim}
+
+\begin{verbatim}
+##    [1] 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 3 2 2 3 2 2 2 3 3 4 4 3 4 4 3 3 4 4 3 4 4 3
+##   [38] 3 4 4 3 4 4 4 4 4 4 4 3 3 3 3 3 3 2 3 3 3 3 2 4 4 4 4 4 3 3 4 4 4 2 3 3 3
+##   [75] 3 2 2 2 3 3 3 3 3 3 2 3 2 2 3 2 2 3 2 2 3 3 3 4 3 4 4 3 3 3 3 4 4 4 4 4 4
+##  [112] 4 4 4 4 4 4 4 2 3 2 2 2 2 3 3 2 2 3 3 1 1 2 1 2 2 2 2 1 2 2 4 3 3 4 4 4 4
+##  [149] 4 4 4 4 4 3 1 2 2 3 2 3 2 2 3 3 2 3 2 2 2 4 2 3 4 1 4 4 4 4 4 4 4 4 4 4 4
+##  [186] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 3 3 3 3 3 3 3 3 3 3 3 1 1 1 1 2 1 1 1 1 1
+##  [223] 1 1 1 1 1 1 1 2 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 4 4 2 4 4 2 4 4 4 4 3 4
+##  [260] 2 2 2 2 1 1 2 2 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 4 3 4 4 4 4 4 4 4 4 4 4 4 2
+##  [297] 2 3 2 2 3 4 2 3 4 1 1 1 1 1 1 1 1 1 1 1 1 3 4 2 4 4 4 3 3 3 3 3 2 1 1 1 2
+##  [334] 2 1 1 1 2 2 2 4 4 3 2 3 3 3 3 3 3 3 2 2 2 2 2 2 2 2 2 3 2 2 3 2 1 2 2 2 2
+##  [371] 3 2 3 3 3 2 2 2 2 2 2 2 2 2 2 3 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+##  [408] 1 1 2 3 2 2 3 3 3 3 3 3 3 3 1 1 1 1 1 1 1 1 1 1 1 4 4 4 4 4 3 4 4 4 4 4 4
+##  [445] 4 4 4 4 4 4 4 4 4 4 4 4 3 3 2 2 2 2 2 2 3 3 2 2 2 3 2 2 3 3 1 1 4 3 1 4 3
+##  [482] 3 2 3 3 3 3 2 2 3 3 2 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 1 1 1 1 2 2 2 2 2 2 3
+##  [519] 3 3 2 3 3 3 3 4 3 3 4 4 4 4 4 4 4 4 4 4 4 4 1 1 1 1 1 2 1 1 1 1 1 1 4 4 4
+##  [556] 2 2 2 3 4 4 4 4 1 1 2 1 1 1 2 2 2 1 2 2 3 3 3 3 2 2 2 4 3 3 3 3 2 2 2 2 3
+##  [593] 3 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 1 2 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 1 2
+##  [630] 2 2 2 2 4 4 4 4 4 4 4 4 4 4 4 4 1 2 1 1 1 1 1 1 1 1 1 1 2 2 1 1 1 1 1 1 2
+##  [667] 2 1 1 3 3 3 4 3 3 3 3 4 3 4 3 2 1 1 2 3 1 2 1 1 1 2 1 2 2 3 3 2 3 3 2 3 2
+##  [704] 3 3 1 2 2 2 1 2 1 2 2 2 1 1 2 2 2 2 2 2 2 2 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1
+##  [741] 2 2 2 2 2 3 3 2 3 2 2 3 3 3 4 4 3 3 3 3 4 3 3 4 4 3 3 3 4 4 3 2 3 4 4 4 3
+##  [778] 3 3 3 3 3 3 3 3 3 3 3 2 4 4 4 4 3 3 3 3 4 4 4 3 4 3 3 4 3 2 4 4 4 4 4 3 3
+##  [815] 3 3 2 2 2 3 3 3 3 3 3 3 3 4 3 4 4 2 3 3 4 3 1 1 1 1 1 1 1 1 1 1 1 1 4 4 4
+##  [852] 3 4 3 4 4 4 4 4 4 2 2 2 2 1 1 1 2 2 2 2 2 4 4 4 4 3 3 4 4 4 4 4 4 2 2 2 2
+##  [889] 2 2 2 2 2 2 2 2 2 3 3 3 4 4 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 3 2 2 2 2 2
+##  [926] 2 2 2 2 2 2 1 1 1 2 1 2 2 2 2 1 1 1 3 3 2 4 4 2 4 3 4 4 4 4 2 3 3 2 3 2 2
+##  [963] 2 2 2 2 2 3 4 4 4 3 4 3 3 4 4 4 4 3 3 3 3 2 3 3 3 3 3 3 3 3 3 2 2 2 2 2 3
+## [1000] 2 3 2 3 3 4 4 4 3 4 3 4 4 4 4 1 1 2 1 1 2 2 2 1 1 2 3 3 3 3 3 3 3 3 3 3 3
+## [1037] 3 3 4 3 3 4 4 3 4 4 4 4 4 3 3 3 3 3 2 3 3 3 3 2 3 1 1 1 2 1 1 4 1 1 1 3 1
+## [1074] 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 2 2 2 1 2 2 3 2 2 2 2 2 2 2 2 2 2 2 1 3 2
+## [1111] 2 3 3 2 2 2 3 3 1 1 1 1 1 1 1 1 1 1 1 1 4 4 4 3 4 4 3 4 4 4 4 4 4 4 3 4 4
+## [1148] 4 4 3 4 4 4 4 4 4 4 4 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 3 4 4 4 3
+## [1185] 4 4 3 3 4 2 3 2 2 2 2 3 3 3 2 2 2 2 2 2 4 3 3 3 2 4 4 4 4 1 1 1 1 1 1 1 1
+## [1222] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 3 4 4 4 4 4 4 4 4 4 4 4 1 1 1 3 3 3 2 2 2
+## [1259] 2 2 3 1 1 1 2 1 1 1 1 1 1 1 1 3 2 3 2 2 3 2 3 3 3 3 3 2 2 2 2 1 1 1 1 1 1
+## [1296] 2 1 3 3 3 3 2 3 3 3 3 4 4 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+## [1333] 1 2 2 2 3 2 2 3 3 2 2 3 3 2 2 3 3 3 3 2 2 2 3 3 3 2 2 2 2 2 2 2 2 2 2 2 2
+## [1370] 2 2 2 2 2 2 2 2 2 2 2 2 4 3 3 4 4 4 4 4 4 3 2 3 4 4 4 3 4 4 3 4 4 4 3 3 1
+## [1407] 1 1 1 1 1 1 1 1 1 1 1 4 4 4 3 4 4 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 3 3
+## [1444] 3 3 3 3 3 3 3 3 3 4 2 2 1 1 1 1 1 2 1 1 1 1 3 4 3 4 3 4 4 4 4 4 4 4 2 2 2
+## [1481] 2 2 3 3 3 3 3 2 1 1 1 1 2 2 2 2 2 2 2 2 4 2 4 3 3 4 3 3 3 3 3 1 2 2 2 2 2
+## [1518] 2 2 2 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1
+## Levels: 1 2 3 4
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##   1   2   3   4 
+## 384 383 384 384
+\end{verbatim}
+
+\hypertarget{reverse-order}{%
+\subsubsection{Reverse Order}\label{reverse-order}}
+
+\begin{verbatim}
+##    [1] 4 4 4 4 4 4 4 4 4 4 4 4 3 3 3 2 3 3 2 3 3 3 2 2 1 1 2 1 1 2 2 1 1 2 1 1 2
+##   [38] 2 1 1 2 1 1 1 1 1 1 1 2 2 2 2 2 2 3 2 2 2 2 3 1 1 1 1 1 2 2 1 1 1 3 2 2 2
+##   [75] 2 3 3 3 2 2 2 2 2 2 3 2 3 3 2 3 3 2 3 3 2 2 2 1 2 1 1 2 2 2 2 1 1 1 1 1 1
+##  [112] 1 1 1 1 1 1 1 3 2 3 3 3 3 2 2 3 3 2 2 4 4 3 4 3 3 3 3 4 3 3 1 2 2 1 1 1 1
+##  [149] 1 1 1 1 1 2 4 3 3 2 3 2 3 3 2 2 3 2 3 3 3 1 3 2 1 4 1 1 1 1 1 1 1 1 1 1 1
+##  [186] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 4 4 4 4 3 4 4 4 4 4
+##  [223] 4 4 4 4 4 4 4 3 4 4 4 4 3 4 4 4 4 4 4 4 4 4 4 4 4 1 1 3 1 1 3 1 1 1 1 2 1
+##  [260] 3 3 3 3 4 4 3 3 4 4 3 4 4 4 4 4 4 4 4 4 4 4 4 1 2 1 1 1 1 1 1 1 1 1 1 1 3
+##  [297] 3 2 3 3 2 1 3 2 1 4 4 4 4 4 4 4 4 4 4 4 4 2 1 3 1 1 1 2 2 2 2 2 3 4 4 4 3
+##  [334] 3 4 4 4 3 3 3 1 1 2 3 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 2 3 3 2 3 4 3 3 3 3
+##  [371] 2 3 2 2 2 3 3 3 3 3 3 3 3 3 3 2 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
+##  [408] 4 4 3 2 3 3 2 2 2 2 2 2 2 2 4 4 4 4 4 4 4 4 4 4 4 1 1 1 1 1 2 1 1 1 1 1 1
+##  [445] 1 1 1 1 1 1 1 1 1 1 1 1 2 2 3 3 3 3 3 3 2 2 3 3 3 2 3 3 2 2 4 4 1 2 4 1 2
+##  [482] 2 3 2 2 2 2 3 3 2 2 3 4 4 4 4 4 4 4 4 4 4 4 4 3 3 3 4 4 4 4 3 3 3 3 3 3 2
+##  [519] 2 2 3 2 2 2 2 1 2 2 1 1 1 1 1 1 1 1 1 1 1 1 4 4 4 4 4 3 4 4 4 4 4 4 1 1 1
+##  [556] 3 3 3 2 1 1 1 1 4 4 3 4 4 4 3 3 3 4 3 3 2 2 2 2 3 3 3 1 2 2 2 2 3 3 3 3 2
+##  [593] 2 3 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 4 3 4 4 4 4 4 4 4 4 4 4 3 3 3 3 3 3 4 3
+##  [630] 3 3 3 3 1 1 1 1 1 1 1 1 1 1 1 1 4 3 4 4 4 4 4 4 4 4 4 4 3 3 4 4 4 4 4 4 3
+##  [667] 3 4 4 2 2 2 1 2 2 2 2 1 2 1 2 3 4 4 3 2 4 3 4 4 4 3 4 3 3 2 2 3 2 2 3 2 3
+##  [704] 2 2 4 3 3 3 4 3 4 3 3 3 4 4 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4
+##  [741] 3 3 3 3 3 2 2 3 2 3 3 2 2 2 1 1 2 2 2 2 1 2 2 1 1 2 2 2 1 1 2 3 2 1 1 1 2
+##  [778] 2 2 2 2 2 2 2 2 2 2 2 3 1 1 1 1 2 2 2 2 1 1 1 2 1 2 2 1 2 3 1 1 1 1 1 2 2
+##  [815] 2 2 3 3 3 2 2 2 2 2 2 2 2 1 2 1 1 3 2 2 1 2 4 4 4 4 4 4 4 4 4 4 4 4 1 1 1
+##  [852] 2 1 2 1 1 1 1 1 1 3 3 3 3 4 4 4 3 3 3 3 3 1 1 1 1 2 2 1 1 1 1 1 1 3 3 3 3
+##  [889] 3 3 3 3 3 3 3 3 3 2 2 2 1 1 2 2 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 3 3 3 3 3
+##  [926] 3 3 3 3 3 3 4 4 4 3 4 3 3 3 3 4 4 4 2 2 3 1 1 3 1 2 1 1 1 1 3 2 2 3 2 3 3
+##  [963] 3 3 3 3 3 2 1 1 1 2 1 2 2 1 1 1 1 2 2 2 2 3 2 2 2 2 2 2 2 2 2 3 3 3 3 3 2
+## [1000] 3 2 3 2 2 1 1 1 2 1 2 1 1 1 1 4 4 3 4 4 3 3 3 4 4 3 2 2 2 2 2 2 2 2 2 2 2
+## [1037] 2 2 1 2 2 1 1 2 1 1 1 1 1 2 2 2 2 2 3 2 2 2 2 3 2 4 4 4 3 4 4 1 4 4 4 2 4
+## [1074] 4 4 4 4 4 4 4 4 4 4 4 4 4 3 4 4 3 3 3 4 3 3 2 3 3 3 3 3 3 3 3 3 3 3 4 2 3
+## [1111] 3 2 2 3 3 3 2 2 4 4 4 4 4 4 4 4 4 4 4 4 1 1 1 2 1 1 2 1 1 1 1 1 1 1 2 1 1
+## [1148] 1 1 2 1 1 1 1 1 1 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 1 1 1 2
+## [1185] 1 1 2 2 1 3 2 3 3 3 3 2 2 2 3 3 3 3 3 3 1 2 2 2 3 1 1 1 1 4 4 4 4 4 4 4 4
+## [1222] 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 2 1 1 1 1 1 1 1 1 1 1 1 4 4 4 2 2 2 3 3 3
+## [1259] 3 3 2 4 4 4 3 4 4 4 4 4 4 4 4 2 3 2 3 3 2 3 2 2 2 2 2 3 3 3 3 4 4 4 4 4 4
+## [1296] 3 4 2 2 2 2 3 2 2 2 2 1 1 2 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4
+## [1333] 4 3 3 3 2 3 3 2 2 3 3 2 2 3 3 2 2 2 2 3 3 3 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3
+## [1370] 3 3 3 3 3 3 3 3 3 3 3 3 1 2 2 1 1 1 1 1 1 2 3 2 1 1 1 2 1 1 2 1 1 1 2 2 4
+## [1407] 4 4 4 4 4 4 4 4 4 4 4 1 1 1 2 1 1 2 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2
+## [1444] 2 2 2 2 2 2 2 2 2 1 3 3 4 4 4 4 4 3 4 4 4 4 2 1 2 1 2 1 1 1 1 1 1 1 3 3 3
+## [1481] 3 3 2 2 2 2 2 3 4 4 4 4 3 3 3 3 3 3 3 3 1 3 1 2 2 1 2 2 2 2 2 4 3 3 3 3 3
+## [1518] 3 3 3 4 4 3 4 4 4 4 4 4 4 4 4 4 4 4
+## Levels: 4 3 2 1
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##   4   3   2   1 
+## 384 383 384 384
+\end{verbatim}
+
+\hypertarget{mean-gdp-by-quartile}{%
+\subsubsection{Mean GDP By Quartile}\label{mean-gdp-by-quartile}}
+
+There does not appear to be a significant difference of the average
+lattitudes between each quartile. With the average distance between
+being about 3 degrees latitude between all groups, or a
+\textasciitilde210 miles.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{meanLatitude =}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\StringTok{"Quartile"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{(), }\StringTok{"Mean Latitude"}\NormalTok{ =}\StringTok{ }\KeywordTok{c}\NormalTok{())}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \KeywordTok{unique}\NormalTok{(}\KeywordTok{levels}\NormalTok{(innerJoin}\OperatorTok{$}\NormalTok{gdp.q)))\{}
+\NormalTok{   levelResults =}\StringTok{ }\NormalTok{innerJoin[}\KeywordTok{which}\NormalTok{(innerJoin}\OperatorTok{$}\NormalTok{gdp.q }\OperatorTok{==}\StringTok{ }\NormalTok{i),] }
+\NormalTok{   meanLat =}\StringTok{ }\KeywordTok{mean}\NormalTok{(levelResults}\OperatorTok{$}\NormalTok{lat)}
+\NormalTok{   meanLatitude =}\StringTok{ }\KeywordTok{rbind}\NormalTok{(meanLatitude, }\KeywordTok{list}\NormalTok{(i, meanLat))}
+\NormalTok{\}}
+
+
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(meanLatitude, }\DataTypeTok{col.names =} \KeywordTok{c}\NormalTok{(}\StringTok{"Quartile"}\NormalTok{, }\StringTok{"MeanLatitude"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lr@{}}
+\toprule
+Quartile & MeanLatitude\tabularnewline
+\midrule
+\endhead
+1 & 13.68388\tabularnewline
+2 & 19.53061\tabularnewline
+3 & 16.54738\tabularnewline
+4 & 14.44658\tabularnewline
+\bottomrule
+\end{longtable}
+
+\end{document}

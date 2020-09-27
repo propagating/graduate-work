@@ -1,0 +1,65 @@
+---
+title: "HW3 Data Visualsations"
+author: "Ryan Richardson"
+date: "27/09/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(DAAG)
+library(reshape2)
+```
+
+## Data Visualisation
+
+
+### Hitogram Comparison
+
+The primary difference in the visualisations are coing entirely based on the size of the bins being used. You can see that by expanding the size of the bins from ~1, to 1.5 per break, we have effectively broadened the grouping of the data points. The effect of this is skewing the perspective of the graphs by not only making each bin contain more points, but also changing the concnetration of the bins. 
+
+```{r dataSetup, echo=FALSE}
+hist(possum$age, main="Default Breaks Histogram of Possum Age")
+hist(possum$age, breaks = seq(from = 0, to = 9, by = 1.5), main="Defined Breaks Histogram of Possum Age")
+```
+
+### KDE Pros and Cons
+
+KDE's are not prone to the same information loss that can occur when looking at a Histogram. While KDE's will vary based on the given bandwidth,
+they will not differ as greatly as a histogram differencs from a change in number of breaks or bin size. Additionally, the smooth, continuous nature of a KDE allows additional computations that could not be easily done on a histogram. The primary downside to a KDE is that you lose the relationship between the quantity of an observed value. This can make it hard to appreciate the scale of the differences between age groups at a glance. 
+
+```{r kdeComparison, echo=FALSE}
+ageKde = density(na.omit(possum$age))
+plot(ageKde, main="KDE of Possum Age")
+```
+
+### Earconch
+
+The Boxplots support the theory that there is some form of sexual dimorphism between female and male possums and their earchconch. This Even though the 2nd and 3rd quartiles share a similar range, the male and females have very different medians, and the spread of the whiskers between the sexes furhter support this hypothesis.  
+```{r earConchComparison, echo=FALSE}
+hist(possum$earconch, main="Default Breaks Histogram of Possum Earconch")
+boxplot(possum$earconch ~ possum$sex, main="Possum Earconch", xlab="Possum Sex", ylab="Earconch Size")
+```
+
+
+### Numeric Variable Comparisons
+
+```{r numericVariableComparison, echo=FALSE}
+
+possum$case = factor(possum$case)
+possum$site = factor(possum$site)
+head(possum)
+pairs(possum[4:13], main="Possum Data", pch=21)
+
+```
+
+
+### Head Length vs Skull Width
+
+```{r comparison, echo=FALSE}
+obj = ggplot(possum, aes(x = hdlngth, y = skullw)) + geom_point()  + geom_point(aes(x=mean(hdlngth), y=mean(skullw)), colour="red", pch=17, size=8)
+obj
+```
