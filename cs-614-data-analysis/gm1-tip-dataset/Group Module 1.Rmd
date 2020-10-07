@@ -1,0 +1,219 @@
+---
+title: "Group Module 1"
+author: "Hanna Lu, Ryan Richardson"
+date: "28/09/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(plyr)
+library(dplyr)
+
+```
+
+## Tipping Changes Across Demographics 
+
+
+```{r dataSetup, echo = FALSE}
+tips <- read.csv("data/tips.csv", header = TRUE)
+
+
+tips$SEX = as.factor(tips$SEX)
+tips$SMOKER = as.factor(tips$SMOKER)
+tips$TIME = as.factor(tips$TIME)
+```
+
+
+
+
+### Tips by Total Bill Amount
+
+
+First we look at the relationship between the Tip Amount and Total Bill across both sexes. We see a positive relationship between
+the total paid and the amount of the tip given. 
+
+Additionally, we see that both males and females tip at a similar rate. It initially appears that males do tip more on larger bills.  
+However, we don't have any data of a primary payment coming from a female with a bill > $45, while we do have data for males. 
+Based on the trends for females and males to tip a similar amount at lower prices, it may be safe to assume that 
+similarity would continue for the higher total bill amounts. 
+
+```{r qqPlot, echo = FALSE, warning=FALSE}
+
+tipPlot <- ggplot(tips, aes(TIP, TOTBILL, color = SEX)) + 
+  geom_point() + 
+  geom_smooth() + 
+  scale_color_manual(labels = c("MALE", "FEMALE"), values = c("blue", "red")) 
+
+tipPlot
+```
+
+
+### Using Tip Rate Over Tip Amount
+
+Instead of looking at a raw dollar value for tips, we chose to look at the Tip Rate %, calcualted as Tip Amount / Total Bill. 
+Doing so allowed us to extract some additional information from the data, and exposed differences in behaviour that were not 
+visible when comparing the Tip Amount across each group.
+
+
+### Average Tipping Across Sexes
+
+Here we see that the average tip rate of male and female patrons is fairly close, with females tipping at a slightly higher percentage
+than males. Males appeared to have a larger spread for their tip rates. 
+
+
+NOTE: To ensure the plots are easier to view, we have truncated the graph at a Tip Rate of 0.35. 
+As a result, 2 observations in the 'Male' category are not listed.  
+
+```{r tipRateVsSex, echo = FALSE, warning=FALSE}
+tips$RATE = tips$TIP / tips$TOTBILL
+
+sexPlot <- ggplot(tips, aes(RATE, SEX)) + 
+  geom_boxplot(aes(colour = SEX)) + 
+  scale_color_manual(labels = c("MALE", "FEMALE"), values = c("blue", "red")) + 
+  labs(x = "Tip Rate (Tip/Total Amount) ", y = "Sex of Patron") + 
+  scale_y_discrete(labels = c("Male", "Female")) + 
+  theme(legend.position = "none") + 
+  xlim(0, 0.35)
+
+sexPlot
+```
+
+### Average Tipping Across Smoking Categories
+
+We see that the average tip rate of somkers and non-smokers are nearly identical, however smokers tended to hve a wider range for their tip rates compared to non-smokers. 
+
+
+NOTE: To ensure the plots are easier to view, we have truncated the graph at a Tip Rate of 0.35. 
+As a result, 1 observation in the 'Smoker' category are not listed.
+
+
+```{r tipRateVsSmoker, echo = FALSE, warning=FALSE}
+smokerPlot <- ggplot(tips, aes(RATE, SMOKER, color = SMOKER)) +
+  geom_boxplot() + 
+  scale_color_manual(labels=c("MALE", "FEMALE"), values = c("blue", "red")) + 
+  labs(x = "Tip Rate (Total Tip/Total Amount) ", y = "Smoking Status") + 
+  scale_y_discrete(labels= c("Non-Smoker", "Smoker")) + 
+  theme(legend.position = "none") + 
+  xlim(0, 0.35)
+
+smokerPlot
+```
+
+### Average Tipping Across Smoking Categories and Sexes
+
+Here we start to see larger differences between the indivdual groups. We see that male smokers have the lowest average tip-rate, 
+while Female Smokers have the highest. The variance in tip rates is higher for smokers than non-smokers, and higher for males than females. 
+
+
+NOTE: To ensure the plots are easier to view, we have truncated the graph at a Tip Rate of 0.35. 
+As a result, 1 observation in the 'Female Smoker', and 1 observation in the 'Male Non-Smoker' category are not listed.
+
+```{r tipRateCombined, echo = FALSE, warning=FALSE}
+smokerSexPlot <- ggplot(tips, aes(RATE, SMOKER, color = SEX)) + 
+  geom_boxplot() + 
+  scale_color_manual(labels = c("MALE", "FEMALE"), values = c("blue", "red")) + 
+  labs(x = "Tip Rate (Tip/Total Amount) ", y = "Smoking Status") + 
+  scale_y_discrete(labels = c("Non-Smoker", "Smoker")) + 
+  xlim(0, 0.35)
+
+smokerSexPlot
+```
+
+
+### Average Tip Rate Across Group Sizes
+
+#### Factoring by Group Size
+In order to accomodate this analysis we needed to to provide levels for the group sizes. When looknig at the data, we see that there are 
+very few instances where 1 person dines, as well as very few instancse with a party size of 5 or 6. It's impossible to get truly equal levels as the 
+number of parties with 2 people has so many observations, but we are able to get roughly equal groupings for the rest of the orders with the following breakdown:
+
+1-2 Persons
+
+3 Persons
+
+4-5 Persons
+
+The differnces in the number of groups may be explained by the amount of time each group takes to dine. If that is the case, 
+then a server needs to account for how many tables they are able to wait during a given shift. 
+
+```{r partySizeGrouping, echo = FALSE, warning = FALSE}
+
+tips = tips %>% mutate(PARTYGROUP = case_when(tips$SIZE < 3 ~ "1-2 Persons", tips$SIZE == 3 ~ "3 Persons",TRUE ~ "4-6 Persons"))
+tips$PARTYGROUP = as.factor(tips$PARTYGROUP)
+
+table(tips$SIZE)
+table(tips$PARTYGROUP)
+```
+
+### Tips Across Group Size and Time 
+
+With the factoring from above we see significant differences in tip ratse across the group sizes and dining time. For all groups, 
+dining at night time had the highest variance, with a slightly lower mean tip rate than day time dining. 
+
+Groups of 1-2 Persons have a mean tip rate that is nearly identical day and night. 
+
+Groups of 3 persons seem to tip the most, with the highest mean tip rate during the day time.
+
+Groups of 46 have the lowest tip rate, but follow the same trend of having a higher tip rate during the day and a larger variance at night.
+
+Tip Means hover between 13%-16%
+
+NOTE: To ensure the plots are easier to view, we have truncated the graph at a Tip Rate of 0.35. 
+As a result, 2 observations in the '1-2 Persons, Night' category are not listed.
+
+```{r tipRateVsGroupSize, echo = FALSE, warning = FALSE}
+partyGroupTipRate = ggplot(tips, aes(RATE, PARTYGROUP, color = TIME)) + 
+  geom_boxplot() + 
+  scale_color_manual(labels = c("Day", "Night"), values = c("Red", "Blue")) + 
+  xlim(0, 0.35)
+
+partyGroupTipRate
+```
+
+### Per Person Order Amount by Group Size
+
+Lastly we wanted to look at the average bill per person within the categories to try and narrow down some of the behaviour we saw in 
+the graphs related to tip rate. By looking at the total bill divided among the number of members in the party, we are able to get a 
+rough estimate of the amount paid per person. 
+
+With this, we see some similarities to the previous graphs. The variances of bill per person are much larger at night than during the day.
+However, they differ from the tip rate graphs in that the means during the night are higher than they are during the day. This may explain
+why the tip rates are a bit lower during the night, as they are paying a larger dollar value and aren't as willing to tip above ~15%. 
+
+Outside of this, we see that smaller groups tend to order more per person than larger groups, possibly because larger groups tend to share
+plates reducing cost per person.
+
+Groups of 1-2 Persons pay signficiantly more per person than any other group, with a much larger variance than the other groups. 
+
+Groups of 3 persons during the day stand out has having an extremely small variance and a relatively small mean cost per person, while
+at nighttime the mean and variance are both significantly higher. 
+
+Groups of 4-6 persons have very similar patterns during the day time and night time, with close means and the closests variances, suggesting
+that these may be the same types of groups during day or night. 
+
+
+
+```{r sharePerPerson, echo = FALSE, warning = FALSE}
+
+tips$PERSONTOTAL = tips$TOTBILL/tips$SIZE
+
+partyGroupTotalBill <- ggplot(tips, aes(PERSONTOTAL, PARTYGROUP, color = TIME)) + 
+  geom_boxplot() + 
+  scale_color_manual(labels = c("Day", "Night"), values = c("Red", "Blue")) + 
+  labs(x = "Bill Amt. Per Person (Total Bill/Group Size)", y = "Group Size")
+
+partyGroupTotalBill
+
+```
+
+
+### Recommendations
+
+If a server is trying to maximise the amount earned, they should consider working during the nights, 
+and prioritize parties of 4-6 persons. However, if the turnover rate for parties of 4-6 is very slow (they take much longer to finish their meals)
+compared to parties of 1-2 persons, then the server should prioritize parites of 1-2 persons, as the volume of tables waited 
+will likey compensate for the smaller bill size for those tables, leading to a higher amount of tips taken home. 

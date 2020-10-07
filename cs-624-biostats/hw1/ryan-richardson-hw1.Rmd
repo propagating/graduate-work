@@ -2,7 +2,9 @@
 title: "CS624 HW1"
 author: "Ryan Richardson"
 date: "29/09/2020"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -34,7 +36,7 @@ hist(secondTest$Score)
 Shapiro-Wilk Test for Normality has a p-value > .05 for both sets of scores, we can assume they are normally distributed. Plotting a histogram of both sets of scores also suggests normality, though there may ben an outlier on in the first set of points.
 
 #### Null Hypothesis
-The null hypothess is that the mean scores of the first 6 students are different from the means of the second 6 students.
+The null hypothess is that the mean scores of the first 6 students are not different from the means of the second 6 students.
 
 $$H_0: \mu_1 = \mu_2$$ 
 $$H_a: \mu_1 \neq \mu_2$$ 
@@ -79,7 +81,6 @@ By failing to reject, we assume that there is no difference in the mean scores b
 
 ```{r pairedTest}
 t.test(firstTest$Score, secondTest$Score , paired = TRUE, conf.level = 0.99, mu = 0)
-
 ```
 
 
@@ -128,9 +129,9 @@ for(i in levels(wcgs$typchd69)){
 
 ### Part B
 
-The Bartlett test returns a p-value of .078, greater than the target level $\alpha=0.05$, meaning we fail to reject the null and can assume the variances between the groups are homogenous. 
+The Bartlett test returns a p-value of .03791, greater than the target level $\alpha=0.05$, meaning we fail to reject the null and can assume the variances between the groups are homogenous. 
 ```{r homogeneity}
-bartlett.test(wcgs$weight ~ wcgs$behpat)
+bartlett.test(wcgs$weight ~ wcgs$typchd69)
 ```
 
 
@@ -169,7 +170,7 @@ TukeyHSD(weightAnova)
 
 ### Part D
 
-NOT DONE BECAUSE WE DID NOT FAIL TO REJECT THE NULL ON THE ANOVA TESTS
+NOT DONE BECAUSE ANOVA DID NOT FAIL TO REJECT THE NULL
 
 
 ## Question 3
@@ -185,10 +186,110 @@ diets$Diet = as.factor(diets$Diet)
 ```
 
 
+### Part B
+
+Shapiro-Wilks returns a p-value of 0.3985, greater than our target $\alpha=0.05$. We fail to reject the null and can assume that our weightloss data is not singificantly different from a normal distribution. 
+
+By extending the Shapiro test to look at normality across individual diet, we get even higher p-values across each group suggesting that each group is normally distributed as well. 
+
+Bartlett test for homogenous variance bewteen the different diets returns a p-value of 0.5482, greater than our target $\alpha=0.05$. Which means that we fail to reject the null and cannot assume the variances are homogenous. 
+
+Despite this, we should still be able to conduct an ANOVA as the samples should be independently distributed across each separate diet. 
+```{r anovaAssumtpionTests}
+library(RVAideMemoire)
+shapiro <- shapiro.test(diets$WeightLoss)
+shapiro
+
+shapByFactor <- byf.shapiro(WeightLoss~Diet, data = diets)
+shapByFactor
+
+bart <- bartlett.test(WeightLoss ~ Diet, data = diets)
+bart
+```
 
 
 
 
+### Part C
+
+Running ANOVA using tapply and mean() we get a p-value of  1.255527e-12, much less than our target $\alpha=0.05$ which means that we reject the null that the mean between diets is the same. Essentially saying that there is a difference between the mean weight across the diets.
+
+```{r anovaByHand}
+totalObservations = length(diets$WeightLoss)
+totalLevels = length(levels(diets$Diet))
+
+groupMeans <- tapply(diets$WeightLoss, diets$Diet, mean)
+groupMeans
+
+groupCounts <- tapply(diets$WeightLoss, diets$Diet, length)
+groupCounts
+
+overallMeans <- mean(groupMeans)
+overallMeans
+
+sst =  sum(groupCounts * ((groupMeans - overallMeans)^2))
+sst
+
+mst = sst/(totalLevels - 1)
+mst
+
+groupVariances =  tapply(diets$WeightLoss, diets$Diet, var)
+groupVariances
+
+sse = sum(groupVariances * (groupCounts - 1))
+sse
+mse = sse / (totalObservations - totalLevels)
+mse
+
+fStat = mst/mse
+fStat
+
+pf(fStat, 3, 114, lower.tail = FALSE)
+
+```
+
+### Part D
+
+Running a Bonferroni Adjusted Pairwise comparison shows that there is a significant differences between every diet level except between Diets 1 and 2 at $\alpha = 0.05$ 
+```{r dietBonf}
+pairwise.t.test(diets$WeightLoss, diets$Diet, p.adjust = "bonferroni")
+```
+### Part E & F
+
+Runing the standard Anova, the Sum Squared Error value was a bit less than the Sum Squared Error value I calculated. This may be due to some additional measures taken when SSE is calculated, such as the removal of outliers. The result was a difference of 0.6 between the my FSTAT  (25.32) and the FSTAT of the AOV Package (24.75). All in all, they were extremely close.   
 
 
+Running TukeyHSD we see significant differences between every diet level except between Diets 1 and 2 at $\alpha = 0.05$ 
+```{r anovaComparison}
+dietAnova = aov(WeightLoss ~ Diet, data = diets)
+summary(dietAnova )
+TukeyHSD(dietAnova)
+```
 
+### Part G
+
+Without the Bonferooni adjustment, we still see a signifiant difference between teh means of each diet except for diets 1 and 2 at $\alpha = 0.05$, but are drastically different compaared to teh adjustment, especially between groups 1 and 4, groups 2 and 4, groups 3 and 1, groups 2 and 1, and groups 2 and 3. 
+```{r dietPairwise}
+pairwise.t.test(diets$WeightLoss, diets$Diet)
+```
+
+
+## Part 4
+
+We have 16 total runs with 8 runs of A and 8 runs of B. When calculating the Wald Wolfowitz P Value we get p = 0.0001554 which is significantly less than our target $\alpha = 0.05$ as a result, we fail to reject the null that P(T = 16) and can assume the sequence is random. 
+```{r waldWalfTest}
+library(stringr)
+library(adehabitatLT)
+stringSeq = 'aabbaaaabbbaababbaaabbbbbababbbabbb'
+inputSeq = as.list(strsplit(stringSeq, "")[[1]])
+convertedRuns = str_count(inputSeq, 'a') # convert to 1s and 0s to work with RLE
+runLengths = rle(convertedRuns)
+totalRuns = length(rle(convertedRuns)$lengths)
+aChoose = choose(7,(totalRuns/2) - 1)
+bChoose = choose(7,(totalRuns/2) - 1)
+abChoose = choose((8+8), 8)
+pv = (2 * aChoose * bChoose)/abChoose
+pv
+
+wawotest(convertedRuns)
+```
