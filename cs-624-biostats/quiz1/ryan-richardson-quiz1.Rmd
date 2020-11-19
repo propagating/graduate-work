@@ -1,0 +1,138 @@
+---
+title: "Ryan Richardson Quiz 1"
+author: "Ryan Richardson"
+date: "22/10/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE, echo=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(tidyr)
+library(MASS)
+mpgData = mpg
+
+```
+
+## Question 1
+
+### 1a
+```{r q1}
+summary(mpgData)
+head(mpgData)
+
+mpgData$manufacturer = as.factor(mpgData$manufacturer)
+mpgData$model = as.factor(mpgData$model)
+mpgData$cyl = as.factor(mpgData$cyl)
+mpgData$drv = as.factor(mpgData$drv)
+mpgData$fl = as.factor(mpgData$fl)
+mpgData$class = as.factor(mpgData$class)
+mpgData$trans = as.factor(mpgData$trans)
+
+
+mpgData$avgMpg = (mpgData$cty + mpgData$hwy) / 2
+mpgData = mpgData[, !names(mpgData) %in% c("cty", "hwy")]
+```
+
+
+### 1b
+Dataset is 234 observations with, originally, 11 variables, 12 with average mpg, this then drops to 10 when we remove cty and hwy as they are directly tied to avg mpg. 
+
+
+```{r q1b}
+
+names(mpgData)
+dim(mpgData)
+summary(mpgData)
+
+```
+### Question 1C
+
+We needed to change Manufactureer, Model, Cylinders, Drive Train, Fuel Type, Car Class, and Transmission to categorical variables. 
+
+There may be an argument for converting year to a categorical variable as well, but I chose not to make this change initially to see how the model turned out
+
+
+### Question 1D
+```{r q1d}
+
+lMod = lm(avgMpg ~ ., data = mpgData)
+
+stepMod = stepAIC(lMod, direction="both")
+
+summary(stepMod)
+
+```
+
+
+
+### Question 1E
+```{r q1e}
+
+bestMainEffects = lm(formula = avgMpg ~ model + displ + year + cyl + fl, data = mpgData)
+summary(bestMainEffects)
+plot(bestMainEffects)
+
+
+```
+
+### Question 1F
+
+Looking at the inital graphs, significance of the coefficients provided by Step AIC, and adj-rsquared, the overall model apears to be a decent fit. Residuals vs Fitted is mostly linear which leads me to believe that linear regression was not a vad choice, and there is not much clustering of the data, despite the number of categorical variables introduced which tels me there is no over-powering effect caused by any one category. 
+
+The QQ plot however has tails that may suggest some of the dat is not normally distributed. However, it is mostly linear, which makes me believe the heavy tails are resulting from a few outliers that are marked on the graph.
+
+The Scale-Location graph is not really linear, despite have a relatively even spread throughout the increase. This could mean that the data is heteroskedastic, but i don't think it's extrem enough to warrant concern. 
+
+Lastly, the residuals vs levereage plot is not too concerning as all values are at or below a cooks' distance of 0.5, which should mean that the extreme values are not having too large of an effect on our overal goodness of fit.
+
+### Question 1G
+To speed this up I made a smaller dataframe based on our previous best model, otherwise the compute time was too long.
+```{r q1g}
+
+bestMainDf = data.frame(mpgData$avgMpg, mpgData$model, mpgData$displ, mpgData$year,mpgData$cyl, mpgData$fl)
+lModInteractions = lm(formula = mpgData.avgMpg ~ .^2, data = bestMainDf)
+
+stepModInteractions = stepAIC(lModInteractions, direction="both")
+
+summary(stepModInteractions)
+
+```
+
+
+
+### Question 1H
+
+
+```{r q1h}
+
+bestMainInteractionsEffects = lm(formula = mpgData.avgMpg ~ mpgData.model + mpgData.displ + mpgData.year + 
+    mpgData.cyl + mpgData.fl + mpgData.model:mpgData.displ + 
+    mpgData.model:mpgData.year + mpgData.displ:mpgData.year + 
+    mpgData.displ:mpgData.fl + mpgData.year:mpgData.cyl, data = bestMainDf)
+summary(bestMainInteractionsEffects)
+
+plot(bestMainInteractionsEffects)
+
+
+```
+The model with interactions shares most of the same qualities as the intial model. R-squared and Adj-Rsquared are both higher, suggesting we explain more variance in the data which makes sense as our model is including the interaction effects of most of the categorical variables in our main model. 
+
+The first residuals grahp is even more linear with less clustering, and appears to have fewer outliers still making linear regression a good choce. 
+
+The QQ plot tails are less skewed and closer to our main line which suggests we've compensated for some of the skewed, non-linear effcts we were seeing when we did not include the interactions. 
+
+The Scale-Location graph has skewed even more, however. Suggesting greater heteroskedasticity than we saw in our initial model. Due to the size difference, we may have some underlying issues in our data and model selection that need to be addressed to make our predictions more precise. 
+
+Lastly, the residuals vs levereage plot l;ooks uch beter with all of the extreme values being pulled closer together with a shorter cook's distance and having a less extreme effect on our model overall. 
+
+
+### Question 1I
+
+Most of our predictors have pretty small effects that when combined add up to a decent avgMPG. This is likely due to the relatively large number of factors in the categorical variables, each having a small effect that adds up once combined with teh other factors. The interactep suggests an avgMPG of less than 0, which is impossible, but once combined witht eh model, model interactions, displacement, year, fuel type, etc. we get a main effect. It looks like the base case is a 4 cylinder, using 'c' fuel, 4runner.
+
+### Question 1J
+
+Based on the accuracy of the models, I would have the choose the one  with the interaction variables. It's very similar to the model without the interactions but the graphs show a much cleaner, more linear picture that is closer to normality.This combined with the adjusted r-squared increase of almost 2.5% makes me want to use the model with interactions over the other. 

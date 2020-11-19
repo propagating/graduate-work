@@ -1,0 +1,163 @@
+---
+title: "cs624-hw2-ryan-richardson"
+author: "Ryan Richardson"
+date: "13/11/2020"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(foreign)
+library(dbplyr)
+library(ROCR)
+library(Metrics)
+library(ResourceSelection)
+```
+
+## Pre-Processing
+
+Start with basic preprocessing and drop the following:
+
+Age is dropped due to being duplicated in agec
+Bmi is dropped due to being calculated by height and weight
+dibpat is dropped due to being duplicated by behpat
+Id is droppepd due to being an identifier field not related to data
+sbp is droppped due to being contained in lnsbp
+typchd69 is dropped due to being directly related to our target chd
+weight and weightcat are dropped due to being contained in lnwght
+smoking is dropped due to being contained in ncigs
+Arcus is converted to a categorical variable
+time169 is removed for being contained in our target variable
+Records with NA values are dropped as there is a minimal number
+```{r preprocess}
+wcgs <- read.dta('wcgs.dta')
+wcgs$arcus = factor(wcgs$arcus)
+filtered = wcgs[, -c(1,4,7,8,10,14,15,17,18,20,21)]
+filtered <- filtered[complete.cases(filtered),]
+summary(filtered)
+```
+
+## Backward Elimination Main Effects Model Building
+
+We start with a general linear model using chd69 as our variable of interest, and all other variables as predictors
+Models are shown with the following variables dropped over time:
+Behbat
+t1
+height
+uni
+arcus
+
+The model we are left with shows a an almost% chance to have some form of CHD, for someone with a 
+Cholesterol of 0, systolic bp of exp(0), a weight of exp(0), smoking 0 cigarretees a day, under
+age 40.
+
+For every 1 point in cholesterol a person is 1% more likely to experience CHD, for every 
+std.dev they are above the mean sbp they 14% more likely to experience CHD. For every std.dev
+they are above the mean in weight they are 5.5% more likely to experience CHD). For every 
+cigarette they smoke per day they are 1% more likely to experience CHD. Someone in the age category 41-45 is 0.8%
+more likely to experience CHD, someone 51-55 is 1.9% more likely to experience CHD, and someone from 56-60 is 2.6% more
+likely to experience CHD than the baseline. 
+
+
+Once we plot the ROC Curve, we get the best AUC of 0.959 when using a threshold of 0.88
+
+Based on the threshold values needed to attain this AUC, I would be worried about the accuracy of the model. 
+Primarily because such a high threshold is dangerously close to simply saying that every person will have coronary heart
+disease. Even so, we have a high AUC value, which tells me that this model is missing something very significant, and that
+some effects are missing from it. 
+
+The Hosmer-Lemeshow GoF test gies an extremely small p-value, close to 0, indicating a poorly fit model
+```{r mainEffectsModelbuilding, echo=FALSE}
+mbest <- filtered[,-c(1, 2, 5, 9, 10)]
+mbest = mbest[complete.cases(mbest),]
+mainModelBest <- glm(chd69~., data=mbest, family="binomial")
+summary(mainModelBest)
+mainPredictions = predict(mainModelBest, type="response")
+mainPredictionTest = prediction(mainPredictions, mbest$chd69)
+mainperf <- performance(mainPredictionTest, measure = "tpr", x.measure ="fpr")
+plot(mainperf)
+
+mainBestAuc = 0
+mainBestAucThreshold = 0
+for (i in seq(min(mainPredictions),1,0.001)){
+  mainPredThresh = ifelse(mainPredictions > i, 1, 0)
+  mainCurrAuc = auc(mainPredThresh, mbest$chd69)
+  if (!is.nan(mainCurrAuc) && mainCurrAuc >= mainBestAuc){    
+    mainBestAuc = mainCurrAuc
+    mainBestAucThreshold = i
+  }
+}
+
+mainHosmerTest <- hoslem.test(mbest$chd69, fitted(mainModelBest), g = 100)
+print(mainHosmerTest)
+
+print("Main Effects Model Best AUC")
+print(mainBestAuc)
+print("Main Effects Model Best AUC Threshold")
+print(mainBestAucThreshold)
+
+```
+
+## Backward Elimination Main & 2-Way Interaction Effects Model Building
+
+Starting again with our main model using chd69 as our variable of interest
+Lnsbp was left in as was weight due to being close to the 0.05 significance level
+Agec was retained as well for having significant interactions
+Models are shown with the following dropped over time:
+uni
+lnsbp
+t1
+behbat
+height
+ncigs
+arcus
+
+This model is looking at someone with a choelsterol of 0, of average weight, age less than 40 to begin with.
+There are significant interactions between weight and cholesterol seen in this model. 
+For most of the included effects, every point increase will result in a substantial increase 
+in CHD risk rate. There is a surprising drop in CHD chance for peopl age 56-60 off the bat, but that 
+seems to be partly due to the interaction between lnwght and that age group causing a substantial increase
+in risk. Beacuse of this, it may have been a good idea to remove the age category from the model and 
+replace it with  some other age measure. 
+
+
+When we plot the ROC curve we get the best AUC of 0.96042 at a threshold of 0.5
+
+I'm much happier with the threshold values giving us the AUC in this model. This indicates not only 
+a decent prediction, but the lower threshold indicates a much lower chance that we classify every as 
+having a CHD event or not.
+
+Unfortunately, the Hosmer-Lemeshow goodness of fit still indicates a poorly fit model. This may 
+be due to missing factors, high covariance in the data, or some other mispecification caused by the 
+target variables used. Such as the agec. 
+```{r mainInteractionEffectsModelbuilding, echo=FALSE}
+best <-filtered[,-c(1, 2, 5, 6, 8, 9, 10)]
+best = best[complete.cases(best),]
+interactionModelBest <- glm(chd69~.^2, data=best, family=binomial(link = "logit"))
+summary(interactionModelBest)
+predictions = predict(interactionModelBest, type="response")
+predictionTest = prediction(predictions, best$chd69)
+perf <- performance(predictionTest, measure = "tpr", x.measure ="fpr")
+
+
+bestAuc = 0
+bestAucThreshold = 0
+for (i in seq(min(predictions),1,0.001)){
+  predThresh = ifelse(predictions > i, 1, 0)
+  currAuc = auc(predThresh, best$chd69)
+  if (!is.nan(currAuc) && currAuc >= bestAuc){    
+    bestAuc = currAuc
+    bestAucThreshold = i
+  }
+}
+plot(perf)
+HosmerTest <- hoslem.test(best$chd69, fitted(interactionModelBest), g = 10)
+print(HosmerTest)
+
+print("Interaction Effects Model Best AUC")
+print(bestAuc)
+print("Interaction Effects Model Best AUC Threshold")
+print(bestAucThreshold)
+```
