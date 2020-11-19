@@ -1,0 +1,13 @@
+name: crime-analysis
+title: crime-analysis
+username:
+account: propagating
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3234964
+bundleId: 3862674
+url: https://propagating.shinyapps.io/crime-analysis/
+when: 1605436397.57261
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: gm2-crime-shiny-script.R

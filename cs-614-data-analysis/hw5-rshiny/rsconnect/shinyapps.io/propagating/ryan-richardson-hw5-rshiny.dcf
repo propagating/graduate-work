@@ -1,0 +1,13 @@
+name: ryan-richardson-hw5-rshiny
+title: ryan-richardson-hw5-rshiny
+username:
+account: propagating
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3149132
+bundleId: 3813244
+url: https://propagating.shinyapps.io/ryan-richardson-hw5-rshiny/
+when: 1604365568.10799
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: twdkills.RData
