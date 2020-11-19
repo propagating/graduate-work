@@ -32,14 +32,37 @@ def checkFlush(hand):
     return 0
 
 
+def checkFullHouse(hand):
+    cardValues = list(zip(*hand))[0]  # get values of each card in hand without their suit
+    handCards = set(cardValues)  # get unique values of cards in hand
+    faceCards = set([11, 12, 13])  # create set of face cards we're interested in
+
+    if len(handCards) == 2:  # check only 2 unique card values exist in hand
+        if set(faceCards & set(handCards)):  # check we have at least 1 face card
+            inter = handCards.intersection(faceCards)  # get value(s) of face card(s) the hand
+            for i in inter:  # for each face card that exists in hand
+                countInHand = cardValues.count(i)  # get count of face card in hand
+                if countInHand == 2:  # if count is exactly 2, we have a pair of face cards and return a positive value
+                    return 1
+            return 0
+        return 0
+    return 0
+
+
 def deal(deck, n):  # deck, n = no. of cards
     return random.sample(deck, n)
 
 
 buildDeck()
-
+iters = 0
 x = 0
-for i in range(200000):
-    x += checkFlush(deal(deck, 5))
 
-print(x / 200000)
+import itertools
+
+for hand in itertools.combinations(deck, 5):
+    x += checkFullHouse(hand)
+    iters += 1
+    if iters % 100000 == 0:
+        print(f"Total flush hands {x}\nTotal Iterations {iters}\nFlush Pair Probability {x/iters}")
+
+print(f"Total flush hands {x}\nTotal Iterations {iters}\nFlush Pair Probability {x / iters}")

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net48</TargetFramework>
+        <RootNamespace>ps2_fantasy_football</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CsvHelper" Version="15.0.10" />
+      <PackageReference Include="Google.OrTools" Version="8.0.8283" />
+      <PackageReference Include="Google.OrTools.runtime.win-x64" Version="8.0.8283" />
+    </ItemGroup>
+
+</Project>
