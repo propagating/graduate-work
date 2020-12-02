@@ -1,0 +1,178 @@
+---
+title: "Quiz 2"
+author: "Ryan Richardson"
+date: "19/11/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(foreign)
+library(MASS)
+library(pROC)
+library(AER)
+```
+
+## R Markdown
+
+
+```{r pre-processing}
+d <- read.dta('wcgs.dta')
+summary(d)
+```
+
+
+## Cleanup
+
+Remove chd69, behpat, lnsbp, lnwght, smoke, t1, uni, wghtcat, agec, as they are captured in other variables. 
+
+Id is unrelated and can be removed.
+
+
+Arcus is recoded as a factor variable, but because it is a 1,0 it is not strictly necessary. 
+
+We then remove NA variables
+
+```{r datacleanup, echo = TRUE}
+d$arcus = as.factor(d$arcus)
+d$typchd69 = as.factor(d$typchd69)
+
+dTrim = d[, -c(3,5,10,11,12,15,16,19,21,22)]
+dTrim = na.omit(dTrim)
+summary(dTrim)
+```
+
+## Build Model Using StepAIC
+```{r modelBuilding, echo = FALSE}
+logit <- glm(dibpat ~., data = dTrim, family = "binomial")
+step<- stepAIC(logit, trace = FALSE)
+bestModel = glm(step$formula, data = step$model, family="binomial")
+summary(bestModel)
+exp(bestModel$coefficients)
+```
+## Interpretation
+The base odds of Type A Behaviour pattern to 1.9% when you are at age 0, height of 0, smoke 0 cigarettes a day, with a systolic bp of 0, and have had no CHD events
+
+For every year above the base year, your odds increase by 100.8% of behaviour pattern a.
+
+For every inch taller you are 103.1% as likely to have behaviour pattern a
+
+For every additional cigarette you smoke a day you are 101.1% as likely to have behaviour pattern a
+
+For every additional point in SBP you are 100.6% as likely to have behaviour pattern a
+
+For the additional time unit since you experienced a CHD you are 163.69% more likely to have behaviour pattern a
+
+If you had experienced CHD1 as likely to have behaviour pattern as
+
+If you had experienced CHD2 as likely to have behaviour pattern as
+
+If you had experienced CHD3 you are 193.39% as likely to have behaviour pattern as
+```{r bestModelInterpretation}
+exp(bestModel$coefficients)
+```
+
+The AUC for our best model is 0.597, with a threshold predictive value of 0.06. So anyone below that value was given a 'no', and anyone above that value was given a yes. This corresponds to an 1.06 odds of behaviour pattern A. Despite the low AUC, the threshold value seems decent, but the model can be improved. 
+
+This seems like the model may be over committing a small amount the 'yes' values in order to get a decent AUC, but it's hard to tell. Overall, the results aren't terrible but aren't great either, and the model can clearly be improved.
+
+```{r bestModelRoc}
+predictions = predict(bestModel)
+rCurve = roc(dTrim$dibpat~predictions)
+rCurve
+coords(rCurve, "best", ret ="threshold")
+plot(rCurve)
+```
+
+## Build Model Using StepAIC
+
+AUC increased to 0.6162 and our threshold is now -0.133 for the model with 2nd order interactions. This corresponds to 87.5% odds of behaviour pattern A, which still seems to have swung the threshold away from over attributing to A, and instead now under attributing A, which leads me to believe that we are missing some additional information in this model and may have some better predictors.
+```{r interactionModelBuilding, echo=TRUE, warning=FALSE}
+logit2 <- glm(dibpat ~.^2, data = dTrim, family = "binomial")
+step2<- stepAIC(logit2, trace = FALSE)
+bestModel2 = glm(step2$formula, data = step2$model, family="binomial")
+summary(bestModel2)
+predictions2 = predict(bestModel2)
+rCurve2 = roc(dTrim$dibpat~predictions2)
+rCurve2
+coords(rCurve2, "best", ret ="threshold", transpose = TRUE)
+plot(rCurve2)
+```
+
+## Model w/ 3rd order Effects
+
+Unfortunately, this was taking too long to run, so I left the code in but commented it out for the sake of time. I suspect that the AUC would increase
+with the additional interaction effects and that the threshold may also increase back towards a value closer to 100% based on the 2nd order interaction model.
+
+```{r interaction3ModelBuilding}
+#logit3 <- glm(dibpat~.^3, data = dTrim, family = "binomial")
+#step3<- stepAIC(logit3, trace = FALSE)
+#bestModel3 = glm(step3$formula, data = step3$model, family="binomial")
+#summary(bestModel3)
+#predictions3 = predict(bestModel3)
+#rCurve3= roc(dTrim$dibpat~predictions3)
+#rCurve3
+#coords(rCurve3, "best", ret ="threshold")
+#plot(rCurve3)
+```
+
+
+
+## Question 2
+
+Base model appears to be over dispersed based on on the spread of the Null deviance and residual
+deviance.
+
+We can interpret the model as follows:
+
+The base number o damage incidents each ship will experience is 4.92 (exp(1.5)), which is a Type A, built from 1960-1964, and operated from 1960-1974.
+
+Type B ships experience 533% more damage events
+
+Type C ships experience 25% as many damage events
+
+Type D ships experience 42% as many damage events
+
+Type E ships experiecne 82.7% as many damage events
+
+Ships built from 1965-1969 experience 162% more damage events
+
+Ships built from 1970-1974 experience 130% more damage events
+
+Ships built from 1975-1979 experience 70.7% as many events
+
+Ships built Operated between 1975-1979 experience 126.9% more damage events
+
+```{r preprocessShips}
+ships <- read.table("https://data.princeton.edu/wws509/datasets/ships.dat", header=TRUE)
+
+ships$type = as.factor(ships$type)
+ships$construction = as.factor(ships$construction)
+ships$operation = as.factor(ships$operation)
+summary(ships)
+shipModel = glm( damage ~ type + construction + operation, offset(log(months)),data=ships, family="poisson")
+summary(shipModel)
+exp(shipModel$coefficients)
+```
+
+## Dispersion
+Based on the dispersion test we reject the null hypothesis that dispersion is equal to 1. As a result, we can assume that the model is overdispersed and that we need to correct for this overdispersion in order to get an accurate estimate of the number of damage incidents over the life of the ship.
+
+```{r dispersionTest}
+dispersiontest(shipModel)
+```
+
+## Quasi Poisson
+
+With the quasi-Poisson model we see a very different model. Most of the significant variables
+from our initial model are no longer significant. We see that now ship types are still
+highly correlated to the number of damage incidents, which operation year is not significant.
+Construction year is only significant for ships made very early, which could be explained by the
+safety requirements on board when the ships were initially constructed. Overall, this model appears to still be a decent fit, mainly because it seems to be correcting for the dispersion of the data.
+```{r quasi}
+shipQuasi = glm( damage ~ type + construction + operation, offset(log(months)),data=ships, family="quasipoisson")
+summary(shipQuasi)
+```

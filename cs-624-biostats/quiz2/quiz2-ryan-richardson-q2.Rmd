@@ -1,0 +1,64 @@
+---
+title: "Quiz 2 Question 2"
+author: "Ryan Richardson"
+date: "19/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(foreign)
+library(MASS)
+library(pROC)
+library(AER)
+```
+
+## Question 2
+
+Base model appears to be over dispersed based on on the spread of the Null deviance and residual 
+deviance.
+
+We can interpret the model as follows:
+
+The base number o damage incidents each ship will experience is 1.5, which is a Type A, built from 1960-1964, and operated from 1960-1974. 
+Type B ships experience 1.67 more damage events
+Type C ships experience 1.38 less damage events
+Type D ships experience 0.85 less damage events
+Type E ships experiecne 0.189 less damage events
+
+Ships built from 1965-1969 experience 0.48 more damage events
+Ships built from 1970-1974 experience 0.26 more damage events
+Ships built from 1975-1979 experience 0.34 less damage events
+Ships built Operated between 1975-1979 experience 0.23 more damage events
+
+```{r preprocessShips}
+ships <- read.table("https://data.princeton.edu/wws509/datasets/ships.dat", header=TRUE)
+
+ships$type = as.factor(ships$type)
+ships$construction = as.factor(ships$construction)
+ships$operation = as.factor(ships$operation)
+summary(ships)
+shipModel = glm( damage ~ type + construction + operation, offset(log(months)),data=ships, family="poisson")
+summary(shipModel)
+
+```
+
+## Dispersion
+Based on the dispersion test we reject the null hypothesis that dispersion is equal to 1. As a result, we can assume that the model is overdispersed and that we need to correct for this overdispersion in order to get an accurate estimate of the number of damage incidents over the life of the ship.
+
+```{r dispersionTest}
+dispersiontest(shipModel)
+```
+
+## Quasi Poisson
+
+With the quasi-Poisson model we see a very different model. Most of the significant variables
+from our initial model are no longer significant. We see that now ship types are still 
+highly correlated to the number of damage incidents, which operation year is not significant.
+Construction year is only significant for ships made very early, which could be explained by the 
+safety requirements on board when the ships were initially constructed. Overall, this model appears to still be a decent fit, mainly because it seems to be correcting for the dispersion of the data. 
+```{r quasi}
+shipQuasi = glm( damage ~ type + construction + operation, offset(log(months)),data=ships, family="quasipoisson")
+summary(shipQuasi)
+```
