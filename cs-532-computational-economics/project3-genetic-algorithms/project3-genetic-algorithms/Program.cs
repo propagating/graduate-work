@@ -62,10 +62,12 @@ namespace project3_genetic_algorithms
                 {
                     if (player.CurrentHealth == 0) continue;
                     player.FindMaxRowsHarvested(); //updates available rows for harvest
-                    player.CurrentHarvestValue = player.FindHarvestValue(); //calculates number of dots * dot value by area taken up by harvest area, adds to total player harvest amount
+                    player.CurrentHarvestValue += player.FindHarvestValue(); //calculates number of dots * dot value by area taken up by harvest area, adds to total player harvest amount
 
                     var amountHealthInvested = player.CalculateHealthInvestmentAmount(period);
                     var amountLifeInvested   = player.CalculateLifeInvestmentAmount(period);
+                    player.CurrentHarvestValue -= amountHealthInvested;
+                    player.CurrentHarvestValue -= amountLifeInvested;
 
                     player.UpdateCurrentHealth(period.PeriodNumber, amountHealthInvested);
                     player.CurrentLifeEnjoyment += player.CalculateLifeEnjoyment(amountLifeInvested);

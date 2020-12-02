@@ -16,7 +16,7 @@
             TotalPlayers          = 10000;
             ParentsPerGeneration  = 10;   //generates 45 unique pairs of parents
             Elimination           = EliminationMethod.Elitism;
-            ChildrenPerParentPair = 50;   //total of 2250 children per generation (45 pairs * 30 children per pair);
+            ChildrenPerParentPair = 50;   //total of 2250 children per generation (45 pairs * 50 children per pair);
             MaxMutationRate       = 0.20; //max amount the each rate can change in a single period. Both will change by a different amount if a mutation does occur
             MutationChance        = 0.3;  //chance of mutating after crossover
             CrossoverChance       = 0.7;  //chance a random parent's gene is used as is, without change
