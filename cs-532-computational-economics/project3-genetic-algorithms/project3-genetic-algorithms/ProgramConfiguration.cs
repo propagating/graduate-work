@@ -23,7 +23,5 @@
             SwapoverChance        = 0.2;  //similar to crossover, but the position of the investment swaps places after crossing over
             NumberOfGenerations   = 100;
         }
-
-
     }
 }

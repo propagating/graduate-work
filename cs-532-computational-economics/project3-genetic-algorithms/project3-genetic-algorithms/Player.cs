@@ -115,7 +115,6 @@ namespace project3_genetic_algorithms
             }
 
             return new ValueTuple<decimal, decimal>(health, life);
-
         }
     }
 }

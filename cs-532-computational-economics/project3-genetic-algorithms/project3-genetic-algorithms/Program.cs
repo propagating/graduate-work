@@ -10,8 +10,9 @@ namespace project3_genetic_algorithms
         static void Main(string[] args)
         {
             var solver = new GeneticSolver();
-            var players = solver.GeneratePlayers(solver.Configuration.TotalPlayers);
+            var players = solver.GeneratePlayers(solver.Configuration.TotalPlayers); //we start with the same player base for each elimination method
             var eliminationMethods = (EliminationMethod[])Enum.GetValues(typeof(EliminationMethod));
+            var bestPlayers = new List<Player>();
             solver.SimulatePeriods(players);
             foreach(var method in eliminationMethods)
             {
@@ -35,17 +36,44 @@ namespace project3_genetic_algorithms
                 }
 
                 var best = bestPerGeneration.OrderByDescending(x => x.CurrentLifeEnjoyment).FirstOrDefault();
+                bestPlayers.Add(best);
+                Console.WriteLine("--------------------------------------------------");
                 Console.WriteLine($"Best Player Found for {method.ToString()} Elimination");
                 Console.WriteLine($"Total Life Enjoyment: {best.CurrentLifeEnjoyment}");
-                Console.WriteLine("Investment Ratios per Period");
-                foreach (var period in best.PlayPeriods)
-                {
-                    Console.WriteLine($"Period : {period.PeriodNumber}\nHealth Investment : {period.HealthInvestmentRatio}\nLife Investment : {period.LifeInvestmentRatio}");
-                }
-                Console.WriteLine();
+                Console.WriteLine("--------------------------------------------------");
+                // Console.WriteLine("Investment Ratios per Period");
+                // Console.WriteLine();
+                //
+                // foreach (var period in best.PlayPeriods)
+                // {
+                //     Console.WriteLine($"Period : {period.PeriodNumber}\nHealth Investment : {period.HealthInvestmentRatio}\nLife Investment : {period.LifeInvestmentRatio}");
+                //     Console.WriteLine();
+                //
+                // }
+                // Console.WriteLine("--------------------------------------------------");
+                // Console.WriteLine();
             }
 
-            Console.WriteLine("Thanks for playing");
+            var bestOverall = bestPlayers.OrderByDescending(x => x.CurrentLifeEnjoyment).FirstOrDefault();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine("Best Player Found Across All Methods");
+            Console.WriteLine($"Total Life Enjoyment: {bestOverall.CurrentLifeEnjoyment}");
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine("Investment Ratios per Period");
+            Console.WriteLine();
+
+            foreach (var period in bestOverall.PlayPeriods)
+            {
+                Console.WriteLine($"Period : {period.PeriodNumber}\nHealth Investment : {period.HealthInvestmentRatio}\nLife Investment : {period.LifeInvestmentRatio}");
+                Console.WriteLine();
+
+            }
+            Console.WriteLine("--------------------------------------------------");
+            Console.WriteLine();
+
+            Console.WriteLine("Thanks for playing!");
             Console.ReadLine();
         }
     }
@@ -62,7 +90,7 @@ namespace project3_genetic_algorithms
                 {
                     if (player.CurrentHealth == 0) continue;
                     player.FindMaxRowsHarvested(); //updates available rows for harvest
-                    player.CurrentHarvestValue += player.FindHarvestValue(); //calculates number of dots * dot value by area taken up by harvest area, adds to total player harvest amount
+                    player.CurrentHarvestValue += player.FindHarvestValue();; //calculates number of dots * dot value by area taken up by harvest area, adds to total player harvest amount
 
                     var amountHealthInvested = player.CalculateHealthInvestmentAmount(period);
                     var amountLifeInvested   = player.CalculateLifeInvestmentAmount(period);
@@ -233,14 +261,11 @@ namespace project3_genetic_algorithms
                 investmentRatio = ProcessMutate(investmentRatio);
             }
 
-
             var period = new Period
             {
                 PeriodNumber          = parentAPeriod.PeriodNumber,
                 HealthInvestmentRatio = investmentRatio.Item1,
                 LifeInvestmentRatio   = investmentRatio.Item2,
-                HarvestValue          = 0,
-                LifeEnjoyment         = 0,
             };
             return period;
         }
@@ -315,9 +340,6 @@ namespace project3_genetic_algorithms
                         PeriodNumber          = currentPeriod,
                         HealthInvestmentRatio = investmentRatios.Item1,
                         LifeInvestmentRatio   = investmentRatios.Item2,
-                        HarvestValue          = 0,
-                        LifeEnjoyment         = 0,
-
                     };
                     player.PlayPeriods.Add(period);
                 }
@@ -334,7 +356,7 @@ namespace project3_genetic_algorithms
             var parentB = parentPair.LastOrDefault();
 
             var childrenCount = 0;
-            while (childrenCount < Configuration.ChildrenPerParentPair) //cause I don't like for loops when I can avoid them
+            while (childrenCount < Configuration.ChildrenPerParentPair) //cause I don't like the look of for loops
             {
                 var child = new Player();
 
@@ -342,7 +364,7 @@ namespace project3_genetic_algorithms
                 foreach (var parentAPeriod in parentAPeriods)
                 {
                     var parentBPeriod = parentB.PlayPeriods.FirstOrDefault(x => x.PeriodNumber == parentAPeriod.PeriodNumber);
-                    var investmentRatio = child.GenerateLifeHealthInvestmentRatio(); //default generation in case no flips pass
+                    var investmentRatio = child.GenerateLifeHealthInvestmentRatio(); //random generation in case no flips pass
                     var childPeriod = MutateChildPlayPeriod(investmentRatio, parentAPeriod, parentBPeriod);
                     child.PlayPeriods.Add(childPeriod);
                 }
