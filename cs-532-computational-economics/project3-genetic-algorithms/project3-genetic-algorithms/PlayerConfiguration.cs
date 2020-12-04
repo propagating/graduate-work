@@ -19,20 +19,20 @@
 
         static PlayerConfiguration()
         {
-            Periods                    = 10;
+            Periods                    = 8;
             PlayerMaxHealth            = 100;
-            BaseHealthLoss             = 10;
-            HealthLossPeriodModifier   = 1;
-            PlayerStartingHealth       = 70;
+            BaseHealthLoss             = 15;
+            HealthLossPeriodModifier   = 4;
+            PlayerStartingHealth       = 60;
             MaxTotalWidth              = 100;
             MaxTotalHeight             = 100;
             MaxColumnsHarvested        = 10;
-            StartingHarvestSize        = 100;
+            StartingHarvestSize        = 300;
             StartingHarvestValue       = 1;
-            HealthRegenerationConstant = 0.01021m;
+            HealthRegenerationConstant = 0.007m;
             RowGammaModifier           = 1;
-            LifeEnjoymentConstant      = 464.53m;
-            LifeEnjoymentAlpha         = 32;
+            LifeEnjoymentConstant      = 700m;
+            LifeEnjoymentAlpha         = 45;
 
             if (MaxColumnsHarvested > MaxTotalWidth)
             {

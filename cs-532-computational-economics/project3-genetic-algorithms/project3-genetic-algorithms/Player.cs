@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Cryptography;
 
 namespace project3_genetic_algorithms
 {
@@ -69,7 +66,7 @@ namespace project3_genetic_algorithms
         public void UpdateCurrentHealth(int period, int healthInvestment)
         {
 
-            CurrentHealth -= PlayerConfiguration.BaseHealthLoss - (period*PlayerConfiguration.HealthLossPeriodModifier);
+            CurrentHealth -= PlayerConfiguration.BaseHealthLoss + (period*PlayerConfiguration.HealthLossPeriodModifier);
             if (CurrentHealth <= 0)
             {
                 CurrentHealth = 0;

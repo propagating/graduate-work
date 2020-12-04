@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace project3_genetic_algorithms
 {
@@ -96,7 +95,6 @@ namespace project3_genetic_algorithms
                     var amountLifeInvested   = player.CalculateLifeInvestmentAmount(period);
                     player.CurrentHarvestValue -= amountHealthInvested;
                     player.CurrentHarvestValue -= amountLifeInvested;
-
                     player.UpdateCurrentHealth(period.PeriodNumber, amountHealthInvested);
                     player.CurrentLifeEnjoyment += player.CalculateLifeEnjoyment(amountLifeInvested);
                 }
