@@ -1,0 +1,159 @@
+---
+title: "Homework 6"
+author: "Ryan Richardson"
+date: "08/12/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(EnvStats)
+library(mice)
+library(outliers)
+library(randomForest)
+load('HW6.RData')
+```
+
+## Question 1
+
+```{r outliers}
+scorePlot = boxplot(demo$Prof_Score)
+scoreOutliers = scorePlot$out
+scoreBreaks = scorePlot$stats
+
+outlierMin = min(scoreOutliers)
+outlierMax = max(scoreOutliers)
+
+```
+
+### IQR
+
+
+```{r iqrRange}
+minRange = c(outlierMin, first(scoreBreaks))
+maxRange = c(last(scoreBreaks), outlierMax)
+outlierCount = length(scoreOutliers)
+
+minRange
+maxRange
+outlierCount
+
+```
+
+Outliers range from [0.5278, 0.6688) and (0.9333,1]
+There are a total of 32 outliers using IQR as our detection method.
+
+### Standard Deviation
+
+
+```{r stdDev}
+
+plot(density(demo$Prof_Score))
+scoreSd = sd(demo$Prof_Score)
+scoreMean = mean(demo$Prof_Score)
+
+upper = scoreMean + (3*scoreSd)
+lower = scoreMean - (3*scoreSd)
+
+upperOut = demo$Prof_Score > upper
+lowerOut = demo$Prof_Score < lower
+
+
+sdUpperOutliers = demo$Prof_Score[upperOut]
+sdLowerOutliers = demo$Prof_Score[lowerOut]
+```
+
+```{r stdDeConclutions}
+ggplot(demo, aes(x=Prof_Score)) +
+  geom_histogram() +
+  geom_vline(xintercept = lower, color='red') +
+  geom_vline(xintercept = upper, color='red') +
+  geom_vline(xintercept = scoreMean, color='red')
+
+sdOutliers = c(sdLowerOutliers, sdUpperOutliers)
+sdOutliers
+
+sdOutlierRange = c(min(sdOutliers), max(sdOutliers))
+sdOutlierRange
+length(sdOutliers)
+
+```
+
+Using the Standard Deviation to catch outliers resulted in only 12 outliers being found between
+[0.528, 0.61]
+
+The upper range of the outliers ended up being larger a score greater than 100%, which would have been impossilbe to achieve in this case, meaning there were no outliers found in the upper range, this is likely due to the heavily skewed distribution of scores. 
+
+
+### Inferential Statistics
+
+```{r infStats}
+scores = demo$Prof_Score
+gTest = grubbs.test(scores)
+gOut = c()
+while (gTest$p.value < 0.05)
+{
+  altValue = gTest$alternative
+  altValue = as.numeric(strsplit(altValue," ")[[1]][3])
+  gOut = append(gOut, altValue)
+  scores = scores[!scores %in% altValue]
+  gTest = grubbs.test(scores)
+}
+
+gRange = c(min(gOut), max(gOut))
+gRange
+length(gOut)
+
+```
+
+
+Using Grubbs test for each value in the list, we end up with 9 outliers between [0.5278, 0.5789]. Grubbs test also missed the outlier at 1.0 due to taking out the smallest values first. 
+
+I think that if outliers are to be removed then the IQR method is the one to use. It's the only method that accurately compensated for the outliers at the high end of the distribution, and was the least affected by the extremely skewed dataset. That said, the outliers themselves were never so far out of the range of possibility that they needed to be removed. It's not unreasonable for some students to receive a 50% or for some to receive a 100%, so if I was able to, I would probably choose not to remove any outliers at all. 
+
+
+
+## Question 2
+
+
+
+NAs appear only in Image_Quality and Smile. with a total of 3396 total records with NA values where 277 of those records have an NA in both Image_Quality and Smile.
+
+
+```{r missingData}
+missingValuesByColumn = colSums(is.na(df))
+```
+```{r missingDataImage}
+df$Image_QualityNA = as.factor(ifelse(is.na(df$Image_Quality),1,0))
+df$SmileNA = as.factor(ifelse(is.na(df$Smile),1,0))
+
+rForestImage = randomForest(Image_QualityNA ~ ., data = df[-c(5,10,13)])
+rForestImage
+
+rForestSmile = randomForest(SmileNA ~ ., data = df[-c(5,10,12)])
+rForestSmile
+```
+
+Based on the Random Forest test, the Image Quality is neither MCAR nor MAR, as the prediction had a fairly low error rate of 8.93% when estimating NAs for Image Quality, and that the NAs are MNAR. 
+
+Based on the Random Forest test, the Smile is also likely not MCAR or MAR. The error rate of the prediction is at 33.24% is still accurate enough to assume that the NAs are MNAR instead.
+
+
+```{r imputeNAs}
+df = df[-c(12,13)]
+dfListDelete = df[complete.cases(df),]
+imputeModel = mice(df, maxit=0)
+imputePredictions = imputeModel$predictorMatrix
+dfMultipleImpute = mice(df, maxit=5, predictorMatrix = imputePredictions, method = imputeModel$method, print=FALSE)
+dfImputeComplete = complete(dfMultipleImpute,1)
+
+summary(glm(Area~., data = dfListDelete))
+summary(glm(Area~., data = dfImputeComplete))
+
+```
+
+
+Looking at the two models, the first with Listwise Deletion and the second with Imputed Data, the first model appears to better fit the data based on its lower AIC value. This model also has much lower deviance across the board compared to the imputed model, which is reflected in its lowered AIC. In this case, it seems to be the correct choice to use listwise deletion to remove all records with missing values instead of attempting to impute them. 
