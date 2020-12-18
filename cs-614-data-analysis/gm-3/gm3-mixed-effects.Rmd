@@ -1,0 +1,135 @@
+---
+title: "Module 3"
+author: "Ryan Richardson"
+date: "11/12/2020"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(DAAG)
+library(lmerTest)
+library(lme4)
+library(MASS)
+```
+
+## R Markdown
+
+```{r preProcess}
+data = read.csv("politeness_data.csv")
+data$gender = as.factor(data$gender)
+data$attitude = as.factor(data$attitude)
+data$scenario = as.factor(data$scenario)
+
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r models}
+randomIntercept = lmer(frequency ~ (1|subject) + gender + attitude, data = data) 
+
+randomSlope =  lmer(frequency ~ (attitude|subject) + gender + attitude, data = data)
+
+multipleRandom = lmer(frequency ~ (1|subject) + gender + attitude + (1|scenario), data = data)
+
+```
+
+### Random Intercept Model
+
+```{r randomInterceptInterpretation}
+summary(randomIntercept)
+
+
+randomInterceptVariance = 603.9 + 850.9
+subjectVariance = 603.9/randomInterceptVariance
+residualVariance = 850.9/randomInterceptVariance
+subjectVariance
+
+randomInterceptF = lmer(frequency ~ (1|subject) + gender + attitude, data = data, REML = FALSE) 
+randomInterceptEffects = ranef(randomIntercept)$subject
+ranef(randomIntercept)
+plot(density(unlist(randomInterceptEffects)))
+```
+The fixed effects of the model are about as expected. The baseline fequency for informal female participants have a pitch around 256.7 hz. Males tend to have a lower pitch compared to females, and speaking in a polite voice also tends to lower the pitch of the individual's voice. However, there is an effect on the frequency by subject which indicates that there is some variation in frequency by subject. 
+
+Testing the residuals for the random effects, variance by subject accounted for 41.5% of the total variance in the model, which is substantial and indicates that subject plays a significant role in determining pitch. There were 2 males that had more extreme variation that the others, but I think this signals it is proper to try and account for the subject as a random effect.
+
+The KDE for the plot indicates that the random effects are not normally distributed. 
+
+
+
+
+
+### Random Intercept + Slope Model
+```{r randomSlopeInterpretation}
+summary(randomSlope)
+randomSlopeF =  lmer(frequency ~ (attitude|subject) + gender + attitude, data = data, REML=FALSE)
+randomSlopeSubjectEffect = ranef(randomSlope)$subject
+
+contour(kde2d(randomSlopeSubjectEffect[,1], randomSlopeSubjectEffect[,2]))
+
+varianceCorrelation = VarCorr(randomSlope) %>% as_data_frame() %>% mutate(icc=vcov/sum(vcov)) 
+
+
+VPC = data.frame(varianceCorrelation$grp, varianceCorrelation$icc)
+VPC
+```
+The fixed effects for this model were slightly different from the other two models. THe base line pitch was 1hz lower, and the effects of being a male were more pronounced, but the polite attitude effect did not change. 
+
+The random effects for each indidvual were still fairly pronounced with the same two male participants as found in model 1. 
+
+For the slop effect, the VPC for the subject is 39.3%, .1%, and 2% for each attitude, with 58% of the variance being explained by the residuals. This is inline with the ICC where the subject accounted for 41.5% of the Variance overall, in this case the subject still takes up ~40% dependent on the attitude they are asked to used.
+
+Based on the 2d KDE, the random effects are nearly normally distributed, though as they move away from the centers, they become less and less normal based on the warping of the contours towards the extremes. This is consistent with the near normality of the other models' KDEs. 
+
+
+### Multiple Random Effects Model
+
+```{r multipleRandomInterpretation}
+summary(multipleRandom)
+
+multipleRandomVariance = 219.5 + 615.6 + 645.9
+multipleScenarioVariance =219.5/multipleRandomVariance
+multipleSubjectVariance = 615.6/multipleRandomVariance
+multipleScenarioVariance
+multipleSubjectVariance
+
+
+multipleRandomF = lmer(frequency ~ (1|subject) + gender + attitude + (1|scenario), data = data, REML = FALSE)
+multipleRandomInterceptEffect = ranef(multipleRandom)$subject
+multipleRandomInterceptEffectScenario = ranef(multipleRandom)$scenario
+ranef(multipleRandom)
+plot(density(unlist(multipleRandomInterceptEffect)))
+plot(density(unlist(multipleRandomInterceptEffectScenario)))
+```
+
+
+The fixed effects of the model mimic what we saw in model 1. The baseline fequency for informal female participants have a pitch around 256.8 hz. Males tend to have a lower pitch compared to females, and speaking in a polite voice also tends to lower the pitch of the individual's voice. 
+
+However, there is more variation in the random efffects in this case. There is still 41.5% variance for the Subject, and an additional 14.8% of the variance is explained by the scenario that the subject was in, suggesting that subject is still a significant random effect when it comes to determining pitch, and also suggesting that scenario plays an important role.
+
+The two male subjects still had more extreme values compared to the others, and secnario 4 seemed to stand out as well, suggesting it is correct to treat scenario as a separate random effect.
+
+The KDE for the plot indicates that the random effects are more closely normally distributed than the other models, though they still appear to be bimodal for the subject. 
+
+The scenario effect KDE is close to normal but still skewe. 
+
+
+### AIC Comparison
+
+
+```{r modelComparison}
+AIC(randomInterceptF, randomSlopeF, multipleRandomF)
+anova(randomInterceptF, randomSlopeF)
+anova(randomSlopeF, multipleRandomF)
+anova(randomInterceptF, multipleRandomF)
+```
+
+Based on the AIC rating, the bvest model was model 3 due to the lowest AIC. the Anova comparison also shows that the multipleRAndomEffects is one of the better models, as it is the only model significantly different from the other models, and contains the least overall Deviance. 
+

@@ -1,0 +1,72 @@
+---
+title: "Homework 3"
+author: "Ryan Richardson"
+date: "10/12/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(MASS)
+library(VGAM)
+```
+
+## Question 1
+
+
+```{r preprocess}
+summary(Boston)
+houseData = Boston
+houseData$chas = as.factor(houseData$chas)
+medianThreshold = as.vector(quantile(houseData$medv, c(0.25, 0.75)))
+houseData$medianValue = cut(houseData$medv, c(0, medianThreshold[1], medianThreshold[2], max(houseData$medv)), c("low", "medium", "high"))
+levels(houseData$medianValue)
+```
+
+
+```{r buildModel, warning=FALSE}
+
+baseModel <- vglm(medianValue~., family=multinomial, data = houseData[,-c(14)])
+step4vglm(baseModel)
+
+bestModel <- vglm(formula = medianValue ~ crim + indus + nox + rm + age + 
+    dis + rad + tax + ptratio + black + lstat, family = multinomial, 
+    data = houseData[, -c(14)])
+
+bestSummary <- summary(bestModel)
+bestSummary
+```
+
+```{r odds}
+
+odds <- exp(bestSummary@coef3[,1])
+odds
+```
+
+The base model was for High value housing.
+
+
+The default intercepts for other categories are close to 0.00, signalling a very low 
+odds ratio of being in the High value class by default. 
+
+For each additional point in crime, you were 6% more likely to be in Low price housing over high, but you were 15% less likely to be in Medium Price Housing than High Price.
+
+For each additional point increase in Indus you were 1.8% more likely to be in Low Price housing and 13.4% more likely to be in Medium Price Housing than High Price.
+
+For each additional point in NoX Emissios you were 1.6 x 10^8 times more likely to be in Low Cost Housing, and 6.63 x 10^2 times more likely to be in Medium Price Housing than High Price.
+
+For each additional room you were 84% less likely to be in Low Price and 87% less likely to be in Medium Price Housing than High Price. 
+
+For each additional year  older your house was, you were 3.8% more likely to be in Low Price Housing and 0.4% less likely to be in Medium Price Housing than High Price.
+
+For each additional unit of distance from an employment center you were 164% more likely to be in Low price and 65% more likely to be in Medium Price Housing than High Price. 
+
+For each additional unit in radial distance from a highway you were 37% less likely to be in low price and 25% less likely to be in Medium Price Housing than High Price. 
+
+For each additional point in property tax rates you were 1.6% more likely to be in Low Price and 1.0% more likely to be in Medium Price Housing than High Price. 
+
+For each additional unit in pupil-teach ration you were 120% more likely to be in Low Price and 49.5% more likely yo be in Medium Price Housing than High Price. 
+
+For each additional point in proportion of black population you were 0.02% less likely to be in low price and 0.4% more likely to be in Medium Price Housing than High Price. 
+
+For each % lower in status of the population you were 82% more likely to be in low price and 43% more likely to be in Medium Price Housing than High Price. 

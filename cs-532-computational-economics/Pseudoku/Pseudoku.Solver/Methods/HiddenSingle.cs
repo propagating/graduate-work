@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Pseudoku.Solver.Methods
 {
@@ -15,6 +16,7 @@ namespace Pseudoku.Solver.Methods
                 if (rowCells.Count == 1 || colCells.Count == 1 || boxCells.Count == 1)
                 {
                     cell.CurrentValue = value;
+                    cell.PossibleValues = new List<int>();
                     cell.SolvedCell = true;
                     return true;
                 }

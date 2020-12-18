@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using Pseudoku.Solver.Methods;
@@ -11,13 +12,15 @@ namespace Pseudoku.Solver
     {
         static void Main(string[] args)
         {
-            Console.OutputEncoding = System.Text.Encoding.Unicode;
-            Console.WriteLine("Welcome to PsuedoSolver");
+            var quitResponse = "";
+            do
+            { Console.WriteLine("Welcome to PsuedoSolver");
+            int numColumn = 9;
+            int numRow = 9;
             WriteBreak();
-            Console.WriteLine("How many columns does your Grid have?");
+            /*Console.WriteLine("How many columns does your Grid have?");
             Console.WriteLine("Current Grid Size is limited to any combination of values between 1x1 and 9x9");
-            int numColumn;
-            int numRow;
+
 
             while (!int.TryParse("9", out numColumn) || numColumn == 0 || numColumn > 9)
             {
@@ -44,11 +47,9 @@ namespace Pseudoku.Solver
 
             Console.WriteLine("For example, a 2x2 grid with empty values in R1C1 and R2C2 are entered as:\n" +
                               "0220");
-            WriteBreak();
+            WriteBreak();*/
 
-            var gridString = "005003060000580104300900050450039700100075000930000540500104093000358072003200600";
-
-            while (string.IsNullOrWhiteSpace(gridString) || gridString.Length != (numColumn * numRow) || !gridString.All(char.IsDigit))
+            /*while (string.IsNullOrWhiteSpace(gridString) || gridString.Length != (numColumn * numRow) || !gridString.All(char.IsDigit))
             {
                 Console.WriteLine("Please enter a value containing only numbers of equal length to your grid size (Columns * Rows).");
                 Console.WriteLine();
@@ -67,7 +68,7 @@ namespace Pseudoku.Solver
             Console.WriteLine("K: King's Rule - Numbers cannot be within a chess king's move of the same number.");
             Console.WriteLine("N: Knight's Move - Numbers cannot be within a chess knight's move of the same number.");
 
-            var constraints = "";
+
             if (!string.IsNullOrWhiteSpace(constraints))
             {
                 while (!constraints.ToUpper().Contains("K") && !constraints.ToUpper().Contains("N"))
@@ -83,31 +84,83 @@ namespace Pseudoku.Solver
                     constraints = Console.ReadLine();
                 }
             }
+            WriteBreak();*/
+
+
+            var gridString        = "";
+            var sudokuGridString  = "005003060000580104300900050450039700100075000930000540500104093000358072003200600";
+            var knightsGridString = "003608100040000070200000003600090008000102000700060004400000001060000020005409800";
+            var kingsGridString   = "070003000009000507010070020800205000006000400000908005050030040201000800000500090";
+
+            Console.WriteLine(
+                "Please enter the number of the puzzle you'd like to solve.\nFor demonstration purposes, 3 puzzles with different constraints are provided.");
+            Console.WriteLine("1. Standard Sudoku Rules Only");
+            Console.WriteLine("2. Knights Move Constraint Sudoku (same number cannot be a chess Knight's Move Apart)");
+            Console.WriteLine("3. Kings Move Constraint Sudoku (same number cannot be a chess King's Move Apart)");
             WriteBreak();
+
+            int response;
+            while (!int.TryParse(Console.ReadLine(), out response) || response < 1 || response > 3)
+            {
+                Console.WriteLine("ERROR: Please enter an integer from 1 to 3 that matches the puzzle you'd like a demonstration of.");
+                Console.WriteLine("1. Standard Sudoku Rules Only");
+                Console.WriteLine("2. Knights Move Constraint Sudoku (same number cannot be a chess Knight's Move Apart)");
+                Console.WriteLine("3. Kings Move Constraint Sudoku (same number cannot be a chess King's Move Apart)");
+                WriteBreak();
+
+            }
+
+            var constraints = "";
+            switch (response)
+            {
+                case 1:
+                    constraints = "";
+                    gridString = sudokuGridString;
+                    break;
+                case 2:
+                    constraints = "N";
+                    gridString = knightsGridString;
+                    break;
+                case 3:
+                    constraints = "K";
+                    gridString = kingsGridString;
+                    break;
+            }
 
             var puzzleConstraints = new List<PuzzleConstraint>();
             puzzleConstraints.Add(PuzzleConstraint.NormalSudoku);
             if (constraints != null && constraints.ToUpper().Contains("K")) puzzleConstraints.Add(PuzzleConstraint.KingsMove);
             if (constraints != null && constraints.ToUpper().Contains("N")) puzzleConstraints.Add(PuzzleConstraint.KnightsMove);
 
-            Console.WriteLine("Please verify the dimensions, constraints, and puzzle string are correct.");
+            /*Console.WriteLine("Please verify the dimensions, constraints, and puzzle string are correct.");
 
-            Console.WriteLine($"Puzzle Dimension : {numRow} Rows by {numColumn} Columns");
+            Console.WriteLine($"Puzzle Dimension : {numRow} Rows by {numColumn} Columns");*/
             WriteBreak();
             Console.WriteLine($"Constrains Chosen:");
             foreach (var c in puzzleConstraints)
             {
                 Console.WriteLine(c.ToString());
             }
+
             WriteBreak();
             Console.WriteLine("Puzzle String");
             Console.WriteLine(gridString);
 
             var board = new PseudoBoard(numRow, numColumn, gridString);
             board.PrintBoard();
+            WriteBreak();
+
+            Console.WriteLine("Press any key to solve the puzzle.");
+            Console.ReadLine();
 
             var solver = new Solver(puzzleConstraints);
             solver.Solve(board);
+
+            Console.WriteLine("Enter any key to select a different puzzle, except for (Q).\nEnter (Q) to quit");
+            quitResponse = Console.ReadLine();
+        }
+        while (string.IsNullOrWhiteSpace(quitResponse) || quitResponse.ToUpper() != "Q") ;
+
         }
 
         public static void WriteBreak()
@@ -126,6 +179,8 @@ namespace Pseudoku.Solver
         public Solver(List<PuzzleConstraint> constraints)
         {
             SolverMethods.Add(new HiddenSingle());
+            SolverMethods.Add(new IntersectionRemoval());
+
 
             foreach (var constraint in constraints)
             {
@@ -137,8 +192,10 @@ namespace Pseudoku.Solver
                         BoardValidators.Add(new BoxUnique());
                         break;
                     case PuzzleConstraint.KnightsMove:
+                        BoardValidators.Add(new KnightUnique());
                         break;
                     case PuzzleConstraint.KingsMove:
+                        BoardValidators.Add(new KingUnique());
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -147,7 +204,12 @@ namespace Pseudoku.Solver
         }
         public void Solve(PseudoBoard board)
         {
-            var failCount = 0;
+            var currentFailures = 0;
+            var totalFailures   = 0;
+            var stepCount       = 0;
+            var timer           = new Stopwatch();
+
+            timer.Start();
             while (!board.PuzzleSolved)
             {
                 var solvableCells = board.BoardCells.Where(x => !x.SolvedCell).ToList();
@@ -156,19 +218,28 @@ namespace Pseudoku.Solver
                     foreach (var validator in BoardValidators)
                     {
                         var success = validator.ValidatePotentialCellValues(cell, board);
-                        failCount = success ? 0 : failCount +1;
+                        if (!success)
+                        {
+                            currentFailures++;
+                            totalFailures++;
+                        }
+                        else currentFailures = 0;
+                        stepCount++;
                     }
 
                     foreach (var method in SolverMethods)
                     {
                         method.ApplyMethod(cell, board);
+                        stepCount++;
                     }
                 }
 
                 board.PuzzleSolved = board.BoardCells.All(x => x.SolvedCell);
-                board.PrintBoard();
             }
+            timer.Stop();
             board.PrintBoard();
+            Console.WriteLine();
+            Console.WriteLine($"Puzzle Solved in {timer.Elapsed}\nTotal Steps Taken (Validators & Solve Methods) {stepCount}\nTotal Actions Taken (Validators & Solve Methods w/ Legal Move Available) {stepCount-totalFailures}");
         }
     }
 
