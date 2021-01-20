@@ -1,0 +1,256 @@
+---
+title: "Final Quiz"
+author: "Ryan Richardson"
+date: "21/12/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(data.table)
+library(MASS)
+library(rattle.data)
+library(DataExplorer)
+library(ROCit)
+library(caret)
+library(nnet)
+library(survival)
+```
+
+## Question 1 - Retirement
+
+### Preprocessing
+
+Retirement data is read in. The first two columns are removed as they are both variations of an ID column. 
+
+NAs in the various pct categories were filled with 0s to ensure the model could be properly built in a stepwise fashion. 
+
+```{r retirementProcessing, message=FALSE}
+retirementData <- read.csv("pension.csv", header=TRUE)
+retirementData<-retirementData[,-c(1,2)] #remove id and row count
+nafill(retirementData[,c(2,3,4,5,8,9,10,11,12,13,15,16,17)], fill=0) # fill missing factors with 0s, only affects finc cols
+retirementData[,c(2,3,4,5,8,9,10,11,12,13,15,16,17)] <- lapply(retirementData[,c(2,3,4,5,8,9,10,11,12,13,15,16,17)], factor)
+retirementData<- na.omit(retirementData)
+summary(retirementData)
+```
+
+
+```{r retirementAnalysis}
+retirementModel <- lm(wealth89 ~ ., data = retirementData)
+retirementInteractionModel <- lm(wealth89~.^2, data=retirementData)
+retirementStep <- stepAIC(retirementModel, trace=0)
+retirementIneractionStep <- stepAIC(retirementInteractionModel, trace =0)
+
+
+summary(retirementStep)
+summary(retirementIneractionStep)
+```
+### Interpretation
+
+The models were built in a stepwise fashion. 
+
+The first model used only first order interactions, with an Adj-R Squared value of 0.27. The significant components of the initial model were a person's age, whehter how much they put away for their retirement, and whether or not they had money in stock or in an ira. 
+
+The base case was someone who was 0 years old, had a retirement contribution level of finc25, had no money in stock and no money in an IRA. This type of person doesn't exist. What most stuck out was the intercept showed that most people started at a negative wealth value, and by the time they were ~55, they would be at a value of 0. 
+
+Unsurprisingly, the greater the finance level was and an indicator that they had money in both stock and IRA would increase their wealth at retirement significantly. 
+
+The second model used third order interactions and the Adj-R Squared increased singificantly to 0.62. In this model, every variable was considered signifiant, either on its own or beause of an interaction it had with other variables.
+
+The base case was someone employed for 0 years, without a profit sharing option, and without a choice of participation in their company's retirement contribution. They were male, unmarried, at 0 years old, with 0 years of education. They were white, with no money in stocks or an IRA, and with no financing level. Though this person doesn't exist, it stood out just how far the intercept was below 0, essentially meaning that a newly born white male started with an 8.1 million dollar 'negative wealth' value, which in practice doesn't really make sense. 
+
+To sum up the most significant findings: For each year employed, wealth at retirement increased by 62.48, being female increased the starting wealth at retirement by 3091, and for every year olde ra person increased their wealthy by 33.75. Every year of education increased wealth by 414.96, and each of the investment levels increased the ending wealth significantly. The best finance level was 50 for retirement contribution. Black indivdiuals had a higher started wealth of 415.58, and having socks in the retirement investment was more significant than having an IRA. In fact the IRA on its own was a negative. 
+
+Some of the more surprising take aways were that contirbution rates on their own becames less effective above 50% saw a decrease in total wealth at retirement. Additionally, females saw negative wealth accumulating across all financing levels, as did years of education. 
+
+Looking more thoroughly at the effects of the second order interaction terms, it's hard to tell if this model is the correct choice. A lot of the effects may be significant, and may be considered optimal from a stepwise model building algorithm, but the size and direction of their effects have me concerned that what we are seeing are many non-linear trends in the data that are being coerced into a linear model throwing off the effect sizes and directions. 
+
+## Question 2 - Travel
+
+### Preprocessing
+
+Many variables are factor variables and are converted to such (region, city, mobile, package, channel, desId, hotel country, booking, hotel id, branded, starrating, distance, hist price, and popularity). 
+
+Location latitude, logintude, and origin distance are converted to numeric.
+
+Due to issues with the ISO 8601 timestamp in date_time, that column needs to be removed as its current state does not give an accurate representation of the true time that the user accessed the site wthout the timezone information attached. Latitude and longitude are both based on the user_location_city, as it is already encoded it is dropped. The user and Hotel IDs are dropped as they are insignificant or overly specific.
+
+User_location_city was dropped due to the limited number of observations across each city throughout the entire dataset. 
+
+Orig_destination_distance is dropped due to excessive NA's.
+
+The bottom 15% of user location region were grouped into a level called "other" as these destinations were exceedingly rare compared to the most common destinations. This significantly sped up the processing time of the model. As an example, the location_region was reduced to 45 total levels, with the lowest having 85 instances and the highest having almost 3000.
+
+The same was done for srch_destination_id, but the bottom 60% was grouped. The smallest group now had 47 instances and the largest had close to 900. Lower thresholds were tried but often resulted in hundreds of levels that had single digit numbers, and did not make sense to include. Overall, 3793 levels were reduced to 64.
+
+
+```{r travelPreprocessing, warning=FALSE}
+travel = read.table("Travel.txt", sep="", header=TRUE)
+travel[,c(2,3,8,9,10,16,17,18,19,20,21,22,23,24)] <- lapply(travel[,c(2,3,8,9,10,16,17,18,19,20,21,22,23,24)], factor)
+travel[,c(4,5,6)] <- lapply(travel[,c(4,5,6)], as.numeric)
+travelData = travel[,-c(1,3,4,5,6,7,11,12,19)]
+travelData=group_category(travelData, "user_location_region", 0.15, update=TRUE)
+travelData=group_category(travelData, "srch_destination_id", 0.60, update=TRUE)
+travelData[,c(1,8)] <- lapply(travelData[,c(1,8)], factor)
+
+summary(travelData)
+```
+
+```{r travelModelBuilding}
+#travelModel <- glm(is_booking~., data=travelData, family=binomial)
+#travelStep<- stepAIC(travelModel, trace=0)
+travelBest <- glm(formula = is_booking ~ is_package + channel + srch_adults_cnt + 
+    srch_children_cnt + srch_rm_cnt + srch_destination_id + prop_is_branded + 
+    prop_starrating + distance_band + hist_price_band + popularity_band + 
+    cnt, family = binomial, data = travelData)
+summary(travelBest)
+
+class <- travelBest$y
+score <- qlogis(travelBest$fitted.values)
+travelEmp <- rocit(score=score, class=class, method="emp")
+travelBin <- rocit(score = score,class = class,method = "bin")
+travelNon <- rocit(score = score,class = class,method = "non")
+
+```
+
+### Interpretation
+```{r travelDataInterpretation}
+summary(travelEmp)
+plot(travelEmp, col = c(1,"gray50"),legend = FALSE, YIndex = TRUE)
+cbind( exp(coef(travelBest)))
+
+```
+using a step wise model building process we can create a model that can accurately predict if someone is willing to book a hotel with an AUC of ~0.74 at a threshold of close to 0.7. The base model is assuming an unpackaged hotel for 0 rooms, 0 adults, 0 children, on channel 231, search destination 18652358, unbranded, with a 0 star randing, at C distance, H price, H popularity, and a count of 0 interactions on the page. While this user likely does not exist, it indicates that a user is only 42.5% likely to book at hotel at the start of their experience. 
+
+Packaged bookings are 44.1% likely to book
+
+And teh channel that a user books with have a high impact on the probability of booking. Channel 324,355,386, and 479 all show an increase in the chance of making a booking over the base odds. The worst was Channel 417 which should a near 0% likelihood of booking a hotel.
+
+As the number of adutls increased, the likely hood of booking a hotel decreased by about 10% per adult. As the number of children increased, the likelihood of booking a hotel decreased by about 11% per child.
+
+Interestingly, as the number of rooms increased, the likelihood of booking increased by 13% per room. This is likely due to the relative rarity of booking multiple hotel rooms for a standard trip. In the case that multiple rooms need to be booked, there are likely external pressures involved that require the individual to make a booking wherever there is space (such as a sports trip or something siimlar).
+
+Search destination was also a key factor in predicting if a booking took place or not. Compared to the intial destination, most places had a significantly higher chance of attracking bookings, with the highest being destination 5527361 which was 4x more likely to lead to a booking than any other place. Booking 5576534 was also close to 4x more likely to lead to a booking, indicating that destination played a substantial role in bookings. As it's not possible to tell what these destinations are from the id, my best guess is that they are relatively common vacation or conference locations. We also see that the 'other' category we created is 3x more likely to attract bookings over the base location. This surprises me as so many of those locations were rarely searched, but it's possible these could be smaller locations where people go to visit family or something to that effect. It's hard to tell without more information about the reasons someone would be travelling. 
+
+Distance bands that were very far from the center were more 4% more likely to get a booking, which is a little surprising. Though most of the bands were between 0% and 10% as likely to book as the base rate, with the only exception being the 'Far' band which was 21% less likely to get a booking. This may be due to the types of hotels that are very from other other hotels being seen as more exclusive or higher class. Or they are really cheap and the price factor wins out. It's hard to tell without more information.
+
+Branded hotels were 33% more likely to get a booking compared to non branded hotels, signifying people tend to prioritise a 'known' chain over an unknown.
+
+A hotel with any number of stars was more likely to get a booking than one without stars, except for 5-star hotels. They were 3% less likely to get a booking, likely due to their price. However, there is likely something else at play, as for the price levels, only the Very Highly priced hotels were more likely to get a booking compared to the Highly Priced hotels. This really surprised me as I would assume that cheaper hotels would get more bookings but that doesn't seem to be the case. There may be other effects at play, but it's hard to tell without knowing what was considered a high price.
+
+hotel popularity only helped if the hotel was in the extrmely popular category compared to other hotels nearby. This seems to be a bit of a self-fulfilling prophecy. A hotel is very popular and will get more bookings, but it's also  41% more likely to be boked because of how popular it is. We can't attribute causation either way, by default we should expect that more popular hotels are more likely to be booked, and we see that hold.
+
+
+Lastly, the number of events/clicks in one user session reduced the likelihood of booking by a 25% per event. To me, this suggests that users would come back across multiple sessions, finding the best prices maybe in a long session without booking, only to come back later and to book exactly what they wanted right away. It seems that it would be best to encourage peopel to book as quickly as possible, as the longer they are on the site and the more they look, the less likely they are to a booking.
+
+
+## Question 3 - BoneDesnity
+
+### Preprocessing
+
+Data is converted to factors, NA values are dropped due to their relative infrequency. Allc is dropped due to being an id value. Frx and Nosp are droppped due to being indicator of numNosp.
+``` {r boneDataProcessing}
+boneData<-  read.delim("FITglm2.txt",sep="\t")
+boneData[,c(3,4,6,11,13,14,15,16,17,18)] <- lapply(boneData[,c(3,4,6,11,13,14,15,16,17,18)], factor)
+boneData = boneData[complete.cases(boneData),]
+boneData = boneData[,-c(1, 3,4)]
+summary(boneData)
+```
+
+``` {r boneDataModelling}
+boneModel <- glm(numnosp~., data=boneData, family="poisson")
+#bestBone <- stepAIC(boneModel, trace=0)
+bestBone<- glm(formula = numnosp ~ ra_age + trt01 + p3_weigh + htotbmd + 
+    trialyrs + riskcat4 + bmd25, family = "poisson", data = boneData)
+
+pchisq(bestBone$deviance, df=bestBone$df.residual, lower.tail = FALSE, log.p=TRUE)
+summary(bestBone)
+cbind(exp(coef(bestBone))-1)
+```
+
+### Interpretation
+
+Stepwise model is again used to create a model. The model is significant according to a chisq test of the model deviances. A model with ineractions could not be completed using the stepwise method. 
+
+The base case indicates an age of 0 years, no treatment, 0bmd, low risk category, and without osteoperosis. For very year old, a woman increases here number of non-spinal fractures by 0.01. If she is treated, she decreases her count by 0.13. For every pound over 100 she increases her count by 0.015 fractures, but the closer her bone mass density is to 1 the less likely she is to experience a fracture, which is in line with expectation. Women that were being followed up on generally experienced an additional 0.2 fractures per period they were folowed. High risk women experienced 0.2 more fractures than low risk women, and women with osteoperosis increased the number of fractures by 0.25.
+
+The model findings are in line with expectations. Lighter weight, younger women, with higher bone density are very unlikely to have any non spinal fractures. Those being treated for osteoperosis or low bone density also experience fewer fractures. Most women start with a low chance of fracture occuring, which is in line with the mean number of fractures being 0.15 across all participants included. 
+
+
+## Question 4 - Wine Data
+
+### Preprocessing
+
+The wine data came preprocessed.We end up dropping everything other than Alcohol, Ash, Alcalinity, Phenols, Flavanoids, and Proanthocyanins as the rest are not significant predictors and adversely affect the predictive ability of the model.
+``` {r wineModelling}
+wineData <- wine[,c(1,2,4,5,7,8,10)]
+summary(wineData)
+wineModel <- multinom(Type ~. ,data = wineData, maxit = 1000)
+modelSummary <- summary(wineModel)
+
+z <- modelSummary$coefficients/modelSummary$standard.errors
+p <- (1-pnorm(abs(z),0,1))*2 # I am using two-tailed z test
+typeResults <- rbind(modelSummary$coefficients[2, ],modelSummary$standard.errors[2, ],z[2, ],p[2, ])
+typeResults
+modelSummary
+cbind(exp(modelSummary$coefficients))
+```
+
+### Interpretation
+
+Many of the variables were not significant in the modelling of the type of wine. Even so, we are able to find a few significant variables by manually creating the model and evaluating a normalised p-value of the coefficients. However, in doing so, we see the effect sizes and directions shift drastically from adding or removing single variables. The model selected is the closest I could get, despite some extreme predictive values for the types.
+
+By Default, the type 2 wine is extremely more likely to be chosen than any other wine, and type 3 is drastically less likely to be the chosen wine.
+
+As the alcohol content increases type two becomes extremely less likely to be the proper wine than type 1, and type 3 wine becomes more likely to be the wine over type one.
+
+For ash, both Type 2 and Type 3 wine are very less likely to be the type of wine predicted as the ash content increases. For alcalinity, it is the opposite. As the alcalinity increases, type 2 wine is much more likely than type 1, and type 3 is even more likely than type 1.
+
+As phenols increase, Type 2 is much more likely than type 1, and type 3 is much less likely than type 1. Flavanoids share a similar trend to Ash in that both Type 2 and 3 are much less likely as the amount increases. Lastly, Proanthocyanins mimic Phenols in that Type 2 is more likely as they increase, and type 3 is much less likely as they increase.
+
+Overall, this model has too many weird effects and the values are too extreme to be reasonable. I do not think it is a good predictor of wine type and I'm sure it can be improved. 
+
+
+## Question 5 - Lung Cancer
+
+### Preprocecssing
+institution, status, age, sex, ecog are converted to factors. There are too few observations to safely drop NA's. meal.cal may be dropped due to tis abnormally high numbers of NAs. Time may also be dropped as it encodes much of the data contained in status. Instituion is later dropped due to not being a significant predictor. Time was also dropped due to encoding too much of the surivaval status
+```{r lungModel, warning=FALSE}
+lungData <- lung
+summary(lungData)
+lungData[,c(1,3,5,6)] = lapply(lungData[,c(1,3,5,6)], factor)
+lungData = lungData[,-c(1,2)]
+lungData<- na.omit(lungData)
+lungModel <- glm(status~.^2, data=lungData, family=binomial, control = list(maxit = 100))
+lungStep<- stepAIC(lungModel, trace=0)
+lungBest<- glm(formula = status ~ sex + ph.ecog + ph.karno + pat.karno + 
+    meal.cal + wt.loss + sex:ph.ecog + sex:ph.karno + sex:pat.karno + 
+    sex:meal.cal + sex:wt.loss + ph.ecog:pat.karno + ph.ecog:meal.cal + 
+    ph.ecog:wt.loss + ph.karno:wt.loss + pat.karno:meal.cal + 
+    meal.cal:wt.loss, family = binomial, data = lungData, control = list(maxit = 100))
+summary(lungBest)
+lungclass <- lungBest$y
+lungscore <- qlogis(lungBest$fitted.values)
+lungEmp <- rocit(score = lungscore, class=lungclass, method="emp")
+```
+
+### Interpretation
+
+```{r lungDataInterpretation}
+summary(lungEmp)
+plot(lungEmp, col = c(1,"gray50"),legend = FALSE, YIndex = TRUE)
+cbind(exp(coef(lungBest)))
+
+```
+The model is relatively small and much easier to look at the stepwise effects as a result. However, the number of variables in the step wise model lead to an extremely high AUC, which suggests overfitting took place. The AUC was 0.881 at a threshold of close to 0.8. The base incidence rate is looking at asymptomatic males with low KARNO scores, eating no calroies and with no weight loss.
+
+The primary risk factors are being male, with risk increasing as the ECOG performance gets worse (gets higher). The Karno Score indicates an increase risk on it sown which is not inline with expectations. Even though the increas is small, you would expect that the better a physician rates you the lower your risk factors are for chance of death. 
+
+The amount of calories you eat does not have a large effect on your risk factors, but the amount of weightloss does have a large increase in the risk of death from lung cancer. Surprisingly, age is not a major factor in risk of death due to lung cancer.
+
+There are some intesreting effects between the variable as well. What stands out is that asymptomatic females are slightly more at risk than asymptomatic males. However, their patient KARNO scores often indicate a lesser risk, which could mean that they understate how healthty they are in their own mind, while their physicians may over state how healthy they are compared to males. Females also have an additional risk factor due to weight loss than males.
+
+The interaction of severity of symptoms and KARNO scores doesn't seem to increase or decrease risk factors in a meaningful way, same with the calories. However, the ECOG score and the weight loss did have a negative effect on the risk factoris for asymptomatic and nearly asymptomatic individuals suggesting that their weight loss may not be a result of the disease or an indicator of increased risk at that time. Calorie intake had very limited interactions. 
+
+Overall the risk factors are pretty much in line with expectations outside of the KARNO scores seemingly being reversed. Weight loos and increased severity of symptoms increase the risk of death. Females are much less at risk to begin with but have some more complex interactions in their risk factors that may not be accounted for in this model.

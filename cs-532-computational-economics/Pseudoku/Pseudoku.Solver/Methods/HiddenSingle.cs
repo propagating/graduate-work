@@ -5,8 +5,11 @@ namespace Pseudoku.Solver.Methods
 {
     public class HiddenSingle : IMethod
     {
+        public int MethodDifficulty { get; set; } = 1;
+
         public bool ApplyMethod(PseudoCell cell, PseudoBoard board)
         {
+            var startCount = cell.PossibleValues.Count;
             foreach (var value in cell.PossibleValues)
             {
                 var rowCells = board.BoardCells.Where(x=> x.CellRow == cell.CellRow).Where(x => x.PossibleValues.Contains(value)).ToList();
@@ -21,7 +24,7 @@ namespace Pseudoku.Solver.Methods
                     return true;
                 }
             }
-            return board.ValidState;
+            return cell.PossibleValues.Count != startCount;
         }
     }
 }

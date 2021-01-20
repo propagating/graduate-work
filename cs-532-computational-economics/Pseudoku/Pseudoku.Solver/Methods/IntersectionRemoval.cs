@@ -4,8 +4,11 @@ namespace Pseudoku.Solver.Methods
 {
     public class IntersectionRemoval : IMethod
     {
+        public int MethodDifficulty { get; set; } = 1;
+
         public bool ApplyMethod(PseudoCell cell, PseudoBoard board)
         {
+            var startCount = cell.PossibleValues.Count;
             foreach (var value in cell.PossibleValues)
             {
                 var sharedBoxCount = 0;
@@ -30,7 +33,7 @@ namespace Pseudoku.Solver.Methods
                     }
                 }
             }
-            return true;
+            return cell.PossibleValues.Count != startCount;
         }
     }
 }
