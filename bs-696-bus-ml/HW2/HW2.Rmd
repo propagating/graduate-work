@@ -1,0 +1,263 @@
+---
+title: "Problem Set 2"
+author: "Ryan Richardson"
+subtitle: BUS 696 Problem Set Template
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+---
+
+```{r setup, include=FALSE}
+
+# Please leave this code chunk as is. It makes some slight formatting changes to alter the output to be more aesthetically pleasing. 
+
+library(knitr)
+
+# Change the number in set seed to your own favorite number
+set.seed(1818)
+options(width=70)
+options(scipen=99)
+
+
+# this sets text outputted in code chunks to small
+opts_chunk$set(tidy.opts=list(width.wrap=50),tidy=TRUE, size = "vsmall")  
+opts_chunk$set(message = FALSE,                                          
+               warning = FALSE,
+               # "caching" stores objects in code chunks and only rewrites if you change things
+               cache = TRUE,                               
+               # automatically downloads dependency files
+               autodep = TRUE,
+               # 
+               cache.comments = FALSE,
+               # 
+               collapse = TRUE,
+               # change fig.width and fig.height to change the code height and width by default
+               fig.width = 5.5,  
+               fig.height = 4.5,
+               fig.align='center')
+
+
+```
+
+```{r setup-2a}
+
+# Always print this out before your assignment
+sessionInfo()
+
+
+```
+
+```{r setup-2b}
+getwd()
+```
+
+<!-- ### start answering your problem set here -->
+<!-- You may export your homework in either html or pdf, with the former usually being easier. 
+     To export or compile your Rmd file: click above on 'Knit' then 'Knit to HTML' -->
+<!-- Be sure to submit both your .Rmd file and the compiled .html or .pdf file for full credit -->
+
+
+```{r setup-3}
+
+# load all your libraries in this chunk 
+library('tidyverse')
+library('here')
+library('forcats')
+library('rsample')
+# note, do not run install.packages() inside a code chunk. install them in the console outside of a code chunk. 
+
+```
+
+
+
+## Question 1
+
+1a) Text response to part a. 
+
+```{r question-1a}
+
+movies = read_csv(here('datasets', 'IMDB_movies.csv'))
+movies_clean = movies %>% mutate(grossM = gross/1000000, budgetM = budget/1000000, log_gross = log(gross), log_budget = log(budget))
+# code for part a
+
+```
+
+
+
+1b) Text response to part b. 
+
+```{r question-1b}
+
+movies_clean = movies_clean %>% mutate(rating_factor = fct_explicit_na(content_rating)) 
+
+```
+
+
+1c) Text response to part c. 
+
+```{r question-1c}
+movies_clean = movies_clean %>% mutate(rating_simple = fct_lump_n(rating_factor, 4)) 
+```
+
+
+1d) Text response to part d. 
+
+```{r question-1d}
+
+table(movies_clean$content_rating, movies_clean$rating_simple)
+
+```
+
+
+1e) Text response to part e. 
+
+```{r question-1e}
+
+set.seed(4)
+
+split = initial_split(movies_clean, prop = 3/4)
+movies_train = training(split)
+movies_test = testing(split)
+
+```
+
+
+1f) We split our data into testing and training sets to gives us a starting metric of how accurate our regression/predictions are and to control for overfitting. By splitting into different testing and training sets, we are able to test how well our models react to information that they haven't seen before. So if our model is really good at predicting on our training set, but really poor at predicting on our test set, we know that it's been overfit to our testing data and we need to tweak it.  
+
+
+
+## Question 2
+
+2a) Text response to part a. 
+
+```{r question-2a}
+
+mod1 = lm(grossM ~ imdb_score, data = movies_train)
+summary(mod1)
+```
+
+
+
+2b) For every 1 point increase in IMDB score, a movie is estimated to gross an additional 14.339 Million USD. A movie will need to get an IMDB score of about 3 in order to gross $0, which is consistent with the minimum rating being around 2.9 with a grossM of nearly 0.
+
+
+2c) A p-value is the probability that of landing on the estimated value of the coefficient by random chance based on a student's t-distribution with some mean and variance (depending on the variable we are estimating). It is also used as the statistic to compare against a given alpha for statistical signifiance in a hypothesis testing.
+
+2d) The p-value for imdb_score is < 0.0000000000000002, which indicates a very, very strong correlation between the imdb_score and grossM. The probability of the imdb_score being that strongly correlated by random chance is effectively 0%.
+
+
+2e) Text response to part e. 
+
+```{r question-2e}
+mod2 = lm(log_gross ~ imdb_score + log_budget + title_year + rating_simple, data = movies_train)
+
+```
+
+
+2f) Text response to part f. 
+
+```{r question-2f}
+
+summary(mod2)
+
+```
+
+2g) Movies that are rated R, on average, receive 44% less gross revenue than movies that are Rated G.
+
+```{r question-2g}
+
+100 * (exp(mod2$coefficients[7]) -1)
+
+```
+
+2h) rating_simpleG is the base category used in the regression model. The other rating_ categories are essentially having their effects compared against movies that are rated 'G'.
+
+2i) I assume you mean log_budget here. If we increase our budget by 1%, we expect an increase in gross revenue of 0.74%. Note that we don't need to convert our coefficient here since we are using log_budget.
+
+
+2j) It suggests that increasing the budget of a movie is not the best way to increase the amount that the movie grosses. In fact, it would suggest that while increasing the budget does increase the amount that a movie will gross, it will not increase the overall profit of the movie, resulting in a net loss of .26% per 1% budget increase. 
+
+
+
+## Question 3
+
+3a) Text response to part a. 
+
+```{r question-3a}
+
+preds_test = predict(mod2, movies_test)
+preds_train = predict(mod2, movies_train)
+```
+
+```{r function defs}
+get_rmse <- function(true_values, predictions){
+  sqrt(mean( (exp(true_values) - exp(predictions)) ^2 ) )
+}
+
+get_mae <- function(true_values, predictions){
+  mean(abs(true_values - predictions))
+}
+```
+
+3b) Text response to part b. 
+
+```{r question-3b}
+
+
+
+get_rmse(movies_train$imdb_score,preds_train)
+get_rmse(movies_test$imdb_score,preds_test)
+```
+
+
+3c) Text response to part c. 
+
+```{r question-3c}
+get_mae(movies_train$imdb_score,preds_train)
+get_mae(movies_test$imdb_score,preds_test)
+
+```
+
+
+3d) Text response to part d. 
+
+```{r question-3d}
+
+results <- 
+  data.frame(
+   `preds` = c(exp(preds_test), exp(preds_train)),
+   `true` = c(movies_test$gross, movies_train$gross),
+   `type` = c(rep("Test", nrow(movies_test)), rep("Train", nrow(movies_train)))
+  ) %>% 
+  mutate(preds = preds / 1e6,
+         true = true / 1e6)
+
+results
+
+```
+
+
+3e) Text response to part e. 
+
+```{r question-3e}
+
+ggplot(results, aes(y = preds, x = true)) + geom_point(alpha = 1/20) + 
+  xlim(0,300) + ylim(0,300) + 
+  geom_abline(aes(intercept = 0, slope = 1), linetype = "dashed") + 
+  facet_wrap(~ type) + 
+  theme_minimal() + 
+  labs(x = "True Movie Gross ($M USD)", 
+       y = "Predicted Movie Gross ($M USD)")
+
+```
+
+
+3f) Text response to part f. 
+
+```{r question-3f}
+
+# code for part a
+
+```
+

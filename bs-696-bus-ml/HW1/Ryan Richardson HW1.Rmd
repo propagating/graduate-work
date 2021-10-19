@@ -1,0 +1,277 @@
+---
+title: "Problem Set 1"
+author: "Ryan Richardson"
+subtitle: BUS 696 Problem Set Template
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+---
+
+```{r setup, include=FALSE}
+
+# Please leave this code chunk as is. It makes some slight formatting changes to alter the output to be more aesthetically pleasing. 
+
+library(knitr)
+
+# Change the number in set seed to your own favorite number
+set.seed(1818)
+options(width=70)
+options(scipen=99)
+
+
+# this sets text outputted in code chunks to small
+opts_chunk$set(tidy.opts=list(width.wrap=50),tidy=TRUE, size = "vsmall")  
+opts_chunk$set(message = FALSE,                                          
+               warning = FALSE,
+               # "caching" stores objects in code chunks and only rewrites if you change things
+               cache = TRUE,                               
+               # automatically downloads dependency files
+               autodep = TRUE,
+               # 
+               cache.comments = FALSE,
+               # 
+               collapse = TRUE,
+               # change fig.width and fig.height to change the code height and width by default
+               fig.width = 5.5,  
+               fig.height = 4.5,
+               fig.align='center')
+
+
+```
+
+```{r setup-2a}
+
+# Always print this out before your assignment
+sessionInfo()
+
+```
+
+```{r setup-2b}
+
+# Always print this out before your assignment
+
+getwd()
+
+```
+
+
+<!-- ### start answering your problem set here -->
+<!-- You may export your homework in either html or pdf, with the former usually being easier. 
+     To export or compile your Rmd file: click above on 'Knit' then 'Knit to HTML' -->
+<!-- Be sure to submit both your .Rmd file and the compiled .html or .pdf file for full credit -->
+
+
+```{r setup-3}
+
+# load all your libraries in this chunk 
+library('tidyverse')
+# note, do not run install.packages() inside a code chunk. install them in the console outside of a code chunk. 
+
+```
+
+
+
+## Question 1
+
+1a) LS lists all subfolders and files in the current working directory if they exist
+
+```{r question-1a}
+
+library('fs')
+dir_ls()
+
+```
+
+
+1b) Response to part b. 
+
+```{r question-1b}
+
+library(here)
+
+movies = read_csv(here("datasets", "IMDB_movies.csv"))
+
+```
+1c) Response to part c. 
+
+```{r question-1c}
+
+gsub(",","",toString(c('Rows : ', nrow(movies), ' Columns : ', ncol(movies))))
+
+```
+
+
+1d) Response to part d. 
+
+```{r question-1d}
+
+names(movies)
+
+```
+1d) We can use glimpse() or typeOf() to get the variable type. we can also use select(where(is.character)) to only select the columns that are character types
+	
+movie_title
+director_name
+country
+language
+genres
+content_rating
+color
+plot_keywords
+actor_1_name
+actor_2_name
+actor_3_name
+movie_imdb_link
+
+```{r question-1e}
+
+movies %>% glimpse()
+
+movies %>% select(where(is.character)) %>% slice(1)
+
+```
+
+
+1f) Response to part f. 
+
+```{r question-1f}
+
+movies %>% slice(1:10)
+
+```
+
+1g) James Cameron, Joss Whedon, Christopher Nolan, and George Lucas are the repeats.
+
+Colin Trevorrow is the only direcotr that is not a repeat in the top 10.
+
+```{r question-1g}
+
+movies %>%arrange(desc(gross)) %>% slice(1:10)
+
+```
+
+
+1h) Response to part h. 
+
+```{r question-1h}
+
+movies_sub = movies %>% select(-c(movie_imdb_link))
+
+dim(movies_sub)
+
+```
+
+1i) 46 movies with a budget greater than $200,000,000 USD. 
+
+```{r question-1i}
+
+movies_sub %>% filter(budget > 200000000) %>% nrow()
+
+```
+
+1j) Response to part j.
+
+```{r question-1j}
+
+movies_sub = movies_sub %>% mutate(budgetM = budget/1000000, grossM = gross/1000000)
+glimpse(movies_sub)
+
+```
+
+
+
+## Question 2
+
+2a) Response to part a. 
+
+
+```{r question-2a}
+
+library(ggplot2)
+
+ggplot(movies_sub, aes(x=imdb_score, y=gross)) + geom_point()
+
+```
+
+
+2b) Response to part b. 
+
+
+```{r question-2b}
+
+
+ggplot(movies_sub, aes(x=imdb_score, y=gross)) + geom_point(alpha=1/10)
+
+```
+
+2c) Response to part c. 
+
+
+```{r question-2c}
+
+movies = movies %>% mutate(gross_M = gross/1000000, budget_M = budget/1000000)
+
+
+```
+
+2d) There is a weak positive relationship between movie gross and imdb score, and then it becomes very pronounced for the very highly scoring movies. 
+
+
+```{r question-2d}
+
+ggplot(movies, aes(x=imdb_score, y=gross_M)) + geom_point(alpha=1/10) + geom_smooth()
+
+```
+
+2e) Response to part e. 
+
+
+```{r question-2e}
+
+ggplot(movies %>% filter(director_name == 'Justin Lin'), aes(x=imdb_score, y=gross_M)) + geom_point(shape = 2)
+
+```
+
+2f) Response to part f. 
+
+
+```{r question-2f}
+
+ggplot(movies %>% filter(director_name == 'Justin Lin'), aes(x=imdb_score, y=gross_M)) + geom_point(shape = 2) + xlim(5,9) + ylim(0,250)
+
+```
+2g) Response to part g. 
+
+
+```{r question-2g}
+
+
+library('ggrepel')
+ggplot(movies %>% filter(director_name == 'Justin Lin'), aes(x=imdb_score, y=gross_M)) + geom_point(shape = 2) + xlim(5,9) + ylim(0,250) + geom_text_repel(aes(label=movie_title))
+
+```
+
+2h) Response to part h. 
+
+
+```{r question-2h}
+
+
+ggplot(movies %>% filter(director_name == 'Justin Lin'), aes(x=imdb_score, y=gross_M)) + geom_point(shape = 2) + xlim(5,9) + ylim(0,250) + geom_text_repel(aes(label=movie_title)) + labs(x = 'IMDB Score', y = 'Movies Gross in Millions (USD)', caption='IMDB Movies Dataset', title='Movie Gross vs IMDB Score')
+
+
+```
+
+
+2i) Response to part i. 
+
+
+```{r question-2i}
+library('ggthemes')
+
+ggplot(movies %>% filter(director_name == 'Justin Lin'), aes(x=imdb_score, y=gross_M)) + geom_point(shape = 2) + xlim(5,9) + ylim(0,250) + geom_text_repel(aes(label=movie_title)) + labs(x = 'IMDB Score', y = 'Movies Gross in Millions (USD)', caption='IMDB Movies Dataset', title='Movie Gross vs IMDB Score') + theme_solarized()
+
+
+```
+
