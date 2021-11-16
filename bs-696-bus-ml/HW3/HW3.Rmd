@@ -1,0 +1,251 @@
+---
+title: "Problem Set 3"
+author: "Ryan Richardson"
+subtitle: BUS 696 Problem Set Template
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+---
+
+```{r setup, include=FALSE}
+
+# Please leave this code chunk as is. It makes some slight formatting changes to alter the output to be more aesthetically pleasing. 
+
+library(knitr)
+
+
+# Change the number in set seed to your own favorite number
+set.seed(1818)
+options(width=70)
+options(scipen=99)
+
+
+# this sets text outputted in code chunks to small
+opts_chunk$set(tidy.opts=list(width.wrap=50),tidy=TRUE, size = "vsmall")  
+opts_chunk$set(message = FALSE,                                          
+               warning = FALSE,
+               # "caching" stores objects in code chunks and only rewrites if you change things
+               cache = TRUE,                               
+               # automatically downloads dependency files
+               autodep = TRUE,
+               # 
+               cache.comments = FALSE,
+               # 
+               collapse = TRUE,
+               # change fig.width and fig.height to change the code height and width by default
+               fig.width = 5.5,  
+               fig.height = 4.5,
+               fig.align='center')
+
+
+```
+
+```{r setup-2a}
+
+# Always print this out before your assignment
+sessionInfo()
+
+
+```
+
+```{r setup-2b}
+getwd()
+```
+
+<!-- ### start answering your problem set here -->
+<!-- You may export your homework in either html or pdf, with the former usually being easier. 
+     To export or compile your Rmd file: click above on 'Knit' then 'Knit to HTML' -->
+<!-- Be sure to submit both your .Rmd file and the compiled .html or .pdf file for full credit -->
+
+
+```{r setup-3}
+
+# load all your libraries in this chunk 
+library('tidyverse')
+library('here')
+library('forcats')
+library('rsample')
+library('plotROC')
+library('glmnet')
+library('glmnetUtils')
+# note, do not run install.packages() inside a code chunk. install them in the console outside of a code chunk. 
+
+```
+
+
+
+## Question 1
+
+1a) Text response to part a. 
+
+```{r question-1a}
+
+movies <- read.csv(here::here("datasets", "IMDB_movies.csv"))
+
+movies_clean <- 
+  movies %>% 
+  mutate(budgetM = budget/1000000,
+         grossM = gross/1000000,
+         profitM = grossM - budgetM,
+         ROI = profitM/budgetM,
+         blockbuster = ifelse(profitM > 100, 1,0) %>% factor(., levels = c("1","0")),
+         genre_main = as.factor(unlist(map(strsplit(as.character(movies$genres),"\\|"),1))) %>% fct_lump(12),
+         rating_simple = fct_lump(content_rating, n = 4)) %>%
+  filter(budget < 400000000, 
+         content_rating != "", 
+         content_rating != "Not Rated") %>% 
+  mutate(rating_simple = rating_simple %>% fct_drop()) %>% 
+  distinct()
+
+movies_split <- initial_split(movies_clean)
+movies_train <- training(movies_split)
+movies_test <- testing(movies_split)
+
+```
+
+
+
+1b) Text response to part b. 
+
+```{r question-1b}
+
+movies_logit1 = glm(blockbuster ~ imdb_score + budgetM + title_year + genre_main, data = movies_train, family="binomial")
+
+summary(movies_logit1)
+
+```
+
+
+1c) Text response to part c. 
+
+```{r question-1c}
+exp(coef(movies_logit1))
+```
+
+
+1d) Movies in the Adventure genre increase their odds of being a blockbuster .82 compared to movies in the Action Genre. In other words, Adventure movies are less likely to be blockbusters than action movies.
+ 
+```{r question-1d}
+
+levels(movies_train$genre_main)
+
+```
+
+
+1e) For every 1 point increase in IMDB Average Rating, a movie increases its odds of being a blockbuster by 0.31. Blockbusters do not tend to get a worse IMDB Score, but a 1 point increase in score does not mean that a movie increases its odds of being a blockbuster by 1:1.   
+
+
+
+1f) Increasing the variable by one unit increases the log odss of our output variable being 1 by 1.05.
+
+1g) The null hypothesis for logistic regression is that there is no relationship between each of the variables we are estimating, and the odds of our output occurring. For example, if we were estimating the probability of a coin flip being heads based on the time of day, the null hypothesis would be that the impact of the time of day on the probability of being heads is 0.
+
+1h) Text response to part h.
+
+```{r question1-ha}
+
+preds_test = predict(movies_logit1, movies_test)
+preds_train = predict(movies_logit1, movies_train)
+head(preds_test)
+```
+```{r question1-hb}
+head(preds_train)
+```
+
+1i) Text response to part i.
+
+```{r question1-i}
+
+results_train <- data.frame(
+  `truth` = movies_train   %>% select(blockbuster) %>% 
+    mutate(blockbuster = as.numeric(blockbuster)),
+  `Class1` =  preds_train,
+  `type` = rep("train",length(preds_train))
+)
+
+results_test <- data.frame(
+  `truth` = movies_test   %>% select(blockbuster) %>% 
+    mutate(blockbuster = as.numeric(blockbuster)),
+  `Class1` =  preds_test,
+  `type` = rep("test",length(preds_test))
+)
+
+results <- bind_rows(results_train,results_test)
+```
+
+
+1j) Blockbuster describes whether or not the movie was actually a blockbuster (2 for yes, 1 for no). Class1 indicates the combined odds that a movie was a blockbuster or not. Type indicates if this was based on the training set or the testing set.
+```{r question1-j}
+results %>% slice(1:10)
+```
+
+1k) Text response to part k.
+```{r question1-k}
+graph_train = ggplot(results_train, aes(d = blockbuster, m = Class1)) + geom_roc(cutoffs.at = c(0.99,0.9,0.7,0.5,0.3,0.1,0)) + style_roc()
+
+graph_test = ggplot(results_test, aes(d = blockbuster, m = Class1)) + geom_roc(cutoffs.at = c(0.99,0.9,0.7,0.5,0.3,0.1,0)) + style_roc()
+
+graph_train
+graph_test
+```
+
+1l) Test AUC = .844, Train AUC = .832
+
+AUC is a measure of how well our estimates perform across all of the thresholds we could choose for our classification. It's essentially an estimate of how likely our model is to generate a correct guess, with an AUC of 0.5 being the equivalent of chance. 
+```{r question1-l}
+
+calc_auc(graph_train)
+
+calc_auc(graph_test)
+```
+## Question 2
+
+2a) Text response to part a. 
+
+```{r question-2a}
+ridge_fit = cv.glmnet(grossM ~ duration + rating_simple + aspect_ratio + color + movie_facebook_likes + director_facebook_likes + cast_total_facebook_likes + num_user_for_reviews + num_critic_for_reviews + genre_main, data = movies_train, alpha=0)
+```
+
+
+
+2b) 
+```{r question-2b}
+coef(ridge_fit)
+```
+
+
+2c) The plot shows how the mean-squared error changes as we vary our penalization parameter, lambda. The dotted line furthest to the left shows the lambda value that minimizes the mean-squared error of our regression. The second dotted line shows the highest lambda we can choose that is still within 1 standard deviation of the MSE of our lambda with the smallest MSE. We may choose this lambda to reduce the tenancy to over fit. Lastly, the number at the top of the graph shows the amount of non-zero betas in our model. In this case, we always have non-zero betas for all lambdas, which indicates that we are never penalized to the point of excluding any of the coefficients in our model. 
+
+
+```{r question-2c}
+plot(ridge_fit)
+```
+
+
+2d) 
+
+```{r question-2d}
+lasso_fit = cv.glmnet(grossM ~ duration + rating_simple + aspect_ratio + color + movie_facebook_likes + director_facebook_likes + cast_total_facebook_likes + num_user_for_reviews + num_critic_for_reviews + genre_main, data = movies_train, alpha=1)
+
+```
+
+2e) Text response to part e. 
+
+```{r question-2e}
+coef(lasso_fit)
+
+```
+
+
+2f) Lasso regression allows some coefficients to reach 0 as part of the penalization method. This effectively means that their impact on our output was so minimal, that we are able to drop those variables from our model and still have an effective regression.
+
+2g) Similar to the ridge fit, the far left line indicates the lambda that minimizes our MSE, while the next dotted line shows the highest lambda value with an average MSE that is within 1 standard error of the minimum estimate. The numbers at the top of the model show how many non-zero betas are left in the model, and we see that as we increase the penalization factor, more and more betas drop to 0. The plot suggests that we may find a decent model somewhere between 23 and 13 coefficients that has a low MSE and is not too overfit. 
+
+```{r question-2g}
+
+plot(lasso_fit)
+
+```
+
+

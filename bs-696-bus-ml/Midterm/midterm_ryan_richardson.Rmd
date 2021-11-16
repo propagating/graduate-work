@@ -1,0 +1,297 @@
+---
+title: "Midterm"
+author: "Ryan Richardson"
+subtitle: BUS 696 Problem Set Template
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+---
+
+```{r setup, include=FALSE}
+
+# Please leave this code chunk as is. It makes some slight formatting changes to alter the output to be more aesthetically pleasing. 
+
+library(knitr)
+
+# Change the number in set seed to your own favorite number
+set.seed(1818)
+options(width=70)
+options(scipen=99)
+
+
+# this sets text outputted in code chunks to small
+opts_chunk$set(tidy.opts=list(width.wrap=50),tidy=TRUE, size = "vsmall")  
+opts_chunk$set(message = FALSE,                                          
+               warning = FALSE,
+               # "caching" stores objects in code chunks and only rewrites if you change things
+               cache = TRUE,                               
+               # automatically downloads dependency files
+               autodep = TRUE,
+               # 
+               cache.comments = FALSE,
+               # 
+               collapse = TRUE,
+               # change fig.width and fig.height to change the code height and width by default
+               fig.width = 5.5,  
+               fig.height = 4.5,
+               fig.align='center')
+
+
+```
+
+```{r setup-2}
+
+# Always print this out before your assignment
+sessionInfo()
+getwd()
+
+```
+
+
+<!-- ### start answering your problem set here -->
+<!-- You may export your homework in either html or pdf, with the former usually being easier. 
+     To export or compile your Rmd file: click above on 'Knit' then 'Knit to HTML' -->
+<!-- Be sure to submit both your .Rmd file and the compiled .html or .pdf file for full credit -->
+
+
+```{r setup-3}
+
+# load all your libraries in this chunk 
+library('tidyverse')
+library('here')
+library('forcats')
+library('rsample')
+library('plotROC')
+library('glmnet')
+library('glmnetUtils')
+# note, do not run install.packages() inside a code chunk. install them in the console outside of a code chunk. 
+
+```
+
+
+
+## Question 1
+
+1a) Text response to part a. 
+
+```{r question-1a}
+
+wages_train <- read.csv(here::here("datasets", "wages_train.csv"), stringsAsFactors = TRUE)
+wages_test <- read.csv(here::here("datasets", "wages_test.csv"), stringsAsFactors = TRUE)
+
+
+```
+
+
+
+1b) Union, ethnicity, married, health, industry, occupation, and residence are factors. Factors are a way of quantifying categorical or qualitative data to something quantitative so that we can effectively run regression/prediction analysis on a dataset while including those qualitative measures.
+
+```{r question-1b}
+
+glimpse(wages_train)
+
+```
+
+
+1c) None of the industries have a particularly strong relationship between lshool and lwage, the strongest appears to be Manufacturing or Construction overall, with some segments of Business & Repair Service having a much more substantial jump. The weakest appears to either be in Trade or Professional & Related services.
+
+```{r question-1c, fig.width=14}
+
+ggplot(wages_train, aes(x=lschool, y=lwage)) + geom_point(alpha=1/10) + geom_smooth() + facet_grid(cols=vars(industry))
+```
+
+
+1d) 
+ 
+```{r question-1d}
+
+lm_mod1 = lm(wages_train, formula = "lwage ~ .")
+summary(lm_mod1)
+
+```
+
+
+1e) For a 1% increase in the number f years of schooling, we should expect to see a 0.88% increase in our wages. For a 1% increase in the number of years of experience, we should expect to see a 0.13% increase in our wages. 
+
+
+
+1f) Living in the south reduces our log_odds of achieving the average wage by 0.13 compared to living in the North East. Or, on average, living in the south results in wages that are 11.79% lower compared to living in the North East. 
+
+Working in construction increase our log odds of achieving the average wage by 0.11 compared to working in Business & Repair Services. Or, on average, working in construction results in wages that are 11.08& higher compared to those working in Business & Repair Services. 
+```{r question-1f}
+100 * (exp(lm_mod1$coefficients[8]) -1) #construction
+100 * (exp(lm_mod1$coefficients[23]) -1) #south
+```
+
+1g) If we randomly chose the size of the effect that is predicted for occupationSales_Workers, we would only havea  4.43% chance of choosing that our model found. Because the chance of randomly choosing this value is so low, we can assume that our model identified a significant relationship between occupation_Sales_workers and lwages because that relationship does exist in our samples.  
+
+1h) Text response to part h.
+
+```{r question1-h}
+
+wages_mod <- wages_train %>% mutate(school = exp(lschool), wage = exp(lwage), exper = exp(lexper))
+lm_mod2 = lm(wages_mod, formula = "wage ~ school + exper + union + residence")
+summary(lm_mod2)
+```
+
+
+1i) Being in a union, on average, increases your average wages by \$9,458.60. Living in a rural area, on average, decreases your wages by \$16,476.0 compared to living in the North East. 
+
+
+1j) If I had to suggest a carerr path, I would recocmmend finding a job in the Manufacturing Industry in an occuptation that falls under Professional, Technical, and kindred positions in the North East of the United States, ideally one that allows them to join a union. I would also advise them to enter that occupation with a 4 year degree at minimum to give them the best potential for a higher starting wage. These factors were all statistically significant and offered the highest odds of achieving a wage that was above average. 
+
+
+
+## Question 2
+
+2a) Text response to part a. 
+
+```{r question-2a}
+
+ridge_mod <- cv.glmnet(lwage ~ union + married + industry + occupation + lexper + residence, data=wages_train, alpha=0)
+coef(ridge_mod)
+print(ridge_mod)
+```
+
+
+
+2b) Text response to part b. 
+
+```{r question-2b}
+
+lasso_mod <- cv.glmnet(lwage ~ union + married + industry + occupation + lexper + residence, data=wages_train, alpha=1)
+coef(lasso_mod)
+print(lasso_mod)
+```
+
+2c) The plot shows how the amount of error in our model changes based on the amount of variables/things we use to generate our model. Variables are dropped from the model based on the lambda parameter. The vertical line to the far left shows us the model with the smallest amount of error is found with approximately 20 variables and a log(lambda) value of around -6. Notice the bars on each point of the graph, they show how much the amount of error can vary within a reasonable amount by choosing that lambda. If we were to look at the largest value of that range (the top of the bar), and draw a line straight across the graph, we weould see that it intersects with the next vertical line in the graph. The second line designates the largest value of lambda, and the smallest number of variables, that would still keep our average error in range of the model with the smallest error. The takeaway is that we want to choose a log(lambda) value bewteen ~ -6 and ~ -4, or between 17 and 20 variables, to give us the smallest average error.
+
+```{r question-2c}
+plot(lasso_mod)
+```
+
+2d) Lasso acts as a way of smoothing out our model by reducing the effects that very large coefficients may have and potentially increasing the effects of small coefficients. However, this penalty is directly tied to absolute value of the size of the effect, this means that in some cases, lasso will allow each coefficient to shrink both at a different rate, and allow those coefficients to eventually reach 0. Ridge regression's penalties, by comparison, are calculated based on the square of the magnitude and apply the same penalties to all coefficients, in practice this allows coefficients to approach 0 but never actually reach 0. 
+
+```{r question-2d}
+coef(lasso_mod)
+```
+
+2e) K-fold cross validation is a method of quantifying the power of our statistical model on data that it hasn't seen before. It is done by partitioning a dataset into numerous folds, training our model on all but 1 of those folds, and then testing how well it performs on the fold that was left out. This is done in a rotation so that each fold is left out and tested against. The accuracy of each of thes tests is gathered and an average 'score' is produced to give us a sense of how accurate or strong our model is. K-fold Validation is used in both the Lasso and Ridge Regression Models to give us estimates for the MSE based on the lambda values chosen for the regularisation method, which can be used to generate the plots above. 
+
+
+2f) Text response to part f. 
+
+```{r question-2f}
+en_mod <- cva.glmnet(lwage ~ union + married + industry + occupation + lexper + residence, data=wages_train, alpha=seq(0.1,1, by=0.1), nlambda=100)
+print(en_mod)
+```
+
+
+2g) The best alpha to use is around 0.1, which suggests that ridge regression is going to have the best effect for prdictive strength on our model. It also indicates that we shoudn't be dropping any of our coefficients completely with lasso, as that is going to decrease the efficiency of our model.
+
+```{r question-2g}
+minlossplot(en_mod, cv.type="min")
+
+```
+
+
+
+
+## Question 3
+
+3a) Text response to part a. 
+
+```{r question-3a}
+
+credit_train <- read.csv(here::here("datasets", "credit_train.csv"))
+credit_test <- read.csv(here::here("datasets", "credit_test.csv"))
+
+
+```
+
+
+
+3b) 
+
+```{r question-3b}
+credit_train <- credit_train %>%
+    mutate(default = as.factor(default), real_estate_loan = as.factor(real_estate_loan), ever_past_due = as.factor(ever_past_due))
+
+credit_test <- credit_test %>%
+    mutate(default = as.factor(default), real_estate_loan = as.factor(real_estate_loan), ever_past_due = as.factor(ever_past_due))
+
+
+glimpse(credit_train)
+
+
+```
+
+
+3c) Below is a logistic regression of credit card efault based on income, if they have a real estate loan, age, an indicator if they have ever been past due, and numb er of open credit lines. Overall, most of these predictors reduce the log odds of a credit card default occurring, which is expected. As someone gets older, with higher income, aand a house, they would be less likely to default. One surprising finding is that the number of open credit lines is weakly negative, which indicates that the number of open credit lines actually correlates to a reduction in default chance. However, this is likely due to confounding factors, such as people with lower credit scores are less likely to have the ability to open multiple credit lines. So if only individuals with good credit scores are opening many credit lines, they would be less likely to default as evidenced by their high credit ratings.  
+```{r question-3c, fig.width=34}
+
+log_mod <- glm(default ~ income + real_estate_loan + age + ever_past_due + open_credit_lines, data=credit_train, family="binomial")
+summary(log_mod)
+```
+
+
+3d) If someone is ever past due, they increase their log odds of default by 1.77 compared to someone who is never past due. Or, on average, if someone is ever past due, they increase their chance of defaulting by 487.55% compared to someone who is never past due. If someone has a real_estate loan they decrease their log odds of default by .272 compared to someone without a real estate loan. Or, someone with a real estate loan they are 23.85% less likely to default compared to someone who does not have a real estate loan.
+```{r question-3d}
+100 * (exp(log_mod$coefficients[3]) -1) #construction
+100 * (exp(log_mod$coefficients[5]) -1) #south
+```
+
+
+
+3e) No, we don't have enough information to determine if real_estate_loan has a causal relationship since this is not a causal model. What we can show is that having a real_estate_loan correlates to a reduction in defautl rates, but there may be other facotrs at play. However, that does not mean that the model is useless. We can still use this correlation for our predictive measure with some confidence. The caveat being that there may be some factors at play that we have not considered in our model that are more important than having a real_estate_loan, or there may be a case where the effects of real_estate_loan is actually masking the effects of some other factor that we have not accounted for. In this case, the correlation between real_estate_loan and default rate is fairly strong, and the chance that we just stumbled upon this model by chance is extremely low, so it's probably safe to use this as a predcitor even though the relationship has not be established as causal. 
+
+
+3f)
+
+```{r question-3f}
+library("data.table")
+preds_train = data.table(true = ifelse(credit_train$default == "1", 1, 0), preds = predict(log_mod,
+    type = "response"))
+
+preds_test = data.table(true = ifelse(credit_test$default == "1", 1, 0), preds = predict(log_mod,
+    newdata = credit_test, type = "response"))
+
+preds_train
+preds_test
+
+```
+
+3g) Based on our ROC graphs, our models perform barely better than chance for most of our cutoffs. 
+
+```{r question-3g, fig.width=14}
+library('gridExtra')
+graph_train = ggplot(preds_train, aes(d = true, m = preds)) + geom_roc(cutoffs.at = seq(0.01,.1, by=0.01)) + geom_abline(intercept = 0, slope = 1,
+                color = "red", linetype = "solid", size = 1) + style_roc() + labs(title="Training Set")
+
+graph_test = ggplot(preds_test, aes(d = true, m = preds)) + geom_roc(cutoffs.at =seq(0.01,.1, by=0.01)) + geom_abline(intercept = 0, slope = 1,
+                color = "red", linetype = "solid", size = 1) + style_roc() + labs(title="Test Set")
+
+grid.arrange(graph_train, graph_test, ncol=2)
+```
+
+3h) AUC is literally the area under the curve of our ROC graph, it denotes the maximum percentage of predictions that we may possibly get at our best possible breakpoint. In this case, our AUC is ~.75 for both our test and training set, which indicates that our model is performing pretty consistenly for for both training sets. While our model does perform better than chance, it can definitely be improved. 
+
+```{r question-3h}
+
+
+calc_auc(graph_train)
+
+calc_auc(graph_test)
+
+```
+
+
+3i) Best on the ROC, plot, the optimal threshold is somewhere beween 0.05 and 0.07 to maximize the amount of people correctly identified as potentially defaulting. We can calculate the optimal threshold as 0.0609. I would probably just stick with this threshold if we had to use this model. While this threshold is extremely close to 0, I also have to consider that the predictors in our model are almost entirely negative, heavily skewing our outputs towards 0, so for someone to be outside of this optimal threshold, they would need to be a somewhat extreme case, so I would feel okay just leaving the threshold at the optimal point. At the same time, I would tell our data analysts to go back and find a better model, beacause this model needs some improvement overall.  
+```{r question-3i}
+library(pROC)
+my_roc <- roc(preds_train$true, preds_train$preds)
+coords(my_roc, "best", ret = "threshold")
+```
+
+3j) I wouldn't use this current model, I would try to find something better to bring forward. However, the model does show a path forward using data for something like a credit card company. The ability to accurately predict default rates based on limited data gathered during an application process, and the data provided from a credit rating agency, would allow a company to accurately predict not only if someone could default, but an average of average months to default which could be used to establish how long a line of credit is good for. It could be used to determine how large of a credit balance to provide someone before their chances of default rise significantly, or something similar to that. It could also indicate if someone is a good candidate for certain types of credit such as a mortage, car loan, credit card, etc, and what types of credit they are most well suited for without being at risk of default.  

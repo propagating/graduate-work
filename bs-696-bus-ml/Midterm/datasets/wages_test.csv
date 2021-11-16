@@ -1,0 +1,623 @@
+"year","union","ethnicity","married","health","industry","occupation","residence","lwage","lschool","lexper"
+2018,"no","other","no","no","Business_and_Repair_Service","Managers, Officials_and_Proprietors","north_east",11.1263883370601,2.63905732961526,2.19722457733622
+2013,"no","other","no","no","Trade","Service_Workers","north_east",10.9192858247773,2.30258509299405,1.6094379124341
+2011,"no","other","no","no","Trade","Sales_Workers","north_east",11.19448599625,2.56494935746154,1.09861228866811
+2013,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","north_east",11.6471173144451,2.56494935746154,1.6094379124341
+2018,"no","other","yes","no","Trade","Managers, Officials_and_Proprietors","north_east",11.8718820240444,2.56494935746154,2.30258509299405
+2014,"no","other","no","no","Trade","Laborers_and_farmers","north_east",10.9970889744212,2.39789527279837,1.79175946922805
+2015,"no","other","no","no","Professional_and_Related Service","Managers, Officials_and_Proprietors","north_east",11.0554865678327,2.39789527279837,1.94591014905531
+2016,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","north_east",11.1945211951285,2.39789527279837,2.07944154167984
+2012,"yes","other","no","no","Trade","Laborers_and_farmers","north_east",10.3948878198304,2.30258509299405,1.38629436111989
+2013,"yes","other","no","no","Trade","Laborers_and_farmers","north_east",10.8246882109691,2.30258509299405,1.6094379124341
+2017,"no","other","yes","no","Trade","Managers, Officials_and_Proprietors","north_east",11.167065258941,2.30258509299405,2.19722457733622
+2012,"no","other","no","no","Trade","Clerical_and_kindred","north_east",10.293448422025,2.63905732961526,1.38629436111989
+2014,"no","other","no","no","Trade","Sales_Workers","north_east",10.5286839969688,2.63905732961526,1.79175946922805
+2015,"no","other","no","no","Trade","Clerical_and_kindred","north_east",10.9031198525477,2.63905732961526,1.94591014905531
+2018,"no","other","no","no","Manufacturing","Clerical_and_kindred","north_east",11.2123307824454,2.63905732961526,2.30258509299405
+2016,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","north_east",11.3597753344266,2.39789527279837,2.19722457733622
+2018,"no","other","no","no","Other","Managers, Officials_and_Proprietors","north_east",11.6441826485406,2.39789527279837,2.39789527279837
+2011,"no","other","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","north_east",11.2416722304069,2.39789527279837,1.09861228866811
+2014,"no","other","no","no","Manufacturing","Operatives_and_kindred","north_east",11.5021332378218,2.39789527279837,1.79175946922805
+2016,"no","other","no","no","Manufacturing","Operatives_and_kindred","north_east",11.5541862112249,2.39789527279837,2.07944154167984
+2017,"no","other","yes","no","Business_and_Repair_Service","Managers, Officials_and_Proprietors","north_east",12.4235967573278,2.70805020110221,2.19722457733622
+2015,"no","other","yes","no","Other","Managers, Officials_and_Proprietors","north_east",11.1552510216984,2.484906649788,2.19722457733622
+2016,"no","other","yes","no","Other","Managers, Officials_and_Proprietors","north_east",11.1289687344211,2.484906649788,2.30258509299405
+2011,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","north_east",11.5643900496868,2.484906649788,1.38629436111989
+2012,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","north_east",11.5462114872466,2.484906649788,1.6094379124341
+2014,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","north_east",10.7653563113341,2.484906649788,1.94591014905531
+2018,"no","other","yes","no","Trade","Operatives_and_kindred","north_east",10.9115359797891,2.484906649788,2.39789527279837
+2014,"no","other","yes","no","Manufacturing","Professional, Technical_and_kindred","north_east",11.5323867595092,2.39789527279837,1.79175946922805
+2017,"no","other","yes","no","Manufacturing","Operatives_and_kindred","north_east",11.4493395566197,2.39789527279837,2.19722457733622
+2011,"no","other","no","no","Business_and_Repair_Service","Operatives_and_kindred","south",11.2432760883966,2.484906649788,1.38629436111989
+2013,"no","other","no","no","Business_and_Repair_Service","Operatives_and_kindred","north_east",11.72146667921,2.484906649788,1.79175946922805
+2014,"no","other","yes","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","north_east",11.7326568815682,2.484906649788,1.94591014905531
+2013,"no","other","yes","yes","Other","Clerical_and_kindred","north_east",10.9800183292217,2.484906649788,1.79175946922805
+2016,"no","other","yes","no","Other","Clerical_and_kindred","north_east",11.3457646018792,2.484906649788,2.19722457733622
+2017,"no","other","yes","no","Professional_and_Related Service","Professional, Technical_and_kindred","north_east",11.2406500973802,2.484906649788,2.30258509299405
+2012,"yes","other","no","no","Manufacturing","Operatives_and_kindred","north_east",11.2742777173544,2.484906649788,1.6094379124341
+2016,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","north_east",11.8881385606222,2.39789527279837,2.07944154167984
+2015,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","north_east",11.8697079731237,2.484906649788,2.30258509299405
+2017,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","north_east",11.8092304777811,2.484906649788,2.484906649788
+2016,"no","other","yes","no","Trade","Sales_Workers","north_east",10.8469429608826,2.56494935746154,2.07944154167984
+2018,"no","other","yes","no","Trade","Sales_Workers","north_east",11.3579001527636,2.56494935746154,2.30258509299405
+2011,"no","other","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.1398275419992,2.484906649788,1.79175946922805
+2016,"no","other","no","no","Manufacturing","Clerical_and_kindred","nothern_central",11.1053792428457,2.484906649788,2.39789527279837
+2014,"no","other","no","no","Other","Managers, Officials_and_Proprietors","nothern_central",11.9464545369227,2.63905732961526,1.79175946922805
+2017,"no","other","no","no","Other","Professional, Technical_and_kindred","nothern_central",11.7562906146235,2.63905732961526,2.19722457733622
+2017,"no","other","no","no","Trade","Sales_Workers","nothern_central",10.0519075576544,2.484906649788,2.19722457733622
+2018,"no","other","no","no","Trade","Professional, Technical_and_kindred","nothern_central",10.0519075576544,2.484906649788,2.30258509299405
+2011,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.0839725656828,2.484906649788,1.6094379124341
+2014,"yes","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.6519889895954,2.484906649788,2.07944154167984
+2013,"yes","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.1572487369339,2.484906649788,1.94591014905531
+2013,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.7666270860821,2.484906649788,1.6094379124341
+2015,"no","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.8094974547503,2.484906649788,1.94591014905531
+2011,"no","other","no","no","Trade","Laborers_and_farmers","nothern_central",10.6892248532537,2.39789527279837,1.09861228866811
+2013,"no","other","yes","no","Other","Farm_Laborers_and_Foreman","south",10.4650280584416,2.484906649788,1.94591014905531
+2014,"no","other","no","no","Manufacturing","Operatives_and_kindred","south",11.2552472736912,2.484906649788,1.94591014905531
+2012,"no","other","no","no","Other","Service_Workers","nothern_central",11.3882219630318,2.63905732961526,1.38629436111989
+2018,"no","other","no","no","Other","Service_Workers","nothern_central",11.0210279031731,2.63905732961526,2.30258509299405
+2011,"no","other","no","no","Professional_and_Related Service","Laborers_and_farmers","nothern_central",10.4497245276565,2.30258509299405,1.38629436111989
+2015,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.9052146843689,2.30258509299405,2.07944154167984
+2017,"yes","other","yes","no","Trade","Operatives_and_kindred","nothern_central",11.6294398740379,2.30258509299405,2.30258509299405
+2017,"yes","other","yes","no","Professional_and_Related Service","Service_Workers","nothern_central",11.283137387604,2.39789527279837,2.19722457733622
+2011,"no","other","no","no","Professional_and_Related Service","Laborers_and_farmers","nothern_central",11.0134135986045,2.56494935746154,1.09861228866811
+2013,"no","other","no","no","Professional_and_Related Service","Clerical_and_kindred","nothern_central",10.167634457924,2.56494935746154,1.6094379124341
+2012,"no","other","no","no","Other","Clerical_and_kindred","nothern_central",10.0635149306961,2.30258509299405,1.6094379124341
+2015,"no","other","no","no","Trade","Service_Workers","nothern_central",10.1411121456137,2.30258509299405,2.07944154167984
+2016,"no","other","no","no","Trade","Sales_Workers","nothern_central",10.4569498752498,2.30258509299405,2.19722457733622
+2011,"no","other","no","no","Professional_and_Related Service","Craftsmen, Foremen_and_kindred","nothern_central",10.3408856648902,2.484906649788,1.09861228866811
+2012,"no","other","no","no","Professional_and_Related Service","Craftsmen, Foremen_and_kindred","nothern_central",10.8820670266922,2.484906649788,1.38629436111989
+2016,"no","other","no","no","Manufacturing","Sales_Workers","nothern_central",11.4054837851919,2.484906649788,2.07944154167984
+2017,"no","other","yes","no","Manufacturing","Sales_Workers","nothern_central",11.7208120991749,2.484906649788,2.19722457733622
+2013,"no","black","no","no","Other","Craftsmen, Foremen_and_kindred","north_east",11.2277465237366,2.63905732961526,1.38629436111989
+2012,"no","other","no","yes","Manufacturing","Operatives_and_kindred","nothern_central",11.4138766551901,2.484906649788,1.38629436111989
+2018,"yes","other","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.4348295360926,2.484906649788,2.30258509299405
+2011,"yes","other","no","no","Manufacturing","Service_Workers","nothern_central",10.0540634217637,2.30258509299405,1.09861228866811
+2014,"yes","other","no","no","Manufacturing","Service_Workers","nothern_central",10.4572025363488,2.30258509299405,1.79175946922805
+2018,"yes","other","no","no","Professional_and_Related Service","Professional, Technical_and_kindred","south",11.3400726181182,2.30258509299405,2.30258509299405
+2012,"yes","other","yes","no","Trade","Operatives_and_kindred","nothern_central",11.7649123004681,2.484906649788,1.38629436111989
+2013,"no","black","no","no","Manufacturing","Sales_Workers","nothern_central",10.4980970003418,2.56494935746154,1.6094379124341
+2017,"no","black","no","no","Construction","Professional, Technical_and_kindred","nothern_central",11.5691541801076,2.56494935746154,2.19722457733622
+2015,"no","other","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.4187507103267,2.56494935746154,1.94591014905531
+2017,"yes","other","yes","no","Professional_and_Related Service","Service_Workers","nothern_central",11.0535629378412,2.484906649788,2.30258509299405
+2012,"no","other","no","no","Trade","Laborers_and_farmers","nothern_central",11.492190268967,2.484906649788,1.38629436111989
+2016,"no","other","no","no","Manufacturing","Managers, Officials_and_Proprietors","nothern_central",12.0608906184982,2.484906649788,2.07944154167984
+2013,"no","other","no","no","Professional_and_Related Service","Professional, Technical_and_kindred","nothern_central",11.5928704755639,2.70805020110221,1.6094379124341
+2014,"no","other","no","no","Other","Professional, Technical_and_kindred","nothern_central",11.6934361330946,2.70805020110221,1.79175946922805
+2011,"no","other","no","no","Trade","Clerical_and_kindred","nothern_central",10.2765913015732,2.56494935746154,1.09861228866811
+2012,"no","other","no","no","Trade","Clerical_and_kindred","nothern_central",10.0519075576544,2.56494935746154,1.38629436111989
+2013,"no","other","no","no","Other","Clerical_and_kindred","nothern_central",10.7177023685437,2.63905732961526,1.38629436111989
+2015,"no","other","no","no","Other","Professional, Technical_and_kindred","nothern_central",11.1759720526025,2.63905732961526,1.79175946922805
+2016,"yes","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.6649950093079,2.484906649788,2.30258509299405
+2018,"yes","other","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.6749543444131,2.484906649788,2.484906649788
+2013,"no","other","no","no","Trade","Clerical_and_kindred","nothern_central",10.8420840507481,2.484906649788,2.07944154167984
+2011,"no","other","yes","no","Trade","Craftsmen, Foremen_and_kindred","south",11.0148431327954,2.39789527279837,1.09861228866811
+2012,"no","other","no","no","Manufacturing","Professional, Technical_and_kindred","nothern_central",11.2097391538991,2.484906649788,1.79175946922805
+2015,"no","other","yes","no","Other","Laborers_and_farmers","nothern_central",10.4854204508626,2.30258509299405,2.07944154167984
+2017,"no","other","yes","no","Other","Professional, Technical_and_kindred","nothern_central",11.107085486607,2.30258509299405,2.30258509299405
+2015,"no","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.3375725308257,2.484906649788,2.19722457733622
+2011,"no","other","no","no","Other","Craftsmen, Foremen_and_kindred","south",10.5451972177829,2.30258509299405,1.09861228866811
+2014,"no","other","no","no","Trade","Clerical_and_kindred","south",10.8089039728184,2.30258509299405,1.79175946922805
+2017,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","south",10.721422952834,2.30258509299405,2.19722457733622
+2012,"no","other","no","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","south",10.9387217132167,2.484906649788,1.09861228866811
+2013,"no","other","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",10.674842450512,2.484906649788,1.38629436111989
+2012,"no","other","no","no","Other","Farm_Laborers_and_Foreman","south",10.7352812710302,2.39789527279837,2.07944154167984
+2013,"no","other","no","no","Manufacturing","Sales_Workers","south",11.2902038246391,2.56494935746154,1.79175946922805
+2013,"no","other","yes","no","Construction","Craftsmen, Foremen_and_kindred","south",11.1138022047667,2.484906649788,2.07944154167984
+2012,"no","hisp","no","no","Other","Managers, Officials_and_Proprietors","south",11.1249738956048,2.63905732961526,1.38629436111989
+2013,"no","hisp","no","no","Other","Managers, Officials_and_Proprietors","south",11.3792964675825,2.63905732961526,1.6094379124341
+2015,"no","hisp","no","no","Other","Clerical_and_kindred","south",11.468250850297,2.63905732961526,1.94591014905531
+2011,"no","other","no","no","Construction","Professional, Technical_and_kindred","south",11.3106650844058,2.56494935746154,1.09861228866811
+2012,"no","other","no","no","Construction","Craftsmen, Foremen_and_kindred","south",11.0666383623418,2.56494935746154,1.38629436111989
+2016,"no","other","yes","no","Construction","Clerical_and_kindred","south",11.3773129368562,2.56494935746154,2.07944154167984
+2018,"no","other","yes","no","Construction","Clerical_and_kindred","south",11.6749543444131,2.56494935746154,2.30258509299405
+2015,"no","black","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",10.6732459445304,2.484906649788,1.94591014905531
+2016,"no","black","no","no","Other","Laborers_and_farmers","south",10.6311112777649,2.484906649788,2.07944154167984
+2013,"yes","other","no","no","Trade","Operatives_and_kindred","south",11.3919563215588,2.07944154167984,2.07944154167984
+2014,"yes","other","no","no","Other","Operatives_and_kindred","south",11.2357957863198,2.07944154167984,2.19722457733622
+2017,"yes","other","no","no","Manufacturing","Service_Workers","south",11.7085726729117,2.07944154167984,2.484906649788
+2013,"no","other","no","no","Other","Farm_Laborers_and_Foreman","south",11.1167695911676,2.39789527279837,2.07944154167984
+2013,"yes","other","no","no","Trade","Clerical_and_kindred","south",11.212242310185,2.484906649788,1.79175946922805
+2018,"no","other","yes","no","Other","Laborers_and_farmers","south",11.3647994006471,2.484906649788,2.39789527279837
+2016,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.6162048064867,2.484906649788,2.30258509299405
+2017,"no","other","yes","no","Trade","Craftsmen, Foremen_and_kindred","south",11.6784974441652,2.484906649788,2.39789527279837
+2016,"yes","other","no","no","Manufacturing","Operatives_and_kindred","south",11.1776998310169,2.484906649788,2.39789527279837
+2014,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","south",10.253905311057,2.484906649788,1.6094379124341
+2015,"no","other","no","no","Other","Managers, Officials_and_Proprietors","south",10.4944286813259,2.484906649788,1.79175946922805
+2017,"no","other","no","no","Trade","Operatives_and_kindred","south",10.5171850578774,2.484906649788,2.30258509299405
+2011,"no","other","no","no","Trade","Sales_Workers","south",10.4909797296365,2.30258509299405,1.09861228866811
+2014,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","south",10.7154152710815,2.30258509299405,1.79175946922805
+2015,"no","other","no","no","Other","Operatives_and_kindred","south",11.1044787663354,2.30258509299405,1.94591014905531
+2011,"yes","black","yes","no","Manufacturing","Operatives_and_kindred","south",10.833123243029,2.484906649788,1.79175946922805
+2014,"no","black","yes","no","Manufacturing","Operatives_and_kindred","south",10.808397973623,2.484906649788,2.19722457733622
+2011,"yes","black","no","no","Trade","Service_Workers","south",10.4360982490189,2.30258509299405,1.6094379124341
+2018,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.1909268581977,2.484906649788,2.30258509299405
+2016,"no","other","no","no","Other","Service_Workers","nothern_central",11.2772294602165,2.484906649788,2.19722457733622
+2017,"no","other","no","no","Other","Service_Workers","nothern_central",11.2933415705532,2.484906649788,2.30258509299405
+2014,"no","other","yes","no","Professional_and_Related Service","Clerical_and_kindred","nothern_central",10.6012547941591,2.70805020110221,1.6094379124341
+2012,"no","other","no","no","Trade","Operatives_and_kindred","north_east",10.4760308475811,2.484906649788,1.38629436111989
+2018,"no","other","no","no","Trade","Service_Workers","nothern_central",10.7586636550598,2.484906649788,2.30258509299405
+2011,"no","other","no","no","Trade","Operatives_and_kindred","north_east",11.1116566899278,2.56494935746154,1.09861228866811
+2011,"no","other","no","no","Manufacturing","Laborers_and_farmers","north_east",10.9052000987143,2.484906649788,1.38629436111989
+2017,"no","other","yes","no","Manufacturing","Laborers_and_farmers","nothern_central",10.9517802831079,2.484906649788,2.30258509299405
+2015,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.3610605208576,2.39789527279837,1.94591014905531
+2011,"no","other","no","no","Professional_and_Related Service","Service_Workers","north_east",10.5312078174529,2.39789527279837,1.09861228866811
+2016,"no","other","no","no","Other","Managers, Officials_and_Proprietors","nothern_central",11.3159439339428,2.39789527279837,2.07944154167984
+2018,"no","other","yes","no","Other","Sales_Workers","north_east",11.6059614243309,2.39789527279837,2.30258509299405
+2011,"no","other","yes","no","Trade","Craftsmen, Foremen_and_kindred","nothern_central",10.6232160487682,2.484906649788,1.6094379124341
+2016,"no","other","yes","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","north_east",11.3170503522977,2.484906649788,2.30258509299405
+2014,"no","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.2771090763932,2.39789527279837,1.79175946922805
+2018,"no","other","yes","no","Manufacturing","Sales_Workers","nothern_central",11.204349970522,2.39789527279837,2.30258509299405
+2011,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.480742091553,2.484906649788,1.6094379124341
+2013,"yes","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.3182605210466,2.484906649788,1.94591014905531
+2017,"no","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.3084552270466,2.484906649788,2.19722457733622
+2013,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","south",11.2033960682534,2.39789527279837,1.79175946922805
+2018,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.2170427926595,2.39789527279837,2.39789527279837
+2013,"no","other","no","no","Other","Managers, Officials_and_Proprietors","nothern_central",10.8621273683358,2.484906649788,1.6094379124341
+2015,"no","other","no","no","Other","Craftsmen, Foremen_and_kindred","nothern_central",10.7712827568312,2.484906649788,1.94591014905531
+2012,"no","other","no","no","Other","Service_Workers","nothern_central",10.5005499533667,2.30258509299405,1.38629436111989
+2013,"no","other","no","no","Other","Service_Workers","nothern_central",10.7996600633196,2.30258509299405,1.6094379124341
+2011,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","south",11.4628806540606,2.484906649788,1.79175946922805
+2012,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","south",11.2171969734079,2.484906649788,1.94591014905531
+2014,"no","other","yes","no","Manufacturing","Professional, Technical_and_kindred","south",11.2741776732867,2.484906649788,2.19722457733622
+2016,"no","other","yes","no","Manufacturing","Operatives_and_kindred","south",11.5156475567145,2.484906649788,2.39789527279837
+2017,"yes","other","yes","no","Manufacturing","Laborers_and_farmers","south",11.3025554831406,2.484906649788,2.39789527279837
+2015,"no","other","yes","no","Other","Service_Workers","south",11.3477767276158,2.30258509299405,1.94591014905531
+2014,"yes","other","yes","no","Manufacturing","Professional, Technical_and_kindred","south",11.5626716481983,2.484906649788,1.79175946922805
+2015,"yes","other","yes","no","Manufacturing","Professional, Technical_and_kindred","south",11.5091313765107,2.484906649788,1.94591014905531
+2015,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.088453515844,2.56494935746154,1.79175946922805
+2017,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.5192857951189,2.56494935746154,2.07944154167984
+2015,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.3022657897969,2.484906649788,1.79175946922805
+2016,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.6286273142376,2.484906649788,1.94591014905531
+2011,"yes","other","no","no","Other","Clerical_and_kindred","south",11.4144243696055,2.63905732961526,1.09861228866811
+2012,"yes","other","no","no","Other","Clerical_and_kindred","south",11.184665534861,2.63905732961526,1.38629436111989
+2015,"yes","other","yes","no","Other","Professional, Technical_and_kindred","south",11.8869612044178,2.63905732961526,1.94591014905531
+2016,"no","other","no","no","Other","Professional, Technical_and_kindred","south",12.0862084582793,2.63905732961526,2.07944154167984
+2017,"no","other","no","no","Other","Professional, Technical_and_kindred","south",11.7998395926279,2.63905732961526,2.19722457733622
+2014,"no","other","yes","no","Construction","Craftsmen, Foremen_and_kindred","south",10.6098941867186,2.19722457733622,1.94591014905531
+2012,"no","other","yes","no","Business_and_Repair_Service","Professional, Technical_and_kindred","south",11.1766392510457,2.56494935746154,1.38629436111989
+2014,"no","other","yes","no","Business_and_Repair_Service","Professional, Technical_and_kindred","south",11.4493320970346,2.56494935746154,1.79175946922805
+2015,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.4806734141886,2.484906649788,2.30258509299405
+2016,"yes","other","yes","no","Professional_and_Related Service","Craftsmen, Foremen_and_kindred","south",11.4682847299998,2.484906649788,2.39789527279837
+2016,"no","other","no","no","Professional_and_Related Service","Clerical_and_kindred","south",10.971847828748,2.484906649788,2.39789527279837
+2014,"yes","other","no","no","Other","Clerical_and_kindred","south",11.3013677874674,2.39789527279837,1.79175946922805
+2011,"no","black","no","no","Construction","Laborers_and_farmers","south",10.6820564096813,2.39789527279837,1.09861228866811
+2017,"no","other","yes","no","Other","Farm_Laborers_and_Foreman","south",10.5834327187457,2.484906649788,2.30258509299405
+2013,"no","other","yes","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.1964939253436,2.484906649788,1.6094379124341
+2015,"no","other","yes","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.2622869938931,2.484906649788,1.94591014905531
+2017,"no","other","yes","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.5236727059289,2.484906649788,2.19722457733622
+2015,"no","other","yes","no","Manufacturing","Professional, Technical_and_kindred","nothern_central",11.5026523770366,2.56494935746154,2.07944154167984
+2017,"yes","other","yes","no","Other","Farm_Laborers_and_Foreman","south",11.0207730728032,2.484906649788,2.39789527279837
+2012,"no","other","no","no","Other","Farm_Laborers_and_Foreman","south",10.5245867530854,2.30258509299405,1.38629436111989
+2015,"no","other","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",10.526642433776,2.30258509299405,1.94591014905531
+2013,"no","other","no","no","Professional_and_Related Service","Professional, Technical_and_kindred","south",11.5560996030307,2.56494935746154,1.6094379124341
+2015,"no","other","no","no","Professional_and_Related Service","Professional, Technical_and_kindred","south",11.8266244191223,2.56494935746154,1.94591014905531
+2011,"no","other","yes","no","Professional_and_Related Service","Craftsmen, Foremen_and_kindred","south",10.0812826302634,2.56494935746154,1.09861228866811
+2012,"no","other","yes","no","Trade","Operatives_and_kindred","north_east",11.2461068947962,2.484906649788,1.38629436111989
+2013,"no","other","yes","no","Trade","Managers, Officials_and_Proprietors","north_east",11.2922850282491,2.484906649788,1.6094379124341
+2015,"no","other","yes","no","Trade","Operatives_and_kindred","north_east",11.3042068718807,2.484906649788,1.94591014905531
+2017,"no","other","yes","no","Trade","Operatives_and_kindred","north_east",11.3800112532789,2.484906649788,2.19722457733622
+2014,"no","other","no","no","Professional_and_Related Service","Professional, Technical_and_kindred","north_east",11.0977333020809,2.56494935746154,1.94591014905531
+2011,"no","hisp","no","no","Trade","Laborers_and_farmers","north_east",10.0519075576544,2.19722457733622,1.6094379124341
+2014,"no","hisp","no","no","Trade","Craftsmen, Foremen_and_kindred","north_east",10.6638166324291,2.19722457733622,2.07944154167984
+2016,"no","hisp","no","no","Trade","Operatives_and_kindred","north_east",10.7845972248582,2.19722457733622,2.30258509299405
+2018,"no","hisp","no","no","Trade","Craftsmen, Foremen_and_kindred","north_east",10.8658573482948,2.19722457733622,2.484906649788
+2014,"no","other","no","no","Professional_and_Related Service","Clerical_and_kindred","north_east",11.182610592813,2.484906649788,1.79175946922805
+2015,"no","other","no","no","Professional_and_Related Service","Clerical_and_kindred","north_east",11.4323248767103,2.484906649788,1.94591014905531
+2016,"no","other","no","no","Professional_and_Related Service","Clerical_and_kindred","north_east",10.399131515874,2.484906649788,2.07944154167984
+2017,"no","other","no","no","Other","Clerical_and_kindred","north_east",10.8776722165792,2.484906649788,2.19722457733622
+2018,"no","other","no","no","Manufacturing","Managers, Officials_and_Proprietors","north_east",11.1036780629982,2.484906649788,2.30258509299405
+2016,"no","black","no","no","Manufacturing","Operatives_and_kindred","north_east",10.8176971202898,2.19722457733622,2.484906649788
+2014,"no","other","yes","no","Professional_and_Related Service","Professional, Technical_and_kindred","nothern_central",11.0350751306982,2.70805020110221,1.79175946922805
+2013,"no","other","yes","no","Other","Managers, Officials_and_Proprietors","north_east",11.1890100208141,2.484906649788,1.79175946922805
+2015,"no","other","yes","no","Other","Craftsmen, Foremen_and_kindred","north_east",11.377418522231,2.484906649788,2.07944154167984
+2018,"no","other","yes","no","Trade","Craftsmen, Foremen_and_kindred","north_east",11.5006009289211,2.484906649788,2.39789527279837
+2017,"no","other","yes","no","Other","Professional, Technical_and_kindred","north_east",12.4292161968444,2.63905732961526,2.07944154167984
+2016,"yes","other","yes","no","Other","Clerical_and_kindred","north_east",11.6741862933906,2.484906649788,2.30258509299405
+2017,"yes","other","yes","no","Other","Clerical_and_kindred","north_east",11.7244652320303,2.484906649788,2.39789527279837
+2011,"yes","other","no","no","Other","Laborers_and_farmers","north_east",11.3211364327297,2.484906649788,1.79175946922805
+2015,"no","other","no","no","Manufacturing","Sales_Workers","north_east",11.8787035592238,2.70805020110221,1.94591014905531
+2016,"yes","other","yes","no","Other","Service_Workers","north_east",11.5908870239399,2.484906649788,2.30258509299405
+2017,"yes","other","yes","no","Other","Service_Workers","north_east",11.5708193971391,2.484906649788,2.39789527279837
+2013,"no","other","no","no","Trade","Operatives_and_kindred","north_east",10.1448827250366,2.30258509299405,1.6094379124341
+2016,"no","other","no","no","Trade","Clerical_and_kindred","north_east",10.4122319119733,2.30258509299405,2.07944154167984
+2011,"yes","other","no","no","Other","Service_Workers","north_east",11.0875215942999,2.484906649788,1.38629436111989
+2017,"no","other","no","no","Manufacturing","Managers, Officials_and_Proprietors","north_east",11.7467101184012,2.63905732961526,2.19722457733622
+2012,"yes","other","no","no","Construction","Laborers_and_farmers","nothern_central",11.6566013032698,2.484906649788,1.79175946922805
+2015,"yes","other","no","no","Other","Laborers_and_farmers","south",11.3115970977338,2.484906649788,2.19722457733622
+2018,"yes","other","no","no","Construction","Laborers_and_farmers","north_east",11.8319580830468,2.484906649788,2.484906649788
+2016,"no","other","yes","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","north_east",11.6286273142376,2.39789527279837,2.07944154167984
+2016,"yes","other","no","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.4765978348136,2.484906649788,2.19722457733622
+2015,"yes","other","no","no","Manufacturing","Clerical_and_kindred","nothern_central",10.4858204839433,2.07944154167984,2.484906649788
+2014,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.2349608249658,2.484906649788,1.94591014905531
+2017,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.6492910375099,2.484906649788,2.30258509299405
+2018,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.301675898943,2.484906649788,2.39789527279837
+2012,"no","other","yes","no","Trade","Sales_Workers","north_east",11.0432910475574,2.484906649788,1.79175946922805
+2013,"no","other","yes","no","Trade","Sales_Workers","north_east",11.0198705034963,2.484906649788,1.94591014905531
+2017,"no","other","yes","no","Trade","Sales_Workers","north_east",11.0599938362898,2.484906649788,2.39789527279837
+2011,"yes","other","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","north_east",11.3335493660531,2.484906649788,1.38629436111989
+2012,"yes","other","no","no","Trade","Clerical_and_kindred","north_east",11.2763778542928,2.30258509299405,1.38629436111989
+2013,"yes","other","no","no","Trade","Clerical_and_kindred","north_east",11.084819270951,2.30258509299405,1.6094379124341
+2011,"no","other","no","no","Other","Craftsmen, Foremen_and_kindred","north_east",10.777366693818,2.39789527279837,1.09861228866811
+2012,"yes","other","no","no","Other","Craftsmen, Foremen_and_kindred","north_east",10.1570578788091,2.39789527279837,1.38629436111989
+2012,"no","other","no","no","Other","Sales_Workers","north_east",10.900653138062,2.56494935746154,1.6094379124341
+2016,"no","other","no","no","Other","Professional, Technical_and_kindred","north_east",11.7308429039176,2.56494935746154,2.19722457733622
+2011,"no","other","no","no","Manufacturing","Operatives_and_kindred","north_east",10.6904312679176,2.484906649788,1.09861228866811
+2016,"no","other","yes","no","Manufacturing","Operatives_and_kindred","north_east",10.7340197223202,2.484906649788,2.07944154167984
+2018,"yes","black","no","no","Other","Professional, Technical_and_kindred","north_east",11.1406562746367,2.39789527279837,2.19722457733622
+2018,"no","other","no","no","Construction","Laborers_and_farmers","north_east",11.3872722152669,1.94591014905531,2.63905732961526
+2011,"no","other","no","no","Manufacturing","Operatives_and_kindred","north_east",10.849110459032,2.484906649788,0.693147180559945
+2011,"no","hisp","no","no","Construction","Laborers_and_farmers","north_east",10.8155879170715,2.30258509299405,1.38629436111989
+2016,"no","hisp","no","no","Other","Service_Workers","north_east",11.5108443008497,2.30258509299405,2.19722457733622
+2014,"no","other","yes","no","Manufacturing","Professional, Technical_and_kindred","north_east",11.0882998613551,2.70805020110221,1.6094379124341
+2014,"no","other","no","no","Trade","Clerical_and_kindred","north_east",11.0114059051561,2.484906649788,1.6094379124341
+2012,"yes","black","no","no","Other","Clerical_and_kindred","north_east",11.8481964804141,2.63905732961526,1.6094379124341
+2014,"yes","black","no","no","Other","Clerical_and_kindred","north_east",12.0194504341643,2.63905732961526,1.94591014905531
+2011,"no","other","no","yes","Trade","Service_Workers","nothern_central",10.8133925388674,2.30258509299405,1.38629436111989
+2012,"no","other","no","no","Trade","Operatives_and_kindred","nothern_central",10.5381132730836,2.30258509299405,1.6094379124341
+2017,"no","other","no","no","Business_and_Repair_Service","Operatives_and_kindred","nothern_central",11.501826599804,2.30258509299405,2.30258509299405
+2011,"no","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",10.9086113511152,2.484906649788,1.09861228866811
+2012,"no","other","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",10.8786903818701,2.484906649788,1.38629436111989
+2018,"no","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.3902815594046,2.484906649788,2.30258509299405
+2012,"no","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",10.9865956025849,2.30258509299405,1.38629436111989
+2011,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.0293131765409,2.484906649788,1.38629436111989
+2011,"no","black","no","no","Other","Laborers_and_farmers","nothern_central",11.3915585273023,2.70805020110221,1.09861228866811
+2017,"no","black","yes","no","Other","Clerical_and_kindred","nothern_central",11.0361425884669,2.70805020110221,2.19722457733622
+2017,"no","other","yes","yes","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.3410313133302,2.39789527279837,2.19722457733622
+2013,"no","other","no","no","Manufacturing","Professional, Technical_and_kindred","nothern_central",11.4548039639813,2.77258872223978,1.38629436111989
+2014,"no","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.5127369472019,2.77258872223978,1.6094379124341
+2015,"no","other","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.3309347734343,2.77258872223978,1.79175946922805
+2016,"no","other","yes","no","Other","Craftsmen, Foremen_and_kindred","nothern_central",11.4673592134054,2.77258872223978,1.94591014905531
+2011,"no","other","no","no","Trade","Service_Workers","south",11.5792989889598,2.56494935746154,1.09861228866811
+2016,"no","other","no","no","Trade","Service_Workers","south",10.222459694711,2.56494935746154,2.07944154167984
+2017,"no","other","no","no","Other","Sales_Workers","south",10.9970189553367,2.56494935746154,2.19722457733622
+2011,"no","other","no","no","Manufacturing","Laborers_and_farmers","nothern_central",10.0519075576544,2.39789527279837,1.09861228866811
+2017,"no","other","no","no","Professional_and_Related Service","Service_Workers","nothern_central",11.0535629378412,2.39789527279837,2.19722457733622
+2015,"no","other","no","no","Business_and_Repair_Service","Service_Workers","south",11.4934956221813,2.39789527279837,1.94591014905531
+2012,"yes","other","no","no","Manufacturing","Operatives_and_kindred","south",10.9919148161459,2.484906649788,1.94591014905531
+2015,"yes","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",10.9436407583315,2.484906649788,2.30258509299405
+2011,"yes","other","no","no","Other","Craftsmen, Foremen_and_kindred","south",11.6230397933341,2.484906649788,1.6094379124341
+2012,"no","other","no","no","Other","Service_Workers","nothern_central",11.4156894118618,2.63905732961526,1.09861228866811
+2012,"no","other","yes","no","Construction","Operatives_and_kindred","nothern_central",11.0666383623418,2.484906649788,1.79175946922805
+2015,"yes","other","yes","no","Construction","Professional, Technical_and_kindred","nothern_central",11.1492758257232,2.484906649788,2.19722457733622
+2017,"yes","other","yes","no","Other","Service_Workers","nothern_central",11.3084552270466,2.484906649788,2.39789527279837
+2012,"yes","black","yes","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.4974212940593,2.484906649788,1.94591014905531
+2018,"no","black","no","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.3783435779124,2.484906649788,2.56494935746154
+2012,"yes","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.0666383623418,2.39789527279837,1.6094379124341
+2013,"no","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.2790397981741,2.39789527279837,1.79175946922805
+2014,"no","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.3003935357089,2.39789527279837,1.94591014905531
+2012,"no","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.5221139215124,2.484906649788,1.79175946922805
+2011,"no","other","no","no","Other","Managers, Officials_and_Proprietors","south",10.5835239106467,2.63905732961526,1.09861228866811
+2014,"no","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.6288976175226,2.63905732961526,1.79175946922805
+2016,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.638677640293,2.63905732961526,2.07944154167984
+2018,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.4906307750639,2.484906649788,2.30258509299405
+2012,"no","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.2584976236163,2.484906649788,1.6094379124341
+2015,"no","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.5871029132819,2.484906649788,2.07944154167984
+2016,"no","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.6162048064867,2.484906649788,2.19722457733622
+2017,"no","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.68109400532,2.484906649788,2.30258509299405
+2018,"yes","other","yes","no","Manufacturing","Professional, Technical_and_kindred","nothern_central",11.6177958905535,2.484906649788,2.56494935746154
+2012,"no","other","no","no","Other","Professional, Technical_and_kindred","nothern_central",10.0519075576544,2.30258509299405,2.19722457733622
+2014,"no","other","no","no","Other","Professional, Technical_and_kindred","nothern_central",10.4052030044165,2.30258509299405,2.39789527279837
+2013,"yes","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",10.9637809612771,2.484906649788,1.94591014905531
+2017,"yes","other","no","yes","Manufacturing","Operatives_and_kindred","nothern_central",11.0991586427931,2.484906649788,2.39789527279837
+2011,"no","other","yes","no","Trade","Clerical_and_kindred","nothern_central",11.2994163530366,2.63905732961526,1.38629436111989
+2014,"no","other","yes","no","Manufacturing","Managers, Officials_and_Proprietors","south",11.295229423992,2.63905732961526,1.94591014905531
+2015,"no","other","yes","no","Manufacturing","Clerical_and_kindred","south",11.7891424892135,2.63905732961526,2.07944154167984
+2016,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.4805389374794,2.484906649788,2.07944154167984
+2017,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.4327981203818,2.484906649788,2.19722457733622
+2018,"no","other","yes","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.3103112376285,2.484906649788,2.30258509299405
+2014,"no","other","yes","no","Manufacturing","Sales_Workers","nothern_central",11.5700846065877,2.56494935746154,1.79175946922805
+2012,"no","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.160429491245,2.484906649788,1.09861228866811
+2013,"yes","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.126049601248,2.484906649788,1.38629436111989
+2014,"yes","other","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.4759724346795,2.484906649788,1.6094379124341
+2018,"yes","other","no","no","Other","Service_Workers","nothern_central",11.6059614243309,2.484906649788,2.19722457733622
+2018,"no","other","yes","no","Manufacturing","Managers, Officials_and_Proprietors","nothern_central",11.6176693705631,2.39789527279837,2.19722457733622
+2012,"yes","other","yes","no","Trade","Laborers_and_farmers","nothern_central",11.4974212940593,2.484906649788,1.38629436111989
+2015,"yes","other","yes","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.5412457335552,2.484906649788,1.94591014905531
+2015,"no","other","no","no","Trade","Service_Workers","nothern_central",10.8640408812643,2.39789527279837,2.07944154167984
+2013,"yes","other","yes","no","Other","Craftsmen, Foremen_and_kindred","nothern_central",11.7369708495106,2.484906649788,1.79175946922805
+2016,"yes","other","yes","no","Construction","Craftsmen, Foremen_and_kindred","nothern_central",11.8591509833287,2.484906649788,2.19722457733622
+2013,"no","other","no","no","Trade","Clerical_and_kindred","nothern_central",11.3095907909327,2.484906649788,1.6094379124341
+2015,"no","other","no","no","Manufacturing","Clerical_and_kindred","nothern_central",11.4534044152441,2.484906649788,1.94591014905531
+2018,"no","other","yes","no","Trade","Managers, Officials_and_Proprietors","nothern_central",11.5163492969624,2.484906649788,2.30258509299405
+2011,"no","black","no","no","Other","Clerical_and_kindred","south",10.9052000987143,2.39789527279837,1.38629436111989
+2012,"yes","black","no","no","Other","Operatives_and_kindred","south",10.7852259693099,2.39789527279837,1.6094379124341
+2011,"no","other","no","no","Construction","Craftsmen, Foremen_and_kindred","south",11.0684733963865,1.94591014905531,2.30258509299405
+2013,"no","other","no","no","Construction","Craftsmen, Foremen_and_kindred","south",11.1286556903632,1.94591014905531,2.484906649788
+2012,"no","other","no","no","Other","Professional, Technical_and_kindred","south",11.6371832276029,2.484906649788,1.79175946922805
+2013,"no","other","no","no","Other","Professional, Technical_and_kindred","south",11.4353858885148,2.484906649788,1.94591014905531
+2017,"no","other","no","no","Other","Professional, Technical_and_kindred","south",11.4482171160794,2.484906649788,2.39789527279837
+2018,"no","other","yes","no","Other","Clerical_and_kindred","south",11.4926327536025,2.484906649788,2.484906649788
+2013,"no","other","yes","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","south",10.7624112135088,2.19722457733622,1.6094379124341
+2014,"no","other","yes","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","south",10.6717848762866,2.19722457733622,1.79175946922805
+2015,"no","other","no","no","Construction","Professional, Technical_and_kindred","south",10.7051251704347,2.19722457733622,1.94591014905531
+2018,"no","other","no","no","Construction","Craftsmen, Foremen_and_kindred","south",11.5010818048999,2.19722457733622,2.30258509299405
+2015,"no","other","no","no","Manufacturing","Laborers_and_farmers","south",10.8400896058291,2.39789527279837,1.79175946922805
+2011,"no","other","yes","no","Trade","Craftsmen, Foremen_and_kindred","south",10.8956305629481,2.19722457733622,1.94591014905531
+2018,"no","other","yes","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","south",10.9418596246613,2.19722457733622,2.63905732961526
+2016,"no","other","no","no","Business_and_Repair_Service","Sales_Workers","south",12.1575742837823,2.56494935746154,2.30258509299405
+2017,"no","other","yes","no","Manufacturing","Sales_Workers","south",12.1986471446097,2.56494935746154,2.39789527279837
+2012,"no","other","yes","no","Professional_and_Related Service","Professional, Technical_and_kindred","north_east",11.3543203957311,2.77258872223978,0.693147180559945
+2014,"no","other","yes","no","Professional_and_Related Service","Professional, Technical_and_kindred","north_east",11.5880756081607,2.77258872223978,1.38629436111989
+2012,"no","other","no","no","Other","Service_Workers","south",11.3002532721171,2.30258509299405,1.38629436111989
+2014,"no","other","no","no","Trade","Craftsmen, Foremen_and_kindred","south",10.374972896001,2.30258509299405,1.79175946922805
+2017,"no","other","yes","no","Trade","Sales_Workers","south",11.8092304777811,2.39789527279837,2.19722457733622
+2013,"no","black","no","no","Trade","Craftsmen, Foremen_and_kindred","south",10.9750949699029,2.39789527279837,1.94591014905531
+2011,"no","other","no","yes","Trade","Service_Workers","south",10.9166839180737,2.484906649788,1.09861228866811
+2018,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","south",10.6674754629074,2.484906649788,2.30258509299405
+2011,"yes","other","no","no","Trade","Laborers_and_farmers","south",11.5746049655005,2.484906649788,1.09861228866811
+2016,"yes","other","no","no","Trade","Clerical_and_kindred","south",11.3937941207542,2.484906649788,2.07944154167984
+2011,"no","other","yes","no","Construction","Craftsmen, Foremen_and_kindred","south",11.3113522178864,1.79175946922805,2.30258509299405
+2014,"no","other","yes","no","Trade","Craftsmen, Foremen_and_kindred","south",11.435312943667,1.79175946922805,2.56494935746154
+2015,"no","hisp","yes","no","Trade","Managers, Officials_and_Proprietors","south",10.6936963328142,2.30258509299405,2.19722457733622
+2012,"no","other","yes","no","Construction","Craftsmen, Foremen_and_kindred","south",11.2425289985635,2.484906649788,1.6094379124341
+2015,"no","other","yes","no","Trade","Craftsmen, Foremen_and_kindred","south",11.2575298628744,2.484906649788,2.07944154167984
+2012,"no","other","no","no","Trade","Operatives_and_kindred","south",11.6864542282062,2.484906649788,1.38629436111989
+2016,"no","other","no","no","Manufacturing","Sales_Workers","south",11.0747692791636,2.484906649788,2.07944154167984
+2015,"no","other","yes","no","Professional_and_Related Service","Laborers_and_farmers","nothern_central",10.9698477904226,2.484906649788,2.07944154167984
+2013,"no","other","yes","no","Other","Professional, Technical_and_kindred","south",10.72067150664,2.39789527279837,1.6094379124341
+2016,"no","other","yes","no","Professional_and_Related Service","Professional, Technical_and_kindred","south",10.9479371709344,2.39789527279837,2.07944154167984
+2017,"no","other","no","no","Business_and_Repair_Service","Sales_Workers","south",11.7784587796127,2.39789527279837,2.19722457733622
+2015,"no","other","no","no","Trade","Service_Workers","rural_area",11.2959508466015,2.56494935746154,1.94591014905531
+2013,"no","other","no","no","Business_and_Repair_Service","Professional, Technical_and_kindred","north_east",11.2728669081641,2.484906649788,1.6094379124341
+2016,"no","other","yes","no","Professional_and_Related Service","Clerical_and_kindred","north_east",11.9466225407716,2.484906649788,2.07944154167984
+2013,"yes","other","yes","no","Other","Operatives_and_kindred","north_east",10.8375488484637,2.484906649788,1.79175946922805
+2016,"yes","other","yes","no","Construction","Craftsmen, Foremen_and_kindred","north_east",10.9354802227517,2.484906649788,2.19722457733622
+2013,"yes","other","yes","no","Other","Craftsmen, Foremen_and_kindred","nothern_central",11.8069494598525,2.484906649788,2.07944154167984
+2017,"no","other","yes","no","Other","Operatives_and_kindred","south",11.7139202533631,2.484906649788,2.484906649788
+2012,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.3290026268093,2.484906649788,1.79175946922805
+2013,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",10.7860152748613,2.484906649788,1.94591014905531
+2011,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.4188787067127,2.484906649788,1.79175946922805
+2015,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.2391138185275,2.484906649788,2.30258509299405
+2018,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.2249817582952,2.484906649788,2.56494935746154
+2017,"no","other","yes","no","Other","Service_Workers","nothern_central",11.1686932171934,2.39789527279837,2.19722457733622
+2018,"no","other","yes","no","Other","Service_Workers","nothern_central",10.5757412260068,2.39789527279837,2.30258509299405
+2015,"no","other","no","yes","Trade","Service_Workers","nothern_central",10.1614208609548,2.63905732961526,2.07944154167984
+2016,"no","other","yes","no","Trade","Laborers_and_farmers","nothern_central",10.1439679485036,2.63905732961526,2.19722457733622
+2018,"no","other","yes","no","Trade","Clerical_and_kindred","nothern_central",10.9818071638531,2.63905732961526,2.39789527279837
+2017,"no","other","yes","no","Other","Craftsmen, Foremen_and_kindred","south",12.0503925133534,2.484906649788,2.19722457733622
+2018,"no","other","yes","no","Other","Craftsmen, Foremen_and_kindred","south",12.0349570468011,2.484906649788,2.30258509299405
+2011,"yes","other","no","no","Other","Professional, Technical_and_kindred","nothern_central",11.1530862342381,2.63905732961526,1.09861228866811
+2015,"yes","other","yes","no","Other","Clerical_and_kindred","nothern_central",11.7170621650745,2.63905732961526,1.94591014905531
+2015,"no","other","yes","no","Trade","Craftsmen, Foremen_and_kindred","nothern_central",11.1381312104482,2.484906649788,2.19722457733622
+2015,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",10.5488827922862,2.484906649788,1.94591014905531
+2018,"no","other","yes","no","Business_and_Repair_Service","Laborers_and_farmers","south",10.5179824125529,2.19722457733622,2.484906649788
+2018,"no","other","yes","no","Other","Laborers_and_farmers","south",11.9113430642909,2.484906649788,2.30258509299405
+2012,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","south",10.5533158740022,2.39789527279837,1.6094379124341
+2016,"no","other","yes","no","Trade","Managers, Officials_and_Proprietors","south",11.1501052488946,2.39789527279837,2.19722457733622
+2013,"no","other","yes","no","Other","Craftsmen, Foremen_and_kindred","south",11.4999244164063,2.484906649788,1.79175946922805
+2014,"no","other","yes","no","Other","Craftsmen, Foremen_and_kindred","south",11.4277329782509,2.484906649788,1.94591014905531
+2016,"no","other","yes","no","Other","Craftsmen, Foremen_and_kindred","south",11.4468639713653,2.484906649788,2.19722457733622
+2013,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","rural_area",11.0380509522086,2.39789527279837,1.79175946922805
+2011,"no","hisp","no","no","Other","Farm_Laborers_and_Foreman","rural_area",10.831914936392,2.63905732961526,1.38629436111989
+2013,"yes","hisp","yes","no","Other","Laborers_and_farmers","rural_area",11.0046030389224,2.63905732961526,1.79175946922805
+2018,"no","hisp","no","no","Other","Craftsmen, Foremen_and_kindred","rural_area",11.81953551762,2.63905732961526,2.39789527279837
+2013,"no","other","no","no","Trade","Sales_Workers","rural_area",11.4328827322967,2.484906649788,1.79175946922805
+2013,"no","other","no","yes","Other","Farm_Laborers_and_Foreman","rural_area",11.487318589569,2.63905732961526,1.6094379124341
+2015,"no","other","no","no","Other","Operatives_and_kindred","rural_area",10.586970433832,2.63905732961526,1.94591014905531
+2015,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","rural_area",10.6901938352038,2.30258509299405,1.94591014905531
+2017,"no","other","yes","no","Other","Craftsmen, Foremen_and_kindred","rural_area",10.6770015420893,2.30258509299405,2.19722457733622
+2017,"no","other","yes","no","Trade","Service_Workers","south",11.1463690020964,2.484906649788,2.19722457733622
+2017,"no","other","yes","no","Trade","Managers, Officials_and_Proprietors","south",10.9599104191254,2.484906649788,2.30258509299405
+2012,"no","other","no","no","Professional_and_Related Service","Clerical_and_kindred","south",10.2781810332275,2.484906649788,1.38629436111989
+2014,"no","other","no","no","Business_and_Repair_Service","Professional, Technical_and_kindred","south",10.567058125696,2.484906649788,1.79175946922805
+2016,"no","other","no","no","Professional_and_Related Service","Clerical_and_kindred","south",10.8778496258494,2.484906649788,2.07944154167984
+2012,"no","other","no","no","Trade","Operatives_and_kindred","south",10.4581152061032,2.484906649788,1.79175946922805
+2012,"no","other","no","no","Trade","Craftsmen, Foremen_and_kindred","nothern_central",10.2104515284957,2.484906649788,1.09861228866811
+2014,"no","other","yes","no","Trade","Clerical_and_kindred","south",10.9108924003116,2.484906649788,1.6094379124341
+2011,"no","other","no","no","Professional_and_Related Service","Clerical_and_kindred","nothern_central",10.1090991127076,2.39789527279837,1.09861228866811
+2014,"no","other","yes","no","Trade","Operatives_and_kindred","south",10.6610732492333,2.39789527279837,1.79175946922805
+2018,"no","other","yes","no","Manufacturing","Clerical_and_kindred","south",10.7586636550598,2.39789527279837,2.30258509299405
+2012,"yes","other","no","no","Manufacturing","Laborers_and_farmers","south",10.8843167430479,2.39789527279837,1.38629436111989
+2015,"no","other","no","no","Manufacturing","Laborers_and_farmers","south",11.3366801702488,2.39789527279837,1.94591014905531
+2012,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.242677203311,2.484906649788,1.38629436111989
+2016,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","south",10.6377821946462,2.63905732961526,2.19722457733622
+2011,"no","other","no","no","Other","Craftsmen, Foremen_and_kindred","south",11.1334312740241,2.63905732961526,0.693147180559945
+2017,"no","other","yes","no","Other","Sales_Workers","south",11.3414453270411,2.63905732961526,2.07944154167984
+2011,"yes","hisp","yes","no","Trade","Operatives_and_kindred","south",10.6621260813996,2.39789527279837,1.38629436111989
+2017,"no","hisp","yes","no","Trade","Clerical_and_kindred","south",11.8390834059397,2.39789527279837,2.30258509299405
+2013,"no","hisp","yes","no","Other","Laborers_and_farmers","south",10.5914158885866,2.30258509299405,1.94591014905531
+2014,"no","hisp","yes","no","Other","Craftsmen, Foremen_and_kindred","south",11.3003935357089,2.30258509299405,2.07944154167984
+2011,"no","hisp","yes","no","Other","Operatives_and_kindred","south",10.0519075576544,2.19722457733622,1.6094379124341
+2014,"no","hisp","yes","no","Trade","Operatives_and_kindred","south",10.9144338863889,2.484906649788,1.94591014905531
+2013,"no","hisp","no","no","Other","Operatives_and_kindred","rural_area",11.270306110447,2.484906649788,1.6094379124341
+2013,"no","other","yes","no","Manufacturing","Professional, Technical_and_kindred","south",11.3272339963965,2.70805020110221,1.6094379124341
+2018,"no","other","yes","no","Trade","Managers, Officials_and_Proprietors","south",11.2391839038179,2.70805020110221,2.30258509299405
+2014,"no","hisp","no","no","Manufacturing","Laborers_and_farmers","south",11.385551419772,2.484906649788,1.79175946922805
+2012,"no","black","no","no","Other","Laborers_and_farmers","south",10.0519075576544,2.30258509299405,1.79175946922805
+2011,"no","black","no","no","Trade","Service_Workers","south",10.2314710040114,2.30258509299405,1.38629436111989
+2014,"yes","black","yes","no","Professional_and_Related Service","Service_Workers","south",10.0519075576544,2.30258509299405,1.94591014905531
+2015,"yes","black","yes","no","Professional_and_Related Service","Service_Workers","south",10.6697432237917,2.30258509299405,2.07944154167984
+2017,"no","black","no","no","Business_and_Repair_Service","Clerical_and_kindred","south",10.725596387855,2.484906649788,2.19722457733622
+2013,"no","black","no","no","Trade","Service_Workers","south",10.9164348301843,2.56494935746154,1.94591014905531
+2016,"no","black","yes","no","Other","Professional, Technical_and_kindred","nothern_central",11.2088421579218,2.484906649788,2.07944154167984
+2018,"no","black","yes","no","Other","Professional, Technical_and_kindred","south",11.4518107293176,2.484906649788,2.30258509299405
+2016,"yes","black","no","no","Trade","Laborers_and_farmers","nothern_central",10.89773975088,2.39789527279837,2.39789527279837
+2012,"yes","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.0991742214671,2.39789527279837,1.38629436111989
+2011,"no","other","no","no","Construction","Craftsmen, Foremen_and_kindred","south",10.6859099207317,1.6094379124341,2.07944154167984
+2011,"yes","other","no","no","Manufacturing","Managers, Officials_and_Proprietors","south",11.6481499984225,2.70805020110221,1.09861228866811
+2014,"no","other","yes","no","Manufacturing","Clerical_and_kindred","south",11.3544607765077,2.70805020110221,1.79175946922805
+2011,"no","other","no","no","Other","Professional, Technical_and_kindred","south",11.2484862392588,2.70805020110221,1.09861228866811
+2014,"no","other","no","no","Other","Professional, Technical_and_kindred","south",11.6460424217281,2.70805020110221,1.79175946922805
+2015,"no","other","yes","no","Other","Managers, Officials_and_Proprietors","south",11.6833622602726,2.70805020110221,1.94591014905531
+2016,"yes","black","no","no","Manufacturing","Operatives_and_kindred","nothern_central",10.2787006481881,2.484906649788,2.30258509299405
+2016,"yes","black","no","no","Professional_and_Related Service","Service_Workers","north_east",10.89773975088,2.484906649788,2.19722457733622
+2011,"yes","hisp","yes","no","Manufacturing","Clerical_and_kindred","north_east",10.4990345833108,2.484906649788,1.6094379124341
+2014,"no","hisp","no","no","Business_and_Repair_Service","Service_Workers","north_east",10.5067051021424,2.30258509299405,2.39789527279837
+2017,"no","hisp","yes","no","Manufacturing","Service_Workers","north_east",11.1851569607389,2.30258509299405,2.63905732961526
+2011,"yes","hisp","no","no","Manufacturing","Service_Workers","north_east",10.7685593030509,2.30258509299405,1.38629436111989
+2012,"no","hisp","no","no","Business_and_Repair_Service","Clerical_and_kindred","north_east",10.733744029881,2.30258509299405,1.6094379124341
+2014,"no","hisp","yes","no","Manufacturing","Operatives_and_kindred","north_east",11.3316461248797,2.56494935746154,1.79175946922805
+2015,"no","hisp","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","north_east",10.9902935875246,2.39789527279837,2.07944154167984
+2016,"no","hisp","no","no","Manufacturing","Operatives_and_kindred","north_east",11.3040981949118,2.39789527279837,2.19722457733622
+2018,"yes","black","yes","no","Trade","Craftsmen, Foremen_and_kindred","north_east",11.2574166382,2.07944154167984,2.56494935746154
+2011,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","north_east",11.9230301933753,2.70805020110221,1.09861228866811
+2016,"no","other","yes","no","Other","Professional, Technical_and_kindred","north_east",12.1486295323437,2.70805020110221,2.07944154167984
+2011,"yes","hisp","no","no","Trade","Laborers_and_farmers","nothern_central",11.1686064426925,2.484906649788,1.6094379124341
+2012,"yes","hisp","no","no","Manufacturing","Operatives_and_kindred","nothern_central",11.3946198552958,2.484906649788,1.79175946922805
+2014,"yes","hisp","yes","no","Manufacturing","Laborers_and_farmers","nothern_central",11.705858685044,2.484906649788,2.07944154167984
+2014,"no","other","yes","yes","Manufacturing","Operatives_and_kindred","south",11.2194244955272,2.484906649788,1.79175946922805
+2013,"yes","other","no","no","Construction","Operatives_and_kindred","nothern_central",11.0787109754511,2.484906649788,1.6094379124341
+2017,"yes","other","no","no","Other","Laborers_and_farmers","nothern_central",11.2030947113888,2.484906649788,2.19722457733622
+2018,"yes","other","no","no","Construction","Operatives_and_kindred","nothern_central",11.2181959508691,2.484906649788,2.30258509299405
+2011,"no","black","no","no","Trade","Service_Workers","nothern_central",10.0519075576544,2.39789527279837,1.09861228866811
+2011,"no","other","no","no","Construction","Craftsmen, Foremen_and_kindred","nothern_central",10.8332564445555,2.484906649788,1.79175946922805
+2013,"no","other","no","no","Construction","Craftsmen, Foremen_and_kindred","nothern_central",10.8965287478209,2.484906649788,2.07944154167984
+2016,"no","other","no","no","Construction","Craftsmen, Foremen_and_kindred","nothern_central",10.89773975088,2.484906649788,2.39789527279837
+2012,"yes","other","no","no","Professional_and_Related Service","Professional, Technical_and_kindred","nothern_central",10.8743836976714,2.70805020110221,1.09861228866811
+2018,"yes","other","yes","no","Other","Craftsmen, Foremen_and_kindred","south",11.3916890357084,2.70805020110221,2.19722457733622
+2018,"yes","black","yes","no","Other","Craftsmen, Foremen_and_kindred","south",11.0463457275115,2.484906649788,2.30258509299405
+2013,"yes","hisp","no","no","Other","Laborers_and_farmers","south",11.1239497071955,2.39789527279837,1.38629436111989
+2017,"no","other","no","no","Manufacturing","Operatives_and_kindred","south",10.9355662645997,2.07944154167984,2.56494935746154
+2013,"no","black","no","no","Professional_and_Related Service","Professional, Technical_and_kindred","south",11.2855509758482,2.70805020110221,1.6094379124341
+2016,"yes","black","yes","no","Manufacturing","Laborers_and_farmers","south",11.256649419628,2.484906649788,2.07944154167984
+2014,"yes","black","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.182610592813,2.39789527279837,2.19722457733622
+2016,"yes","black","yes","no","Manufacturing","Clerical_and_kindred","south",11.3930925046532,2.39789527279837,2.39789527279837
+2017,"yes","black","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.6085597740572,2.39789527279837,2.484906649788
+2012,"no","hisp","no","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","south",10.588852530154,2.484906649788,1.09861228866811
+2011,"no","other","no","no","Other","Service_Workers","south",11.2513396374421,2.39789527279837,0.693147180559945
+2011,"no","black","no","no","Other","Service_Workers","south",10.3612743593761,2.56494935746154,0.693147180559945
+2015,"yes","black","no","no","Manufacturing","Sales_Workers","south",10.5975503138241,2.56494935746154,1.79175946922805
+2014,"yes","black","no","no","Other","Service_Workers","nothern_central",11.6681183443759,2.484906649788,2.19722457733622
+2018,"yes","black","yes","no","Other","Service_Workers","nothern_central",11.8147162646035,2.484906649788,2.56494935746154
+2012,"no","hisp","yes","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","rural_area",11.0142023099919,2.39789527279837,1.6094379124341
+2013,"no","hisp","yes","no","Manufacturing","Operatives_and_kindred","rural_area",11.5148129824877,2.39789527279837,1.79175946922805
+2012,"yes","other","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","rural_area",11.4873709110151,2.484906649788,1.6094379124341
+2015,"yes","black","no","no","Manufacturing","Service_Workers","south",11.2849287812367,2.30258509299405,1.94591014905531
+2016,"yes","black","yes","no","Trade","Service_Workers","south",11.2505612405027,2.30258509299405,2.07944154167984
+2017,"yes","black","yes","no","Manufacturing","Operatives_and_kindred","south",11.4482171160794,2.30258509299405,2.19722457733622
+2013,"no","black","no","no","Trade","Clerical_and_kindred","south",10.0983624849642,2.484906649788,1.6094379124341
+2015,"no","black","no","no","Trade","Sales_Workers","south",10.4465996143838,2.484906649788,1.94591014905531
+2014,"yes","black","no","no","Trade","Service_Workers","south",10.5488867256926,2.30258509299405,2.19722457733622
+2016,"no","black","no","no","Trade","Service_Workers","south",10.2787006481881,2.30258509299405,2.39789527279837
+2016,"no","other","yes","no","Business_and_Repair_Service","Sales_Workers","nothern_central",10.0519075576544,2.70805020110221,2.07944154167984
+2017,"no","other","yes","no","Other","Managers, Officials_and_Proprietors","nothern_central",10.745548150949,2.70805020110221,2.19722457733622
+2018,"no","other","yes","no","Other","Laborers_and_farmers","nothern_central",10.8232020167442,2.70805020110221,2.30258509299405
+2014,"yes","other","yes","no","Construction","Laborers_and_farmers","south",10.9543518338007,2.39789527279837,1.6094379124341
+2011,"no","other","no","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","south",10.6820564096813,2.484906649788,1.09861228866811
+2015,"yes","other","yes","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","south",11.1248782311291,2.484906649788,1.94591014905531
+2012,"no","other","yes","no","Other","Craftsmen, Foremen_and_kindred","south",11.4372081061406,2.484906649788,1.6094379124341
+2013,"no","other","yes","no","Business_and_Repair_Service","Laborers_and_farmers","south",11.3014734257927,2.484906649788,1.79175946922805
+2014,"no","other","yes","no","Other","Operatives_and_kindred","south",11.0793080740082,2.484906649788,1.94591014905531
+2016,"no","other","yes","no","Other","Craftsmen, Foremen_and_kindred","south",11.0433569410524,2.484906649788,2.19722457733622
+2017,"no","other","yes","no","Other","Operatives_and_kindred","south",11.0047312094495,2.484906649788,2.30258509299405
+2013,"no","black","yes","no","Construction","Craftsmen, Foremen_and_kindred","south",11.029100519867,2.07944154167984,2.484906649788
+2015,"no","black","yes","no","Construction","Craftsmen, Foremen_and_kindred","south",10.9729634697263,2.07944154167984,2.63905732961526
+2017,"yes","other","no","no","Other","Laborers_and_farmers","nothern_central",11.6847507110578,2.56494935746154,2.19722457733622
+2014,"no","other","no","no","Other","Service_Workers","rural_area",10.939966070779,2.484906649788,1.94591014905531
+2016,"no","other","yes","no","Other","Operatives_and_kindred","nothern_central",11.0909537696529,2.39789527279837,2.07944154167984
+2016,"yes","other","yes","no","Professional_and_Related Service","Professional, Technical_and_kindred","nothern_central",10.9463416818444,2.484906649788,2.07944154167984
+2013,"no","hisp","no","no","Trade","Sales_Workers","south",10.7423251542182,2.56494935746154,1.94591014905531
+2016,"no","hisp","yes","no","Trade","Sales_Workers","south",10.7306858343986,2.56494935746154,2.30258509299405
+2017,"yes","hisp","yes","no","Trade","Laborers_and_farmers","south",10.7196679623346,2.56494935746154,2.39789527279837
+2012,"no","hisp","no","no","Trade","Sales_Workers","south",10.854986342235,2.56494935746154,1.38629436111989
+2018,"yes","hisp","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","south",11.9820544618366,2.484906649788,2.484906649788
+2014,"no","hisp","no","no","Trade","Clerical_and_kindred","south",10.9477737067892,2.484906649788,2.19722457733622
+2011,"no","hisp","no","no","Trade","Service_Workers","south",10.4388721214228,2.39789527279837,1.09861228866811
+2013,"no","hisp","yes","no","Trade","Laborers_and_farmers","south",10.8808549452182,2.484906649788,1.6094379124341
+2011,"no","hisp","no","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","south",10.5047225485612,2.484906649788,1.6094379124341
+2012,"yes","hisp","no","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","south",10.5811306637476,2.484906649788,1.79175946922805
+2016,"no","hisp","no","no","Business_and_Repair_Service","Craftsmen, Foremen_and_kindred","south",10.5300151146436,2.484906649788,2.30258509299405
+2017,"no","black","no","no","Manufacturing","Operatives_and_kindred","south",11.6449273760339,2.39789527279837,2.30258509299405
+2011,"yes","black","no","no","Other","Laborers_and_farmers","south",11.2698430745834,2.63905732961526,1.09861228866811
+2013,"yes","black","no","no","Other","Craftsmen, Foremen_and_kindred","south",11.5261402636257,2.63905732961526,1.6094379124341
+2014,"yes","black","no","no","Other","Craftsmen, Foremen_and_kindred","south",11.6681183443759,2.63905732961526,1.79175946922805
+2017,"yes","black","no","no","Other","Craftsmen, Foremen_and_kindred","south",11.8390834059397,2.63905732961526,2.19722457733622
+2016,"no","black","no","no","Professional_and_Related Service","Clerical_and_kindred","south",11.1773464293262,2.484906649788,2.30258509299405
+2018,"yes","other","no","no","Other","Service_Workers","south",12.0592891446081,2.70805020110221,2.30258509299405
+2012,"no","other","yes","no","Trade","Operatives_and_kindred","south",10.8608290527598,2.484906649788,1.79175946922805
+2015,"no","other","yes","no","Trade","Operatives_and_kindred","south",10.6289211227662,2.484906649788,2.19722457733622
+2011,"no","other","yes","no","Trade","Operatives_and_kindred","south",10.7620991703236,2.39789527279837,1.38629436111989
+2013,"no","other","yes","no","Trade","Operatives_and_kindred","south",10.7422387079549,2.39789527279837,1.79175946922805
+2011,"no","black","no","no","Trade","Service_Workers","north_east",10.547323945926,2.39789527279837,0.693147180559945
+2012,"no","black","no","no","Trade","Service_Workers","north_east",10.3538928836091,2.39789527279837,1.09861228866811
+2017,"yes","black","no","no","Other","Service_Workers","north_east",11.403765406851,2.39789527279837,2.07944154167984
+2018,"yes","black","no","no","Other","Service_Workers","north_east",11.5318534942307,2.39789527279837,2.19722457733622
+2012,"no","hisp","no","no","Trade","Managers, Officials_and_Proprietors","north_east",10.4548366942827,2.39789527279837,1.09861228866811
+2016,"no","black","no","no","Professional_and_Related Service","Managers, Officials_and_Proprietors","north_east",11.136150869628,2.39789527279837,2.07944154167984
+2018,"no","black","no","no","Business_and_Repair_Service","Professional, Technical_and_kindred","north_east",11.3777028144035,2.39789527279837,2.30258509299405
+2016,"no","black","no","no","Construction","Laborers_and_farmers","north_east",11.6509909256555,2.484906649788,2.30258509299405
+2013,"no","black","no","no","Manufacturing","Professional, Technical_and_kindred","north_east",11.8261001957441,2.70805020110221,1.6094379124341
+2014,"no","black","yes","no","Manufacturing","Professional, Technical_and_kindred","north_east",11.8272117607442,2.70805020110221,1.79175946922805
+2017,"no","black","yes","no","Manufacturing","Professional, Technical_and_kindred","north_east",12.0054559486101,2.70805020110221,2.19722457733622
+2018,"no","black","yes","no","Trade","Professional, Technical_and_kindred","north_east",12.2119285661099,2.70805020110221,2.30258509299405
+2011,"yes","hisp","no","no","Manufacturing","Operatives_and_kindred","north_east",11.4929867024081,2.484906649788,1.38629436111989
+2018,"yes","hisp","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.7359488490646,2.484906649788,2.39789527279837
+2013,"no","other","no","no","Trade","Service_Workers","south",10.3538065162779,2.63905732961526,1.79175946922805
+2014,"no","other","no","no","Trade","Service_Workers","south",11.8757577038026,2.63905732961526,1.94591014905531
+2016,"no","other","yes","no","Professional_and_Related Service","Professional, Technical_and_kindred","north_east",11.3584121694058,2.70805020110221,2.07944154167984
+2015,"yes","other","no","no","Manufacturing","Clerical_and_kindred","north_east",11.4806734141886,2.70805020110221,1.94591014905531
+2018,"no","other","yes","no","Manufacturing","Managers, Officials_and_Proprietors","north_east",11.5029775481141,2.70805020110221,2.30258509299405
+2011,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.532207368478,2.484906649788,1.79175946922805
+2014,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","nothern_central",11.9230106175516,2.484906649788,2.19722457733622
+2018,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.0769082584652,2.484906649788,2.56494935746154
+2015,"no","hisp","no","no","Trade","Service_Workers","south",11.4176152751659,2.484906649788,1.94591014905531
+2017,"no","hisp","yes","no","Business_and_Repair_Service","Professional, Technical_and_kindred","south",12.3805842841525,2.56494935746154,2.07944154167984
+2015,"no","black","yes","no","Trade","Managers, Officials_and_Proprietors","south",10.3832638978526,2.484906649788,2.30258509299405
+2013,"no","other","no","no","Other","Professional, Technical_and_kindred","nothern_central",11.4841760321009,2.70805020110221,1.38629436111989
+2015,"no","other","yes","no","Other","Professional, Technical_and_kindred","nothern_central",11.7683555124598,2.70805020110221,1.79175946922805
+2012,"no","other","no","no","Business_and_Repair_Service","Sales_Workers","south",10.5734676874864,2.484906649788,1.79175946922805
+2016,"no","other","no","no","Trade","Managers, Officials_and_Proprietors","south",11.1424558100093,2.56494935746154,1.94591014905531
+2011,"yes","other","no","no","Other","Professional, Technical_and_kindred","south",11.0875215942999,2.70805020110221,1.09861228866811
+2018,"yes","other","yes","no","Other","Professional, Technical_and_kindred","south",11.5621588642298,2.70805020110221,2.30258509299405
+2011,"no","other","no","no","Manufacturing","Professional, Technical_and_kindred","nothern_central",11.702686281724,2.70805020110221,1.09861228866811
+2013,"yes","hisp","yes","no","Other","Operatives_and_kindred","south",11.6632639734111,2.39789527279837,1.79175946922805
+2016,"yes","hisp","yes","no","Other","Operatives_and_kindred","south",11.3977903330205,2.39789527279837,2.19722457733622
+2018,"yes","hisp","yes","no","Other","Operatives_and_kindred","south",11.6749543444131,2.39789527279837,2.39789527279837
+2014,"no","hisp","yes","no","Trade","Service_Workers","south",10.9026505236426,2.484906649788,2.07944154167984
+2012,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.0411540340835,2.30258509299405,1.94591014905531
+2018,"no","other","no","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.3182793518791,2.30258509299405,2.56494935746154
+2012,"no","other","yes","no","Manufacturing","Sales_Workers","south",11.2742777173544,2.63905732961526,1.38629436111989
+2015,"no","hisp","yes","no","Other","Clerical_and_kindred","north_east",11.1397467949437,2.39789527279837,1.94591014905531
+2016,"no","hisp","yes","no","Other","Laborers_and_farmers","north_east",11.5557956644858,2.39789527279837,2.07944154167984
+2018,"no","hisp","yes","no","Trade","Service_Workers","north_east",10.4069238422953,2.39789527279837,2.30258509299405
+2012,"no","hisp","no","no","Trade","Craftsmen, Foremen_and_kindred","north_east",10.7816194073095,2.07944154167984,1.79175946922805
+2015,"no","hisp","no","no","Trade","Laborers_and_farmers","north_east",10.5175690687935,2.07944154167984,2.19722457733622
+2017,"no","hisp","no","no","Trade","Laborers_and_farmers","north_east",11.7407185106142,2.07944154167984,2.39789527279837
+2016,"yes","black","yes","no","Trade","Clerical_and_kindred","nothern_central",11.7871348368018,2.56494935746154,2.07944154167984
+2017,"yes","black","yes","no","Trade","Laborers_and_farmers","nothern_central",11.9145909636965,2.56494935746154,2.19722457733622
+2012,"no","other","no","no","Other","Service_Workers","south",10.8215159737533,2.63905732961526,1.38629436111989
+2013,"no","other","no","no","Business_and_Repair_Service","Clerical_and_kindred","south",11.0046030389224,2.63905732961526,1.6094379124341
+2012,"no","other","no","no","Trade","Service_Workers","south",10.9206155254685,2.56494935746154,1.38629436111989
+2013,"no","hisp","no","no","Other","Farm_Laborers_and_Foreman","rural_area",10.5314792216591,2.39789527279837,1.94591014905531
+2016,"no","hisp","no","no","Other","Farm_Laborers_and_Foreman","rural_area",10.6142538508184,2.39789527279837,2.30258509299405
+2017,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",10.5259399677805,2.39789527279837,2.30258509299405
+2018,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",10.4962993480714,2.39789527279837,2.39789527279837
+2013,"no","other","yes","no","Professional_and_Related Service","Professional, Technical_and_kindred","nothern_central",10.7103635615494,2.19722457733622,2.19722457733622
+2014,"yes","other","yes","no","Professional_and_Related Service","Professional, Technical_and_kindred","nothern_central",10.8079170168801,2.19722457733622,2.30258509299405
+2015,"yes","other","yes","no","Professional_and_Related Service","Service_Workers","nothern_central",10.809505095444,2.19722457733622,2.39789527279837
+2014,"no","black","yes","no","Trade","Operatives_and_kindred","south",10.0519075576544,2.39789527279837,1.94591014905531
+2011,"no","other","no","no","Trade","Service_Workers","nothern_central",10.4126166379945,2.484906649788,1.38629436111989
+2012,"no","other","no","no","Trade","Service_Workers","nothern_central",11.123208747424,2.484906649788,1.6094379124341
+2011,"no","other","no","no","Professional_and_Related Service","Clerical_and_kindred","nothern_central",11.1967356816867,2.484906649788,1.79175946922805
+2014,"no","other","no","no","Manufacturing","Clerical_and_kindred","south",10.8185337102491,2.484906649788,1.79175946922805
+2018,"no","other","yes","no","Manufacturing","Clerical_and_kindred","south",11.0922194520707,2.484906649788,2.30258509299405
+2012,"no","other","yes","no","Other","Farm_Laborers_and_Foreman","south",10.9538059038939,2.30258509299405,1.38629436111989
+2015,"no","other","yes","yes","Manufacturing","Clerical_and_kindred","nothern_central",11.275878963987,2.30258509299405,1.94591014905531
+2016,"no","other","yes","no","Manufacturing","Laborers_and_farmers","nothern_central",11.2116242718788,2.30258509299405,2.07944154167984
+2017,"no","other","yes","no","Manufacturing","Craftsmen, Foremen_and_kindred","nothern_central",11.3445799467656,2.30258509299405,2.19722457733622
+2014,"no","other","no","no","Trade","Sales_Workers","south",10.7126070192235,2.56494935746154,2.07944154167984
+2015,"no","other","no","no","Manufacturing","Sales_Workers","south",10.7844714699531,2.56494935746154,2.19722457733622
+2018,"no","other","no","no","Trade","Clerical_and_kindred","south",10.8387062155458,2.56494935746154,2.484906649788
+2017,"no","other","no","no","Manufacturing","Operatives_and_kindred","north_east",10.0519075576544,2.484906649788,2.39789527279837
+2018,"no","other","no","no","Other","Operatives_and_kindred","north_east",11.4926327536025,2.484906649788,2.484906649788
+2012,"no","other","yes","no","Professional_and_Related Service","Professional, Technical_and_kindred","south",10.5715609978877,2.77258872223978,1.09861228866811
+2017,"no","other","yes","no","Other","Professional, Technical_and_kindred","south",11.015759455768,2.77258872223978,2.07944154167984
+2012,"no","other","no","no","Manufacturing","Operatives_and_kindred","south",11.0180038657431,2.484906649788,1.6094379124341
+2013,"no","other","no","no","Other","Operatives_and_kindred","south",11.1113163629059,2.484906649788,1.79175946922805
+2015,"no","other","yes","no","Trade","Clerical_and_kindred","south",11.2729089880896,2.484906649788,2.07944154167984
+2011,"no","other","no","no","Other","Laborers_and_farmers","nothern_central",10.0519075576544,2.484906649788,1.79175946922805
+2012,"no","hisp","no","no","Trade","Service_Workers","north_east",10.7425963308748,2.30258509299405,1.6094379124341
+2013,"yes","hisp","no","no","Trade","Service_Workers","north_east",11.147703816063,2.56494935746154,1.38629436111989
+2014,"yes","hisp","yes","no","Trade","Service_Workers","north_east",11.3003935357089,2.56494935746154,1.6094379124341
+2015,"yes","hisp","yes","no","Trade","Service_Workers","north_east",11.5074716197565,2.56494935746154,1.79175946922805
+2018,"yes","hisp","yes","no","Other","Craftsmen, Foremen_and_kindred","south",11.6749543444131,2.484906649788,2.30258509299405
+2014,"no","other","no","no","Professional_and_Related Service","Clerical_and_kindred","south",10.6391368354444,2.63905732961526,1.6094379124341
+2015,"no","other","no","no","Other","Managers, Officials_and_Proprietors","south",10.6060101462405,2.63905732961526,1.79175946922805
+2012,"no","other","no","no","Other","Professional, Technical_and_kindred","south",11.0666383623418,2.70805020110221,1.38629436111989
+2018,"yes","other","no","no","Other","Service_Workers","south",11.4315557438704,2.70805020110221,2.30258509299405
+2012,"no","other","no","no","Professional_and_Related Service","Professional, Technical_and_kindred","south",11.3945113427206,2.63905732961526,1.38629436111989
+2013,"no","other","no","no","Professional_and_Related Service","Professional, Technical_and_kindred","south",11.1538414787608,2.63905732961526,1.6094379124341
+2016,"no","other","yes","no","Other","Laborers_and_farmers","south",10.9490330452675,2.63905732961526,2.07944154167984
+2017,"no","other","yes","no","Professional_and_Related Service","Professional, Technical_and_kindred","south",11.4291688944375,2.63905732961526,2.19722457733622
+2017,"yes","other","yes","no","Manufacturing","Operatives_and_kindred","north_east",11.5708193971391,2.484906649788,2.39789527279837

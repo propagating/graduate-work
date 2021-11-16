@@ -1,0 +1,189 @@
+---
+title: "Problem Set 4"
+author: "Ryan Richardson"
+subtitle: BUS 696 Problem Set Template
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+---
+
+```{r setup, include=FALSE}
+
+# Please leave this code chunk as is. It makes some slight formatting changes to alter the output to be more aesthetically pleasing. 
+
+library(knitr)
+
+
+# Change the number in set seed to your own favorite number
+set.seed(1818)
+options(width=70)
+options(scipen=99)
+
+
+# this sets text outputted in code chunks to small
+opts_chunk$set(tidy.opts=list(width.wrap=50),tidy=TRUE, size = "vsmall")  
+opts_chunk$set(message = FALSE,                                          
+               warning = FALSE,
+               # "caching" stores objects in code chunks and only rewrites if you change things
+               cache = TRUE,                               
+               # automatically downloads dependency files
+               autodep = TRUE,
+               # 
+               cache.comments = FALSE,
+               # 
+               collapse = TRUE,
+               # change fig.width and fig.height to change the code height and width by default
+               fig.width = 5.5,  
+               fig.height = 4.5,
+               fig.align='center')
+
+
+```
+
+```{r setup-2a}
+
+# Always print this out before your assignment
+sessionInfo()
+
+
+```
+
+```{r setup-2b}
+getwd()
+```
+
+<!-- ### start answering your problem set here -->
+<!-- You may export your homework in either html or pdf, with the former usually being easier. 
+     To export or compile your Rmd file: click above on 'Knit' then 'Knit to HTML' -->
+<!-- Be sure to submit both your .Rmd file and the compiled .html or .pdf file for full credit -->
+
+
+```{r setup-3}
+
+# load all your libraries in this chunk 
+library('tidyverse')
+library('here')
+library('forcats')
+library('rsample')
+library('plotROC')
+library('glmnet')
+library('glmnetUtils')
+library('ggridges')
+library('randomForest')
+
+# note, do not run install.packages() inside a code chunk. install them in the console outside of a code chunk. 
+
+```
+
+
+
+## Question 1
+
+1a) Text response to part a. 
+
+```{r question-1a}
+options(scipen = 50)
+set.seed(1861)
+movies <- read.csv(here::here("datasets", "IMDB_movies.csv"))
+movies_clean <- movies %>%
+    # filter out some movies with missing values or
+    # outliers
+filter(budget < 4e+08, content_rating != "", content_rating !=
+    "Not Rated", plot_keywords != "") %>%
+    # clean genre and plot
+mutate(genre_main = unlist(map(strsplit(as.character(.$genres),
+    "\\|"), 1)), plot_main = unlist(map(strsplit(as.character(.$plot_keywords),
+    "\\|"), 1)), grossM = gross/1e+06, budgetM = budget/1e+06) %>%
+    mutate(genre_main = fct_lump(genre_main, 7), plot_first = fct_lump(plot_main,
+        20), content_rating = fct_lump(content_rating, 4), country = fct_lump(country,
+        8), language = fct_lump(language, 4), cast_total_facebook_likes000s = cast_total_facebook_likes/1000) %>%
+    drop_na()
+
+top_director <- movies_clean %>%
+    group_by(director_name) %>%
+    summarize(num_films = n()) %>%
+    top_frac(0.1) %>%
+    mutate(top_director = 1) %>%
+    select(-num_films)
+
+movies_clean <- movies_clean %>%
+    left_join(top_director, by = "director_name") %>%
+    mutate(top_director = replace_na(top_director, 0)) %>%
+    select(-c(director_name, actor_2_name, gross, genres, actor_1_name,
+        movie_title, actor_3_name, plot_keywords, movie_imdb_link,
+        budget, color, aspect_ratio, plot_main, actor_3_facebook_likes,
+        actor_2_facebook_likes, color, num_critic_for_reviews,
+        num_voted_users, num_user_for_reviews, actor_2_facebook_likes))
+
+sapply(movies_clean %>%
+    select_if(is.factor), table)
+
+
+movies_split <- initial_split(movies_clean, prop = 0.75)
+
+movies_train <- training(movies_split)
+movies_test <- testing(movies_split)
+
+```
+
+
+
+1b) The keywords battle, friend, and college are the plot keywords with teh most blockbusters, with beach , alien, and actor having small numbers close to being a blockbuster.
+
+```{r question-1b}
+
+ggplot(movies_train, aes(x=grossM,y=plot_first)) + geom_density_ridges()
+
+```
+
+
+1c) Text response to part c. 
+
+```{r question-1c}
+
+```
+
+
+1d) MTRY is used to identify how many splits should be created at each level of the forest dependent, or, in essence, how many variables should be chosen at each level of the forest for that decision. 
+
+
+1e) If you set mtry = P then you will have only 1 forest used for tuning and will get the same results each time since the subset of variables ued for each iteration will always be the same, P.
+
+
+
+1f) NTREE is how many different trees to try for a random forest. A lrager number of trees will generally allow the model to converge to a proper solution, while a lower number of trees may have a gerater error and not properly converge. However,a larger number of trees may increaes variance without increasing fitness. 
+
+1g) The effects of MTRY on model performance are not consistent and can vary wildly depending on the model. Generally, having a lower number of variables for each decision at each level of the forest will allow for more granular control over the predictions. While this may increase the bias and the number of trees needed, it should allow for decent convergence over time. Conversely, a large MTRY may not need as many trees but the variance induced by having so many vaariables at each level of the forest could lead to weird predictions or poor convergence. However, there is some literature that suggests no difference between high and low values for MTRY, so it's best to test which value works best for the model.
+
+1h) It depends on the model. If we are estimating grossM by plot_first, cast_total_facebook_likes, and top_director then MTRY should probably be 2, as root(3) is closer to 2 than it is to 1. If we are estimating on additional variables, including the factors, then we should be using root(62-6) (due to base levels for the factors and our output grossM), which means root(56) which is approximately 7.483, so we should use 7 for mtry.
+
+1i) Hyperparameterse are values used to change how quickly our model 'learns' or changes across each iteration. These are not directly used as an outcome or a predictor, but instead used at a high level to either change how predicotrs are chosen, what weights predictors are given, and similar tweaks that modify the end effect on our output variable for that generation. Hyper parameters can be constant through each iteration, or can be modified throughout the learning process. the hyperparameters in our random forest model are MTRY and NTREE 
+
+1j) Text response to part j.
+```{r question1-j}
+rf_fit_ryan_richardson = randomForest(grossM ~ ., data=movies_train, mtry=7,ntree=200, importance=TRUE)
+rf_fit_ryan_richardson$importance
+```
+
+1k) MSE decreases exponentially as our number of trees increases. Based on this information we should use around 75-100 trees, as that more than that does not significantly reduce our prediction error.
+```{r question1-k}
+plot(rf_fit_ryan_richardson)
+```
+
+1l) In Bag predictions have an MSE of 386.499, Out of Bag have an MSE of 2023.174, and Test Preidctions have an MSE of 2110.787. What this tells me is that the model is likely not overfit as the OOB and test MSE are fairly close in magnitude, and the RMSE is even closer. As expected, the in bag error is very much smaller, indicating a high bias, which is expected for a random forest. Overall, I would say that the RMSE and MSE are fairly close to the values we see in our cross validated models, and as such a random forest should be fine for a regression problem such as identifying gross sales for a movie. 
+```{r question1-l}
+in_bag = predict(rf_fit_ryan_richardson, movies_train, type="response")
+out_of_bag = predict(rf_fit_ryan_richardson, type="response")
+test_predictions = predict(rf_fit_ryan_richardson, movies_test, type="response")
+
+print("IB")
+mean((movies_train$grossM - in_bag)^2)
+sqrt(mean((movies_train$grossM - in_bag)^2))
+print("OOB")
+mean((movies_train$grossM - out_of_bag)^2)
+sqrt(mean((movies_train$grossM - out_of_bag)^2))
+print("Test")
+mean((movies_test$grossM - test_predictions)^2)
+sqrt(mean((movies_test$grossM - test_predictions)^2))
+```
