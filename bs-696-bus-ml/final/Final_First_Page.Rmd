@@ -1,0 +1,377 @@
+---
+title: "Final Paper"
+author: "Lauren Burke, Norman Gensinger, Ryan Richardson"
+subtitle: BUS 696 Problem Set Template
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+---
+
+```{r setup, include=FALSE}
+
+# Please leave this code chunk as is. It makes some slight formatting changes to alter the output to be more aesthetically pleasing. 
+
+library(knitr)
+
+
+# Change the number in set seed to your own favorite number
+set.seed(1818)
+options(width=70)
+options(scipen=99)
+
+
+# this sets text outputted in code chunks to small
+opts_chunk$set(tidy.opts=list(width.wrap=50),tidy=TRUE, size = "vsmall")  
+opts_chunk$set(message = FALSE,                                          
+               warning = FALSE,
+               # "caching" stores objects in code chunks and only rewrites if you change things
+               cache = TRUE,                               
+               # automatically downloads dependency files
+               autodep = TRUE,
+               # 
+               cache.comments = FALSE,
+               # 
+               collapse = TRUE,
+               # change fig.width and fig.height to change the code height and width by default
+               fig.width = 5.5,  
+               fig.height = 4.5,
+               fig.align='center')
+
+
+```
+
+```{r setup-2a}
+
+# Always print this out before your assignment
+sessionInfo()
+
+
+```
+
+```{r setup-2b}
+getwd()
+```
+
+<!-- ### start answering your problem set here -->
+<!-- You may export your homework in either html or pdf, with the former usually being easier. 
+     To export or compile your Rmd file: click above on 'Knit' then 'Knit to HTML' -->
+<!-- Be sure to submit both your .Rmd file and the compiled .html or .pdf file for full credit -->
+
+
+```{r setup-3}
+
+# load all your libraries in this chunk 
+library('here')
+library('forcats')
+library('rsample')
+library('plotROC')
+library('glmnet')
+library('glmnetUtils')
+library('ggridges')
+library('randomForest')
+library('tidyverse')
+library('magrittr')
+library('splitstackshape')
+library('lmerTest')
+library('lme4')
+library('corrplot')
+library('RColorBrewer')
+library('Hmisc')
+library('PerformanceAnalytics')
+library('ggstatsplot')
+library("choroplethr")
+library("choroplethrMaps")
+library("usdata")
+library("ggmap")
+library("stats")
+library("forcats")
+library("MASS")
+# note, do not run install.packages() inside a code chunk. install them in the console outside of a code chunk. 
+
+```
+
+
+
+# Pre Processing Data
+
+
+To begin, we read in our two data sets: the first that contains the apartments for rent, and the second that lists rent control by state as of 2019. We then replaced NULL values in the apartment data with NAs to allow for easier processing. 
+
+The first large cleanup item was separating the pet and amenity data from a single column in the original CSV format to a wide format of 0/1 values for each unique value.  
+
+We then added a new column for the total number of amenities. We excluded amenities_null from this sum. 
+
+We then converted the pet and amenity columns we created to factors, as well as converting a subset of other columns to factors as well. Next was converting bathrooms, bedrooms, longitude and latitude to numeric values. We did not include Bathrooms as factors due to the potential from 1/2 and 1/4 values as a possibility, nor did we include Bedrooms as factors to minimize the number of factors in our data set. 
+
+Next, we merged in the rent control data by state. 77 listings in our rental data set did not have state values. Since we are going to be looking at rent control by state, we have excluded those missing state values from our data set.  
+
+We then removed columns that are not strongly tied to our analysis. We are not going to pursue NLP analysis, so the title, body, price display, and long form address have been dropped. Currency and fee are dropped as all listings are identical with USD currency and no fee. Amenities_null is dropped, as in cases where amenities_null = 0, amenities_total is also 0, so the data is captured twice. ID is dropped because it has no relevance. Time is also dropped as we are looking at a snapshot of the data, not a time series or on the effects of posting time against price. 
+
+Next, we looked at the columns to judge relevance to our analyses. A few of the columns have less than five entries, so we dropped home, short_term, and price_types. Finally, we dropped the listings with NAs for bathrooms and bedrooms, as these do not meaningfully add to our data. They could be studios, or shared rooms in a house, we have no way of knowing.  
+
+
+```{r preprocessing}
+options(scipen = 50)
+set.seed(1861)
+
+apartment_raw <- read.csv(here("datasets", "apartments_for_rent_classified_10k.csv"),sep=";", header=TRUE)
+state_rent_control <- read.csv(here("datasets", "state_rent_control.csv"))
+
+apartment_raw = apartment_raw %>% replace(.=="NULL", NA)
+
+apartment_raw = apartment_raw %>% 
+  mutate(amenities = strsplit(amenities, ",")) %>% 
+  unnest(amenities) %>% 
+  mutate(value = 1) %>% 
+  pivot_wider(names_from = amenities, names_prefix = 'amenities_', values_fill = 0) %>% 
+  mutate(pets_allowed = strsplit(pets_allowed, ",")) %>% 
+  unnest(pets_allowed) %>% 
+  mutate(value = 1) %>% 
+  pivot_wider(names_from = pets_allowed, names_prefix = 'allowedPet_', values_fill = 0)
+
+apartment_raw = apartment_raw %>% mutate(amenities_total = rowSums(apartment_raw[,22:48]))
+apartment_raw = apartment_raw %>% mutate_at(c(21:52), as.factor)
+apartment_raw = apartment_raw %>% mutate_at(c("category", "state", "cityname", "source", "price_type", "has_photo", "fee", "currency"), as.factor)
+apartment_raw = apartment_raw %>% mutate_at(c("bathrooms", "bedrooms", "latitude", "longitude"), as.numeric)
+
+apartment_merge = merge(apartment_raw, state_rent_control, by.x="state", by.y="state")
+apartment_merge = apartment_merge %>% mutate_at(c(54:55), as.factor)
+apartment_clean = apartment_merge %>% select(-c("id", "title", "body", "time", "currency", "fee", "price_display", "address", "amenities_null"))
+
+apartment_clean = apartment_clean %>% 
+  filter(category == "housing/rent/apartment") %>% 
+  filter(price_type == "Monthly") %>% 
+  filter(bathrooms != "NA") %>%  
+  filter(bedrooms != "NA")
+
+apartment_clean = apartment_clean %>% select(-c("category", "price_type"))
+
+summary(apartment_clean)
+
+```
+
+# Visualisations
+
+## Cross Correlation
+
+OOur first graph is to visualize the cross correlation between our non-factor variables to limit or identify whether there is a significant relationship between our quantitative predictors. In this we see that that Bathrooms, Bedrooms, Price, Square Footage, and Total Amenities all share a very similar distribution, slightly skewed with a long tail, which indicates that all of our predictors are likely correlated and should be included in our analysis. 
+
+```{r corrPlot, fig.width=14, fig.height=14}
+
+
+
+chart.Correlation(apartment_clean[, c("price","bathrooms","bedrooms","square_feet","amenities_total")], histogram=TRUE, pch=19)
+
+```
+## Cross Correlation Non-Zero Amenities
+
+We also extend this graph to look at the relationship as we remove listings that do not include amenities. We see some of these relationships reduce their total effect size while remaining statistically significant. 
+
+```{r corrPlotNonZero, fig.width=14, fig.height=14}
+
+
+apartment_nonZero = apartment_clean %>% filter(amenities_total != 0)
+
+chart.Correlation(apartment_nonZero[, c("price","bathrooms","bedrooms","square_feet","amenities_total")], histogram=TRUE, pch=19)
+```
+
+## Amenit Distribution by State
+
+Plotting the average rental price over the total number of amenities shows a slightly negative correlation between the two variables, which is also reflected in the correlation coefficient of ~ -0.1 reducing to -0.06 when we remove listings that have 0 amenities listed. 
+
+For most states with sufficient data points, this observation seems contrary to the expectation that more amenities would lead to a higher listing price. We will need to further analyze why an increase in total amenities generally results in a decrease in rental price within the underlying data set. 
+
+One potential explanation for the decrease is that some amenities (such as AC, Internet Access, Dishwasher, etc) are expected inclusions for many seeking to rent and do not need to be individually listed, or that the author of the post didn’t list them in the proper fashion. It may cause a negative reaction in an individual when they see basic amenities listed as a selling point, though it’s not entirely clear as to why this relationship is negative without further analysis. This is partially refuted by the effect of removing listings that have 0 amenities listed. 
+
+
+```{r amenitiesByState, fig.width=14, fig.height=14}
+
+ggplot(data = apartment_clean %>% arrange(desc(state)), aes(x = amenities_total, y = price)) + 
+  geom_bar(stat = "summary", fun = "mean", color = "steelblue") + 
+  facet_wrap(~ state)
+
+```
+
+```{r nonZeroAmenities, fig.width=14, fig.height=14}
+
+
+ggplot(data = apartment_clean %>% filter(amenities_total != 0) %>% arrange(desc(state)), aes(x = amenities_total, y = price)) + 
+  geom_bar(stat = "summary", fun = "mean", color = "steelblue") + 
+  facet_wrap(~ state)
+
+```
+
+## Prices by State
+
+Looking across the entire continental US we can get an idea of where apartment prices are highest and get a sense of how location affects prices. We can then use this data to look at the potential effects of rent control on the total prices and their distributions. Based on the rent control by state, we can already see that California, New Jersey, and New York have higher prices despite having rent control implementations across various cities and locations. This could suggest that rent control itself is an effect of high prices, rather than a cause of said high prices. Visually, there appears to be correlation between rent control implementation and price at the very least which we will try to explore in our analysis. 
+
+```{r stateChoropleth, fig.width=14, fig.height=14}
+
+
+register_google(key = "AIzaSyC8eFoti2mPoYz918n3sJcWoWkIn6K6nnw")
+choro = apartment_clean %>% group_by(state) %>% summarise_at(vars(price), list(value=mean))
+names(choro)[1] = 'region'
+choro = choro %>% mutate(region = tolower(abbr2state(region)))
+
+data(continental_us_states)
+
+state_choropleth(df=choro, title="Average Prices by State", legend ="Price")
+
+```
+
+```{r prohibitRentControlChoropleth, fig.width=14, fig.height=14}
+
+
+register_google(key = "AIzaSyC8eFoti2mPoYz918n3sJcWoWkIn6K6nnw")
+choro_rent = state_rent_control %>% dplyr::select(c(state, prohibit_rent_control))
+names(choro_rent)[1] = 'region'
+names(choro_rent)[2] = 'value'
+choro_rent = choro_rent %>% mutate(region = tolower(abbr2state(region)))
+
+data(continental_us_states)
+
+state_choropleth(df=choro_rent, title="Rent Control by State", legend ="Prohibits Rent Control")
+
+```
+```{r implementRentControlChoropleth, fig.width=14, fig.height=14}
+
+
+register_google(key = "AIzaSyC8eFoti2mPoYz918n3sJcWoWkIn6K6nnw")
+choro_rent = state_rent_control %>% dplyr::select(c(state, implements_rent_control))
+names(choro_rent)[1] = 'region'
+names(choro_rent)[2] = 'value'
+choro_rent = choro_rent %>% mutate(region = tolower(abbr2state(region)))
+
+data(continental_us_states)
+
+state_choropleth(df=choro_rent, title="Rent Control by State", legend ="Implements Rent Control")
+
+```
+Before continuing we want to identify outliers that may exist in the model to reduce their impact on the potential model.
+
+```{r outlierIdentification,  fig.width=14, fig.height=14}
+
+boxPlotByState <- ggplot(apartment_clean, aes(price,state)) + geom_boxplot()
+boxPlotByState
+
+remove_outliers <- function(x, na.rm = TRUE, ...) {
+  qnt <- quantile(x, probs=c(.25, .75), na.rm = na.rm, ...)
+  H <- 1.5 * IQR(x, na.rm = na.rm)
+  y <- x
+  y[x < (qnt[1] - H)] <- NA
+  y[x > (qnt[2] + H)] <- NA
+  y
+}
+
+apartment_clean_no_outliers <- apartment_clean %>%
+    group_by(state) %>%
+    mutate(price = remove_outliers(price))
+
+```
+We can clearly see multiple outliers that exist in california, Florida, Hawaii, Maryland, Nevada, Rhode Island, Washington, and Wisconsin that we would like to try and remove.
+
+```{r outliersRemoves, fig.width=14, fig.height=14}
+
+apartment_clean_no_outliers <- na.omit(apartment_clean_no_outliers)
+boxBlotNoOutliers <- ggplot(apartment_clean_no_outliers, aes(price,state)) + geom_boxplot()
+boxBlotNoOutliers
+```
+
+After removing the outliers we see a much more varied distribution in the prices. While there are still prices just outside of the boxplot ranges, they are close enough and clustered enough that they shouldn't significantly impact our analysis. We are left with 9,448 observations after cleaning and outlier removal.At this stage, we are also going to remove Latitude and Longitude from our data as they were primarily left in for mapping purposes. We are also going to remove the citynames from our dataset as the majority of the cities have very only a handful of observations in them, and including them could greatly increase the bias of our model without much benefit in the prediction strength.
+
+Our first run resulted problems with our rent control, state, and total amenities variables being perfectly colinear with other variables. It is easy to see that the combined rent control data is colinear with the state effects. So we selectively remove some columns to discover a model without these colinearities.
+
+Here we also identify that some of our sources are not well represented in our dataset, so for each source that has less than 20 listings,which ends up being the lowest 6 levels of our dataset.
+
+```{r finalColRemoval}
+
+acno = apartment_clean_no_outliers %>% ungroup() %>% dplyr::select(-c(latitude, longitude, cityname, state, amenities_total))
+acno %>%group_by(source) %>% summarise(no_rows = length(source))
+acno$source = fct_lump(acno$source, n=6)
+acno %>%group_by(source) %>% summarise(no_rows = length(source))
+```
+
+```{r trainTestSplit}
+acnoSplit <- initial_split(acno, 0.7)
+acnoTrain <- training(acnoSplit)
+acnoTest <- testing(acnoSplit)
+```
+
+As a baseline model we run a simple linear regression across our test set.
+
+
+```{r baseModel}
+
+acNoStepModel = lm(price ~., data=acnoTrain)
+summary(acNoStepModel)
+```
+```{r baseModelStrength}
+lm_preds_test = predict(acNoStepModel, newdata=acnoTest)
+lm_mse = sqrt(mean((acnoTest$price - lm_preds_test[1])^2))
+print(lm_mse)
+model_mse = data.frame("LinearRegression" = c(lm_mse), "ElasticNet" = c(0), "RandomForest" = c(0)) 
+model_mse
+```
+
+We iterate through different alpha values to find the best alpha value to minimize our expected predictive loss,a nd discover the optimal alpha around 0.95, indicating that LASSO seems to be a stronger choice for our model than ridge regression.
+
+```{r elasticNet, fig.height=14, fig.width=14}
+en_mod <- cva.glmnet(price ~.,
+                     data=acnoTrain,
+                     alpha=seq(0.1,1, by=0.05), nlambda=100)
+
+minlossplot(en_mod, cv.type="min")
+
+```
+
+
+We end up with an MSE of 497.8249.
+```{r enetLasso}
+en_mod <- cva.glmnet(price ~.,
+                     data=acnoTrain,
+                     alpha=0.95, nlambda=100)
+preds_test <- data.frame(predict(en_mod, acnoTest, alpha = 0.95, na.action = na.pass))
+en_mse = sqrt(mean((acnoTest$price - preds_test[,1])^2))
+
+model_mse = data.frame("LinearRegression" = c(lm_mse), "ElasticNet" = c(en_mse), "RandomForest" = c(0)) 
+model_mse
+```
+
+Next we will assess a random forest. We have 51 total variables if we include all included factor levels and their bases, which suggests we should have our mtry around 7. We also need to change our factor names to make them compatible with the random forest package in this instance.
+```{r randomForestSelection}
+names(acnoTest) <- make.names(names(acnoTest))
+names(acnoTrain) <- make.names(names(acnoTrain))
+rf_mod = randomForest(price ~ ., data=acnoTrain, mtry=7,ntree=200, importance=TRUE)
+rf_mod$importance
+```
+We see the MSE drops substantially as our number of tress increases. Based on this information, we should keep our number of trees around 125, any more than that as we see no significant increase or decrease in MSE beyond that range.
+```{r randomForestMSE, fig.height=14, fig.width=14}
+plot(rf_mod)
+```
+
+Our in bag and out of bag prediction RMSE suggests that aour model is overfit to a greater degree than we might like. This may be due to how specific our indicators are, biasing our predictions a bit highly. We may be able to adjust this by grouping more of our factors together than we did originally. 
+```{r randomForestFit}
+in_bag = predict(rf_mod, acnoTrain, type="response")
+out_of_bag = predict(rf_mod, type="response")
+test_predictions = predict(rf_mod, acnoTest, type="response")
+
+
+
+inbag = sqrt(mean((acnoTrain$price - in_bag)^2))
+print("OOB")
+
+outbag = sqrt(mean((acnoTrain$price - out_of_bag)^2))
+
+rf_mse = sqrt(mean((acnoTest$price - test_predictions)^2))
+
+
+rf_bags = data.frame("InBag" = c(inbag), "OutOfBag" = c(outbag), "Test" = c(rf_mse))
+rf_bags
+
+```
+
+```{r  finalRMSEComparisons}
+model_mse = data.frame("LinearRegression" = c(lm_mse), "ElasticNet" = c(en_mse), "RandomForest" = c(rf_mse)) 
+model_mse
+```
