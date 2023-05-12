@@ -8,7 +8,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-
+import io
 import sys
 
 
@@ -47,7 +47,7 @@ def get_sentiment(text):
 
 analyzer = SentimentIntensityAnalyzer()
 
-startDate = parser.parse("2016-09-19")
+startDate = parser.parse("2017-04-28")
 endDate = parser.parse(sqlquery("SELECT Max(CreatedAtUtc) FROM RedditData.dbo.Posts")[0][0])
 
 delta = endDate - startDate
@@ -55,8 +55,7 @@ delta = endDate - startDate
 for i in range(delta.days + 1):
     firstDay = startDate + timedelta(days=i)
     secondDay = startDate + timedelta(days=i + 1)
-    postQuery = "SELECT PostId, PostTitle, selftext, CreatedAtUtc from Posts where CreatedAtUtc >= '" + firstDay.strftime(
-        "%Y-%m-%d") + "' AND CreatedAtUtc <= '" + secondDay.strftime("%Y-%m-%d") + "'"
+    postQuery = f"SELECT PostId, PostTitle, selftext, CreatedAtUtc from Posts where CreatedAtUtc >= '{firstDay.strftime('%Y-%m-%d')}' AND CreatedAtUtc < '{secondDay.strftime('%Y-%m-%d')}'"
     posts = pd.read_sql(postQuery, db)
 
     if posts.empty:
@@ -68,25 +67,27 @@ for i in range(delta.days + 1):
         posts['cleanText'] = posts['selftext'].apply(preprocess_text)
         posts['bodySentiment'] = posts['cleanText'].apply(get_sentiment)
 
+    postString = ''
+    for p in posts['PostId']:
+        postString += '\'t3_' +p + '\','
+
+    commentQuery = f"SELECT body, created_utc, post_id FROM RedditData.dbo.Comments WHERE post_id in ({postString.rstrip(postString[-1])})"
+
+    allComments = pd.read_sql(commentQuery, db)
+
+    values = ""
     for index, post in posts.iterrows():
 
-        commentQuery = "SELECT body, created_utc FROM RedditData.dbo.Comments WHERE post_id = 't3_" + post[
-            'PostId'] + "'"
-        comments = pd.read_sql(commentQuery, db)
+        comments = allComments[allComments['post_id'] == 't3_' + post['PostId']]
         if comments.empty:
-            query = "INSERT INTO RedditData.dbo.SentimentAnalysis (Date, BodySentimentScore, TitleSentimentScore, " \
-                    "CommentSentimentScore, PostId) VALUES ('" + firstDay.strftime(
-                "%Y-%m-%d") + "', " + str(post['bodySentiment']) + ", " + str(post['titleSentiment']) + ", " + str(0) + ", '" + post['PostId'] + "')"
-            cursor.execute(query)
-            db.commit()
+            values += f"('{firstDay.strftime('%Y-%m-%d')}', {post['bodySentiment']}, {post['titleSentiment']}, {0}, 't3_{post['PostId']}'),"
             continue
 
         if comments['body'] is not None:
             comments['cleanText'] = comments['body'].apply(preprocess_text)
             comments['sentiment'] = comments['cleanText'].apply(get_sentiment)
-        query = "INSERT INTO RedditData.dbo.SentimentAnalysis (Date, BodySentimentScore, TitleSentimentScore, " \
-                "CommentSentimentScore, PostId) VALUES ('" + firstDay.strftime(
-            "%Y-%m-%d") + "', " + str(post['bodySentiment']) + ", " + str(post['titleSentiment']) + ", " + str(
-            comments['sentiment'].mean()) + ", '" + post['PostId'] + "')"
-        cursor.execute(query)
-        db.commit()
+        values += f"('{firstDay.strftime('%Y-%m-%d')}', {post['bodySentiment']}, {post['titleSentiment']}, {comments['sentiment'].mean()}, 't3_{post['PostId']}'),"
+
+    query = f"INSERT INTO RedditData.dbo.SentimentAnalysis (Date, BodySentimentScore, TitleSentimentScore, CommentSentimentScore, PostId) VALUES {values.rstrip(postString[-1])}"
+    cursor.execute(query)
+    db.commit()
