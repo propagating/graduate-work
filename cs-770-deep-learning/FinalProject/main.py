@@ -4,6 +4,9 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torchvision.utils import save_image
 
+
+
+# Standard GAN (Generative Adversarial Network) implementation in PyTorch
 # Define some hyperparameters
 batch_size = 64
 latent_size = 100
